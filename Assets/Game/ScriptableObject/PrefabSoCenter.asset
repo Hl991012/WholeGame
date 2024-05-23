@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1407951bd9d5c7f499bda78c2c700b45, type: 3}
+  m_Name: PrefabSoCenter
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 5768738581546554356, guid: 1d2cea62311cae243b248a866db6c534, type: 3}
+  subBulletPrefab: {fileID: 7738710436892001361, guid: 9242aa0958e7cb145a8d8b113fd27331, type: 3}
+  enemyPrefab: {fileID: 0}
