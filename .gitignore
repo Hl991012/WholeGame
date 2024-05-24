@@ -4,3 +4,5 @@ Assembly-CSharp.csproj
 UserSettings
 Temp
 Logs
+.idea
+obj

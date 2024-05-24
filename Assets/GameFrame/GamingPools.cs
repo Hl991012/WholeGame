@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Game.Scripts.ScriptableObject;
 using UnityEngine;
 
 namespace GameFrame
@@ -21,9 +20,7 @@ namespace GameFrame
                 }
             }
 
-            var obj = Instantiate(SoCenter.Instance.prefabSoCenter.GetPrefabByRecyclableType(recyclableType), transform);
-            var tempT = obj.AddComponent<T>();
-            return tempT;
+            return AssetManager.Instance.LoadAsset<T>(typeof(T).ToString());
         }
 
         public void ReturnToPool<T>(GameObject obj) where T : Component, IRecyclable
