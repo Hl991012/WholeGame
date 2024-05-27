@@ -42,17 +42,18 @@
   </PropertyGroup>
   <ItemGroup>
      <None Include="Assets\Plugins\UniTask\package.json" />
+     <Folder Include="Assets\Plugins\Android" />
      <Folder Include="Assets\Plugins" />
      <Folder Include="Assets\Plugins\UniTask" />
      <Folder Include="Assets\Plugins\UniRx" />
      <Reference Include="UnityEngine">
-     <HintPath>D:\Softs\Unity\2021.3.20f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
+     <HintPath>D:\Softs\2021.3.20f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
      <Reference Include="UnityEngine.CoreModule">
-     <HintPath>D:\Softs\Unity\2021.3.20f1\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
+     <HintPath>D:\Softs\2021.3.20f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor">
-     <HintPath>D:\Softs\Unity\2021.3.20f1\Editor\Data\Managed\UnityEngine\UnityEditor.dll</HintPath>
+     <HintPath>D:\Softs\2021.3.20f1c1\Editor\Data\Managed\UnityEngine\UnityEditor.dll</HintPath>
      </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
