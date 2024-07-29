@@ -789,14 +789,8 @@
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
       <HintPath>D:\Work\Money\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.CacheServer">
-      <HintPath>D:\Work\Money\Library\ScriptAssemblies\UnityEditor.CacheServer.dll</HintPath>
-    </Reference>
     <Reference Include="PsdPlugin">
       <HintPath>D:\Work\Money\Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Addressables">
-      <HintPath>D:\Work\Money\Library\ScriptAssemblies\Unity.Addressables.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:\Work\Money\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
@@ -839,9 +833,6 @@
     </Reference>
     <Reference Include="Unity.Mathematics.Editor">
       <HintPath>D:\Work\Money\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Addressables.Editor">
-      <HintPath>D:\Work\Money\Library\ScriptAssemblies\Unity.Addressables.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Editor">
       <HintPath>D:\Work\Money\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
@@ -891,9 +882,6 @@
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
       <HintPath>D:\Work\Money\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.ResourceManager">
-      <HintPath>D:\Work\Money\Library\ScriptAssemblies\Unity.ResourceManager.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
       <HintPath>D:\Work\Money\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
     </Reference>
@@ -933,14 +921,8 @@
     <Reference Include="Unity.2D.Common.Runtime">
       <HintPath>D:\Work\Money\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.ScriptableBuildPipeline">
-      <HintPath>D:\Work\Money\Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.2D.SpriteShape.Editor">
       <HintPath>D:\Work\Money\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ScriptableBuildPipeline.Editor">
-      <HintPath>D:\Work\Money\Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
       <HintPath>D:\Work\Money\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>

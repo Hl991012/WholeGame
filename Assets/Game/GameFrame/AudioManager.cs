@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using DG.Tweening;
 using GameFrame;
 
@@ -265,16 +264,13 @@ namespace NMNH.Utility
             public bool HaveTween { get; set; }
         }
         
-        public async UniTask LoadAllAudioClip(IProgress<float> progress = null)
+        public void LoadAllAudioClip()
         {
-            var totalCount = 2;
-            var handle = Addressables.LoadAssetsAsync<AudioClip>("Sound", clip =>
+            var allAudioClip = Resources.LoadAll<AudioClip>("Audio");
+            foreach (var item in allAudioClip)
             {
-                seDict[clip.name] = clip;
-                progress?.Report((float)seDict.Count / totalCount);
-            });
-            
-            await handle.Task;
+                seDict[item.name] = item;
+            }
         }
 
         public void SetMute(bool mute)
