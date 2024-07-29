@@ -45,6 +45,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9507f7d496b63654d80c30664260d80b, type: 2}
   - {fileID: 11400000, guid: 317d3c3bbcb84704b84e7eed0049816e, type: 2}
   - {fileID: 11400000, guid: dd1d90fca1b54654ea25ec53794e802e, type: 2}
+  - {fileID: 11400000, guid: d8d809b54ebfa704e9202b59fa5c132c, type: 2}
+  - {fileID: 11400000, guid: 0e83dbba0cd1b7b458c478750d096e2a, type: 2}
+  - {fileID: 11400000, guid: 0cdfcb65767d09e4f9871a362419b869, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -86,6 +89,7 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
+    - Sound
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: cf46e665ce1e5be4b8df343c272f7cc2, type: 2}

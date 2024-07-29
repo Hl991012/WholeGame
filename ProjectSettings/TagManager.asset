@@ -4,16 +4,39 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
+  - Wall
+  - PlayerTrigger
+  - Electricity
+  - Arrow
+  - Stab
+  - StabTrigger
+  - SpringTrigger
+  - Ghost
+  - GhostTrigger
+  - PoisonTrigger
+  - Door
+  - Star
+  - Coin
+  - RevivePoint
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Door
   - Water
   - UI
-  - Enemy
-  - Bullet
+  - Player
+  - PlayerTrigger
+  - Wall
+  - Stab
+  - StabTrigger
+  - SpringTrigger
+  - Ghost
+  - GhostTrigger
+  - PoisonTrigger
+  - Star
+  - Coin
+  - Electricity
   - 
   - 
   - 
@@ -27,17 +50,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - EtitorBox2D
   m_SortingLayers:
   - name: Default
     uniqueID: 0

@@ -1,0 +1,35 @@
+using System;
+using Cysharp.Threading.Tasks;
+using NMNH.Utility;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class SplashPresenter : MonoBehaviour
+{
+    [SerializeField] private Image progressSlider;
+    
+    private void Awake()
+    {
+        progressSlider.fillAmount = 0;
+    }
+
+    private async void Start()
+    {
+        await Load();
+    }
+
+    private async UniTask Load()
+    {
+        progressSlider.fillAmount = 0;
+        GameCenter.Instance.LoadData();
+        progressSlider.fillAmount = 0.3f;
+        await SceneManager.LoadSceneAsync("MainScene", LoadSceneMode.Additive);
+        progressSlider.fillAmount = 0.9f;
+        await AudioManager.Instance.LoadAllAudioClip();
+        await UniTask.Delay(TimeSpan.FromSeconds(1));
+        progressSlider.fillAmount = 1;
+        await SceneManager.UnloadSceneAsync("Splash");
+        AudioManager.Instance.PlayBGM();
+    }
+}
