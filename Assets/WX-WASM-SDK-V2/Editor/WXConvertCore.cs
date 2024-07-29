@@ -806,13 +806,15 @@ namespace WeChatWASM
                 if (brcodeSize + int.Parse(tempFileSize) > (20 - 1) * 1024 * 1024)
                 {
                     config.ProjectConf.assetLoadType = 0;
-                    Debug.LogError("资源文件过大，不适宜用放小游戏包内加载，请上传资源文件到CDN" + (brcodeSize + int.Parse(tempFileSize)) / 1024f / 1024);
+                    Debug.LogError("资源文件过大，不适宜用放小游戏包内加载，请上传资源文件到CDN");
                 }
                 else
                 {
                     // 小游戏分包加载时，压缩成功且总大小符合要求，将br文件copy到小游戏目录
                     File.Copy(tempDataPath, config.ProjectConf.compressDataPackage ? brMinigameDataPath : originMinigameDataPath, true);
                 }
+                
+                Debug.LogError("文件大小" + (brcodeSize + int.Parse(tempFileSize)) / 1024f / 1024);         
             }
             checkNeedRmovePackageParallelPreload();
 

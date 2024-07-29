@@ -41,6 +41,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Editor\ChineseFilter.cs" />
     <Compile Include="Assets\Editor\CustomPlayButton\Editor\Base\ToolbarCallback.cs" />
     <Compile Include="Assets\Editor\CustomPlayButton\Editor\Base\ToolbarExtender.cs" />
     <Compile Include="Assets\Editor\CustomPlayButton\Editor\PlayButton.cs" />
