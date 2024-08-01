@@ -62,5 +62,6 @@ public class SingleStageLevelItem : MonoBehaviour
         
         unlockObj.SetActive(isUnlocked);
         lockObj.SetActive(!isUnlocked);
+        clickBtn.enabled = isUnlocked;
     }
 }

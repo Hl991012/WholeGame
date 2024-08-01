@@ -70,7 +70,7 @@ public class ChineseFilter
                             continue;
                         }
 
-                        if (IsContainChinese(line))
+                       //  if (IsContainChinese(line))
                         {
                             result.Add(GetChinese(line));
                         }
@@ -120,7 +120,7 @@ public class ChineseFilter
             var texts = GameObject.FindObjectsOfType<TMP_Text>();
             foreach (var text in texts)
             {
-                if (IsContainChinese(text.text))
+                // if (IsContainChinese(text.text))
                 {
                     result.Add(GetChinese(text.text));
                 }

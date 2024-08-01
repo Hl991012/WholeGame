@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using NMNH.Utility;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 
@@ -23,6 +24,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveDir = Vector2.zero;
     
     private Vector2 recentRevivePoint = Vector2.zero;
+    
+    private Direction lastTouchMoveDir = Direction.None;
 
     private void Awake()
     {
@@ -68,6 +71,33 @@ public class PlayerController : MonoBehaviour
         {
             var curDirection = moveOrderQueue.Dequeue();
             Move(curDirection);
+        }
+
+        if (Input.touchCount > 0)
+        {
+            var touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Moved)
+            {
+                Vector2 deltaPosition = touch.deltaPosition;
+                var tempDir = Direction.None;
+                // 检查滑动方向
+                if (Mathf.Abs(deltaPosition.x) > Mathf.Abs(deltaPosition.y))
+                { 
+                    // 水平滑动
+                    tempDir = deltaPosition.x > 0 ? Direction.Right : Direction.Left;
+                }
+                else
+                {
+                    // 垂直滑动
+                    tempDir = deltaPosition.y > 0 ? Direction.Up : Direction.Down;
+                }
+
+                if (tempDir != lastTouchMoveDir)
+                {
+                    AddMoveOrder(tempDir);
+                    lastTouchMoveDir = tempDir;
+                }
+            }
         }
     }
 
