@@ -6,3 +6,5 @@ Temp
 Logs
 .idea
 obj
+Assembly-CSharp-Editor.csproj
+*.csproj
