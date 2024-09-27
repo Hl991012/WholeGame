@@ -1,42 +1,42 @@
 ﻿using PuzzleGame.Gameplay;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace PuzzleGame.UI
 {
-    [RequireComponent(typeof(Text))]
+    [RequireComponent(typeof(TextMeshProUGUI))]
     public class ScoreCounter : MonoBehaviour
     {
-        Text label;
+        TextMeshProUGUI labelTmp;
 
-        protected GameState currentGameState;
+        protected GameStateModel currentGameStateModel;
 
-        protected virtual int Value => currentGameState.Score;
+        protected virtual int Value => currentGameStateModel.Score;
 
-        void Start()
+        private void Start()
         {
-            label = GetComponent<Text>();
+            labelTmp = GetComponent<TextMeshProUGUI>();
 
             OnProgressUpdate();
             UserProgress.Current.ProgressUpdate += OnProgressUpdate;
         }
 
-        void OnDestroy()
+        private void OnDestroy()
         {
             UserProgress.Current.ProgressUpdate -= OnProgressUpdate;
 
-            if (currentGameState != null)
-                currentGameState.StateUpdate -= OnStateUpdate;
+            if (currentGameStateModel != null)
+                currentGameStateModel.StateUpdate -= OnStateUpdate;
         }
 
-        void OnProgressUpdate()
+        private void OnProgressUpdate()
         {
-            var gameState = UserProgress.Current.GetGameState<GameState>(UserProgress.Current.CurrentGameId);
+            var gameState = UserProgress.Current.GetGameState<GameStateModel>(UserProgress.Current.CurrentGameId);
 
-            if (currentGameState != null)
-                currentGameState.StateUpdate -= OnStateUpdate;
+            if (currentGameStateModel != null)
+                currentGameStateModel.StateUpdate -= OnStateUpdate;
 
-            currentGameState = gameState;
+            currentGameStateModel = gameState;
 
             if (gameState == null)
                 return;
@@ -45,9 +45,9 @@ namespace PuzzleGame.UI
             gameState.StateUpdate += OnStateUpdate;
         }
 
-        void OnStateUpdate()
+        private void OnStateUpdate()
         {
-            label.text = Value.ToString();
+            labelTmp.text = Value.ToString();
         }
     }
 }

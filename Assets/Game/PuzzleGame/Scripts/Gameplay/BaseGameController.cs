@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace PuzzleGame.Gameplay
 {
-    public abstract class BaseGameController<TGameState> : BaseGameController where TGameState : GameState
+    public abstract class BaseGameController<TGameState> : BaseGameController where TGameState : GameStateModel
     {
         protected TGameState gameState;
     
@@ -89,7 +89,7 @@ namespace PuzzleGame.Gameplay
 
         protected void SetStartBoosters()
         {
-            BoostersController.Instance.SetBoosters();
+            // BoostersController.Instance.SetBoosters();
         }
 
         /// <summary>

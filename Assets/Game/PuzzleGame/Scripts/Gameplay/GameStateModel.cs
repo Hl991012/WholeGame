@@ -5,29 +5,23 @@ using UnityEngine;
 namespace PuzzleGame.Gameplay
 {
     [Serializable]
-    public class GameState
+    public class GameStateModel
     {
         public event Action StateUpdate;
 
-        [SerializeField]
-        int score;
-        [SerializeField]
-        int topScore;
+        [SerializeField] private int score;
+        [SerializeField] private int topScore;
 
-        [SerializeField]
-        int[] field = new int[0];
+        [SerializeField] private int[] field = Array.Empty<int>();
 
-        [SerializeField]
-        int[] nextBricks = new int[0];
+        [SerializeField] private int[] nextBricks = Array.Empty<int>();
 
         [SerializeField]
         public List<GameSave> fieldSaves = new List<GameSave>();
     
-        [SerializeField]
-        bool isGameOver;
+        [SerializeField] private bool isGameOver;
 
-        [SerializeField]
-        string themeId;
+        [SerializeField] private string themeId;
 
         public int Score
         {

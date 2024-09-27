@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 namespace PuzzleGame.Gameplay.PowerPuzzle
 {
-    public class GameController : BaseGameController<GameState>
+    public class GameController : BaseGameController<GameStateModel>
     {
         [Header("Mode fields")]
         public int bricksToMerge = 4;
@@ -51,11 +51,11 @@ namespace PuzzleGame.Gameplay.PowerPuzzle
                 }
             }
         
-            gameState = UserProgress.Current.GetGameState<GameState>(name);
+            gameState = UserProgress.Current.GetGameState<GameStateModel>(name);
 
             if (gameState == null)
             {
-                gameState = new GameState();
+                gameState = new GameStateModel();
                 UserProgress.Current.SetGameState(name, gameState);
             }
 

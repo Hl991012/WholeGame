@@ -1,6 +1,6 @@
 ﻿namespace PuzzleGame.Gameplay
 {
-    public interface IGameState<T> where T : GameState
+    public interface IGameState<T> where T : GameStateModel
     {
         T GameState { get; }
     }

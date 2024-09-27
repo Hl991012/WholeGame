@@ -6,8 +6,8 @@ using UnityEngine;
 
 namespace PuzzleGame
 {
-    [CreateAssetMenu(fileName = "GamePreset", menuName = "Game Preset")]
-    public class GamePreset : ScriptableObject
+    [CreateAssetMenu(fileName = "GameConfigSo", menuName = "GameConfigSo")]
+    public class GameConfigSo : ScriptableObject
     {
         public BaseGameController gamePrefab;
         public LastChance lastChance;

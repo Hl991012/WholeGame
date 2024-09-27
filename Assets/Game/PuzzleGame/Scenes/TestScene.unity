@@ -198,6 +198,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 354708822, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 696
+      objectReference: {fileID: 0}
+    - target: {fileID: 354708822, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 696
+      objectReference: {fileID: 0}
+    - target: {fileID: 354708823, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1697835119, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1697835119, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 3314196922522159865, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}
       propertyPath: m_Camera
       value: 

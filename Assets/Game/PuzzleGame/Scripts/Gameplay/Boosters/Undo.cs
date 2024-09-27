@@ -20,9 +20,9 @@ namespace PuzzleGame.Gameplay.Boosters
             }
         }
 
-        public static bool Execute(GameState gameState, Action onComplete)
+        public static bool Execute(GameStateModel gameStateModel, Action onComplete)
         {
-            bool result = gameState.UndoGameState();
+            bool result = gameStateModel.UndoGameState();
         
             onComplete?.Invoke();
 

@@ -11,6 +11,7 @@ public class SplashPresenter : MonoBehaviour
     
     private void Awake()
     {
+        Application.targetFrameRate = 60;
         progressSlider.fillAmount = 0;
     }
 
