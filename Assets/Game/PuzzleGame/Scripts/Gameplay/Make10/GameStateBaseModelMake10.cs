@@ -5,7 +5,7 @@ using UnityEngine;
 namespace PuzzleGame.Gameplay.Make10
 {
     [Serializable]
-    public class GameStateModelMake10 : GameStateModel
+    public class GameStateBaseModelMake10 : GameStateBaseModel
     {
         [SerializeField] 
         List<Make10Save> saves = new List<Make10Save>();

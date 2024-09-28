@@ -5,17 +5,12 @@ using UnityEngine;
 namespace PuzzleGame.Gameplay.Puzzle1010
 {
     [Serializable]
-    public class GameState1010 : GameStateModel
+    public class PutBlockGameState : GameStateBaseModel
     {
-        [SerializeField] 
-        List<Save1010> saves = new List<Save1010>();
-    
-        [SerializeField]
-        int[] figures = new int[0];
-        [SerializeField]
-        float[] figureRotations = new float[0];
-        [SerializeField]
-        int[] figureIndexes = new int[0];
+        [SerializeField] private List<PutBlockGameStateSaveInfo> saves = new List<PutBlockGameStateSaveInfo>();
+        [SerializeField] private int[] figures = Array.Empty<int>();
+        [SerializeField] private float[] figureRotations = Array.Empty<float>();
+        [SerializeField] private int[] figureIndexes = Array.Empty<int>();
 
         public void SetFigures(int[] value, int[] indexes, float[] rotations)
         {
@@ -43,7 +38,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
         {
             base.SaveGameState();
         
-            Save1010 save = new Save1010
+            PutBlockGameStateSaveInfo save = new PutBlockGameStateSaveInfo
             {
                 figures = GetFigures(),
                 figureRotations = GetFigureRotations(),
@@ -58,7 +53,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             if (!base.UndoGameState())
                 return false;
         
-            Save1010 save = saves[saves.Count - 1];
+            var save = saves[^1];
             saves.RemoveAt(saves.Count - 1);
 
             figures = save.figures;
@@ -76,7 +71,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
     }
 
     [Serializable]
-    public class Save1010
+    public class PutBlockGameStateSaveInfo
     {
         [SerializeField]
         public int[] figures = new int[0];

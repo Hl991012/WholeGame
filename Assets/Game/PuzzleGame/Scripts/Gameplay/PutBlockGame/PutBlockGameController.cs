@@ -1,6 +1,7 @@
 ﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
+using NMNH.Utility;
 using PuzzleGame.Gameplay.Boosters;
 using PuzzleGame.Themes;
 using UnityEngine;
@@ -9,11 +10,12 @@ using Random = UnityEngine.Random;
 
 namespace PuzzleGame.Gameplay.Puzzle1010
 {
-    public class GameController1010 : BaseGameController<GameState1010>
+    public class PutBlockGameController : BaseGameController<PutBlockGameState>
     {
-        [Header("Mode fields")]
-        public Brick emptyBrickPrefab;
-        public FigureController[] figureControllers;
+        [Header("PutBlockGame模式字段")] 
+        [SerializeField] private PutBlockGameOverPanel putBlockGameOverPanel;
+        [SerializeField] private Brick emptyBrickPrefab;
+        [SerializeField] private FigureController[] figureControllers;
 
         private Brick[,] backgroundBricks;
         private int[] figures = Array.Empty<int>();
@@ -38,10 +40,10 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 }
             }
         
-            gameState = UserProgress.Current.GetGameState<GameState1010>(name);
+            gameState = UserProgress.Current.GetGameState<PutBlockGameState>(name);
             if (gameState == null)
             {
-                gameState = new GameState1010();
+                gameState = new PutBlockGameState();
                 UserProgress.Current.SetGameState(name, gameState);
             }
 
@@ -65,30 +67,61 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             gameState.Score = 0;
             gameState.IsGameOver = false;
             SpawnNewFigures();
-            SpawnStartingBricks();
+            // SpawnStartingBricks();
             SetStartBoosters();
-
             SaveGame();
         }
 
-        private void SpawnStartingBricks()
+        public override void ReplayGame()
         {
-            var positions = new List<Vector2Int>();
-            for (var i = 0; i < bricksCount.x; i++)
+            gameState.IsGameOver = true;
+            
+            // 清除已经生成的内容
+            gameState.Score = 0;
+            foreach (var item in field)
             {
-                for (var j = 0; j < bricksCount.y; j++)
+                if (item != null)
                 {
-                    positions.Add(new Vector2Int(i, j));
+                    item.Number = 0;
+                    Destroy(item.gameObject);
                 }
             }
-
-            for (int i = 1; i <= 9; i++)
+            
+            foreach (var item in figureControllers)
             {
-                int rand = Random.Range(0, positions.Count);
-                SpawnBrick(positions[rand], GetRandomBrickNumber());
-                positions.RemoveAt(rand);
+                foreach (var brick in item.bricks)
+                {
+                    Destroy(brick.gameObject);
+                }
+                
+                item.bricks.Clear();
+                item.ResetPosition();
+                item.Interactable = true;
             }
+            
+            ClearGameState();
+            StartGame();
         }
+
+        // 创建游戏开始的随机目标
+        // private void SpawnStartingBricks()
+        // {
+        //     var positions = new List<Vector2Int>();
+        //     for (var i = 0; i < bricksCount.x; i++)
+        //     {
+        //         for (var j = 0; j < bricksCount.y; j++)
+        //         {
+        //             positions.Add(new Vector2Int(i, j));
+        //         }
+        //     }
+        //
+        //     for (int i = 1; i <= 9; i++)
+        //     {
+        //         int rand = Random.Range(0, positions.Count);
+        //         SpawnBrick(positions[rand], GetRandomBrickNumber());
+        //         positions.RemoveAt(rand);
+        //     }
+        // }
 
         private bool LoadGame()
         {
@@ -148,6 +181,12 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             UserProgress.Current.SaveGameState(name);
         }
 
+        protected override void ClearGameState()
+        {
+            base.ClearGameState();
+            UserProgress.Current.ClearGameState(name);
+        }
+
         private void SpawnBrick(Vector2Int coords, int number)
         {
             var brick = Instantiate(brickPrefab, fieldTransform);
@@ -190,13 +229,23 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             figureRotations = new float[figureControllers.Length];
             for (var i = 0; i < figureControllers.Length; i++)
             {
-                var figure = Random.Range(0, Figures1010.Figures.Length);
-                var rotation = Random.Range(0, 4) * 90f;
+                var randomNum = Random.Range(0, 121);
+                for (var j = 0; j < PutBlockConfig.FiguresProbability.Length; j++)
+                {
+                    if (randomNum <= PutBlockConfig.FiguresProbability[j])
+                    {
+                        var figure = j;
+                        var rotation = Random.Range(0, 4) * 90f;
 
-                SpawnFigure(figureControllers[i], figure, rotation, GetRandomBrickNumber());
+                        SpawnFigure(figureControllers[i], figure, rotation, GetRandomBrickNumber());
 
-                figures[i] = figure;
-                figureRotations[i] = rotation;
+                        figures[i] = figure;
+                        figureRotations[i] = rotation;
+                        break;
+                    }
+
+                    randomNum -= PutBlockConfig.FiguresProbability[j];
+                }
             }
         }
 
@@ -204,10 +253,10 @@ namespace PuzzleGame.Gameplay.Puzzle1010
         {
             figureController.transform.localRotation = Quaternion.identity;
 
-            var figure = Figures1010.Figures[figureIndex];
+            var figure = PutBlockConfig.Figures[figureIndex];
             for (var i = 0; i < figure.GetLength(0); i++)
             {
-                for (int j = 0; j < figure.GetLength(1); j++)
+                for (var j = 0; j < figure.GetLength(1); j++)
                 {
                     if (figure[figure.GetLength(0) - i - 1, j] == 0)
                         continue;
@@ -269,19 +318,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 gameState.Score++;
             }
 
-            // if (Random.Range(0f, 1f) < coinProbability)
-            // {
-            //     UserProgress.Current.Coins++;
-            //
-            //     GameObject vfx = Resources.Load<GameObject>("CoinVFX");
-            //     vfx = Instantiate(vfx, fieldTransform.parent);
-            //
-            //     vfx.transform.position = figureController.transform.position;
-            //
-            //     Destroy(vfx, 1.5f);
-            // }
-
-            // soundCollection.GetSfx(SoundId.Landing).Play();
+            AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.Stab);
 
             var index = Array.IndexOf(figureControllers, figureController);
             figures[index] = -1;
@@ -375,9 +412,11 @@ namespace PuzzleGame.Gameplay.Puzzle1010
         private void CheckLines()
         {
             var bricksToDestroy = GetCompleteLines();
-
-            // if (bricksToDestroy.Length > 0)
-                // soundCollection.GetSfx(SoundId.Merging).Play();
+            
+            if (bricksToDestroy.Length > 0)
+            {
+                AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.Eliminate);   
+            }
 
             foreach (var c in bricksToDestroy)
             {
@@ -402,8 +441,10 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 return;
 
             gameState.IsGameOver = true;
-            UserProgress.Current.SaveGameState(name);
-            Debug.LogError("游戏结束");
+            
+            putBlockGameOverPanel.gameObject.SetActive(true);
+            putBlockGameOverPanel.Show();
+            UserProgress.Current.ClearGameState(name);
             OnGameOver();
         }
 
