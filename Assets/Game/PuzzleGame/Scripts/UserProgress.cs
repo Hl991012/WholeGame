@@ -25,7 +25,7 @@ namespace PuzzleGame
 
         public event Action ProgressUpdate = delegate { };
 
-        Dictionary<string, GameStateModel> gameStates = new();
+        Dictionary<string, GameStateBaseModel> gameStates = new();
 
         [SerializeField] private int coins;
 
@@ -78,12 +78,12 @@ namespace PuzzleGame
 
         public string CurrentThemeId
         {
-            get => GetGameState<GameStateModel>(currentGameId)?.ThemeId;
+            get => GetGameState<GameStateBaseModel>(currentGameId)?.ThemeId;
             set
             {
-                GameStateModel gameStateModel = GetGameState<GameStateModel>(currentGameId);
-                gameStateModel.ThemeId = value;
-                SetGameState(currentGameId, gameStateModel);
+                GameStateBaseModel gameStateBaseModel = GetGameState<GameStateBaseModel>(currentGameId);
+                gameStateBaseModel.ThemeId = value;
+                SetGameState(currentGameId, gameStateBaseModel);
                 SaveGameState(currentGameId);
                 Save();
 
@@ -138,7 +138,7 @@ namespace PuzzleGame
             ProgressUpdate.Invoke();
         }
 
-        public T GetGameState<T>(string id) where T : GameStateModel
+        public T GetGameState<T>(string id) where T : GameStateBaseModel
         {
             if (string.IsNullOrEmpty(id))
                 return null;
@@ -152,13 +152,13 @@ namespace PuzzleGame
             if (gameStates.ContainsKey(id))
                 gameStates.Remove(id);
 
-            GameStateModel gameStateModel = JsonUtility.FromJson<T>(PlayerPrefs.GetString(id));
-            gameStates.Add(id, gameStateModel);
+            GameStateBaseModel gameStateBaseModel = JsonUtility.FromJson<T>(PlayerPrefs.GetString(id));
+            gameStates.Add(id, gameStateBaseModel);
 
-            return (T) gameStateModel;
+            return (T) gameStateBaseModel;
         }
 
-        public void SetGameState<T>(string id, T state) where T : GameStateModel
+        public void SetGameState<T>(string id, T state) where T : GameStateBaseModel
         {
             gameStates[id] = state;
         }
@@ -167,6 +167,15 @@ namespace PuzzleGame
         {
             if (gameStates.TryGetValue(id, out var state))
                 PlayerPrefs.SetString(id, JsonUtility.ToJson(state));
+        }
+
+        public void ClearGameState(string id)
+        {
+            if (gameStates.TryGetValue(id, out var state))
+            {
+                state.Reset();
+                PlayerPrefs.SetString(id, JsonUtility.ToJson(state));
+            }
         }
 
         public void Save()

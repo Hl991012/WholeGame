@@ -23,7 +23,7 @@ public class SplashPresenter : MonoBehaviour
     private async UniTask Load()
     {
         progressSlider.fillAmount = 0;
-        GameCenter.Instance.LoadData();
+        TextAdventureGameController.Instance.LoadData();
         progressSlider.fillAmount = 0.3f;
         await SceneManager.LoadSceneAsync("MainScene", LoadSceneMode.Additive);
         progressSlider.fillAmount = 0.9f;
@@ -32,5 +32,6 @@ public class SplashPresenter : MonoBehaviour
         progressSlider.fillAmount = 1;
         await SceneManager.UnloadSceneAsync("Splash");
         AudioManager.Instance.PlayBGM();
+        GameCenter.Instance.ChangeState(GameCenter.GameState.Home);
     }
 }

@@ -17,6 +17,7 @@ namespace NMNH.Utility
             TouchWall,
             Win,
             Stab,
+            PutUpBlock, // 拿起方块
         }
 
         private Dictionary<string, AudioClip> seDict = new ();
@@ -28,8 +29,8 @@ namespace NMNH.Utility
 
         private void Awake()
         {
-            oneShotAudioSource = gameObject.AddComponent<AudioSource>();
             bgmAudioSource = gameObject.AddComponent<AudioSource>();
+            oneShotAudioSource = gameObject.AddComponent<AudioSource>();
 
             for (var i = 0; i < 2; i++)
             {
@@ -70,7 +71,15 @@ namespace NMNH.Utility
         public void PlayBGM()
         {
             bgmAudioSource.clip = GetAudioClip(SoundEffectType.BGM.ToString());
+            bgmAudioSource.loop = true;
             bgmAudioSource.Play();
+        }
+
+        public void StopBgm()
+        {
+            bgmAudioSource.Stop();
+            bgmAudioSource.clip = null;
+            bgmAudioSource.loop = false;
         }
 
         /// <summary>
@@ -275,7 +284,7 @@ namespace NMNH.Utility
 
         public void SetMute(bool mute)
         {
-            this.isMute = mute;
+            isMute = mute;
             if (mute)
             {
                 StopAll();

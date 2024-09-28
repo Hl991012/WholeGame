@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class ReviveUI : MonoBehaviour
 {
+    [SerializeField] private TextAdventureUIPresenter textAdventureUIPresenter;
     [SerializeField] private Button closeBtn;
     [SerializeField] private Button reviveByCoinBtn;
     [SerializeField] private Button reviveByAdBtn;
@@ -12,7 +13,7 @@ public class ReviveUI : MonoBehaviour
         closeBtn.onClick.AddListener(() =>
         {
             BaseUtilities.PlayCommonClick();
-            GameCenter.Instance.EndGame(false);
+            TextAdventureGameController.Instance.EndGame(false);
         });
         
         reviveByCoinBtn.onClick.AddListener(() =>
@@ -20,19 +21,19 @@ public class ReviveUI : MonoBehaviour
             BaseUtilities.PlayCommonClick();
             if (WealthManager.Instance.CurWealthModel.CoinCount < 50)
             {
-                UIPresenter.Instance.ShowPopUps("金币不足");
+                textAdventureUIPresenter.ShowPopUps("金币不足");
             }
             else
             {
                 WealthManager.Instance.AddCoin(-50);
-                GameCenter.Instance.Revive();
+                TextAdventureGameController.Instance.Revive();
             }
         });
         
         reviveByAdBtn.onClick.AddListener(() =>
         {
             BaseUtilities.PlayCommonClick();
-            GameCenter.Instance.Revive();
+            TextAdventureGameController.Instance.Revive();
         });
     }
 }

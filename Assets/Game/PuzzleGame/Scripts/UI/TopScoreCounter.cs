@@ -2,6 +2,6 @@
 {
     public class TopScoreCounter : ScoreCounter
     {
-        protected override int Value => currentGameStateModel.TopScore;
+        protected override int Value => currentGameStateBaseModel.TopScore;
     }
 }

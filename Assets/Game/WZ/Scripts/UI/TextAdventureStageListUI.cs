@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StageListUIPresenter : MonoBehaviour, IEnhancedScrollerDelegate
+public class TextAdventureStageListUI : MonoBehaviour, IEnhancedScrollerDelegate
 {
     [SerializeField] private TextMeshProUGUI coinCountTmp;
     [SerializeField] private EnhancedScroller enhancedScroller;
@@ -19,7 +19,7 @@ public class StageListUIPresenter : MonoBehaviour, IEnhancedScrollerDelegate
         backBtn.onClick.AddListener(() =>
         {
             BaseUtilities.PlayCommonClick();
-            gameObject.SetActive(false);
+            GameCenter.Instance.ChangeState(GameCenter.GameState.Home);
         });
         
         enhancedScroller.Delegate = this; 

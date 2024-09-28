@@ -3,7 +3,7 @@ using GameFrame;
 using UniRx;
 using UnityEngine;
 
-public class TextAdventureGameCenter : MonoSingleton<TextAdventureGameCenter>
+public class TextAdventureGameController : MonoSingleton<TextAdventureGameController>
 {
     public void LoadData()
     {
@@ -26,7 +26,7 @@ public class TextAdventureGameCenter : MonoSingleton<TextAdventureGameCenter>
         Settlement, // 结算中
         Reviving, // 复活中
     }
-    public TextAdventureGameCenter.GameState CurGameState { get; private set; } = TextAdventureGameCenter.GameState.Home;
+    public TextAdventureGameController.GameState CurGameState { get; private set; } = TextAdventureGameController.GameState.Home;
     public Action OnGameStateChanged;
 
     public void ChangeState(GameState gameState)

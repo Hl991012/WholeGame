@@ -11,7 +11,10 @@ namespace GameFrame
 
         private void OnEnable()
         {
-            DontDestroyOnLoad(gameObject);
+            if (transform.parent == null)
+            {
+                DontDestroyOnLoad(gameObject);   
+            }
         }
 
         public static T Instance

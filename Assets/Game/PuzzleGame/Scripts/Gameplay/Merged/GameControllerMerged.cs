@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 
 namespace PuzzleGame.Gameplay.Merged
 {
-    public class GameControllerMerged : BaseGameController<GameStateModel>
+    public class GameControllerMerged : BaseGameController<GameStateBaseModel>
     {
         [Header("Mode fields")]
         public int bricksToMerge = 3;
@@ -48,11 +48,11 @@ namespace PuzzleGame.Gameplay.Merged
                 }
             }
 
-            gameState = UserProgress.Current.GetGameState<GameStateModel>(name);
+            gameState = UserProgress.Current.GetGameState<GameStateBaseModel>(name);
 
             if (gameState == null)
             {
-                gameState = new GameStateModel();
+                gameState = new GameStateBaseModel();
                 UserProgress.Current.SetGameState(name, gameState);
             }
 

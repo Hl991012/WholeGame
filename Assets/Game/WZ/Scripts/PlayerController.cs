@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NMNH.Utility;
 using UnityEngine;
@@ -27,20 +28,27 @@ public class PlayerController : MonoBehaviour
     
     private Direction lastTouchMoveDir = Direction.None;
 
+    private void OnEnable()
+    {
+        canInputMoveDir = true;
+    }
+
     private void Awake()
     {
         CameraController.Instance.Register(transform);
-        GameCenter.Instance.Register(this);
+        TextAdventureGameController.Instance.Register(this);
     }
 
     private void AddMoveOrder(Direction moveDirection)
     { 
         // if(lastAddDirection == moveDirection) return;
-        if(GameCenter.Instance.CurGameState != GameCenter.GameState.Playing) return;
+        if(TextAdventureGameController.Instance.CurGameState != TextAdventureGameController.GameState.Playing) return;
         if(moveOrderQueue.Count > 2) return;
         lastAddDirection = moveDirection;
         moveOrderQueue.Enqueue(moveDirection);
     }
+
+    private bool canInputMoveDir;
 
     private void Update()
     {
@@ -76,28 +84,40 @@ public class PlayerController : MonoBehaviour
         if (Input.touchCount > 0)
         {
             var touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Moved)
-            {
-                Vector2 deltaPosition = touch.deltaPosition;
-                var tempDir = Direction.None;
-                // 检查滑动方向
-                if (Mathf.Abs(deltaPosition.x) > Mathf.Abs(deltaPosition.y))
-                { 
-                    // 水平滑动
-                    tempDir = deltaPosition.x > 0 ? Direction.Right : Direction.Left;
-                }
-                else
-                {
-                    // 垂直滑动
-                    tempDir = deltaPosition.y > 0 ? Direction.Up : Direction.Down;
-                }
 
-                if (tempDir != lastTouchMoveDir)
-                {
-                    AddMoveOrder(tempDir);
-                    lastTouchMoveDir = tempDir;
-                }
+            switch (touch.phase)
+            {
+                case TouchPhase.Moved:
+                    Vector2 deltaPosition = touch.deltaPosition;
+                    var tempDir = Direction.None;
+                    // 检查滑动方向
+                    if (Mathf.Abs(deltaPosition.x) > Mathf.Abs(deltaPosition.y))
+                    { 
+                        // 水平滑动
+                        tempDir = deltaPosition.x > 0 ? Direction.Right : Direction.Left;
+                    }
+                    else
+                    {
+                        // 垂直滑动
+                        tempDir = deltaPosition.y > 0 ? Direction.Up : Direction.Down;
+                    }
+
+                    if (tempDir != lastTouchMoveDir && canInputMoveDir)
+                    {
+                        canInputMoveDir = false;
+                        AddMoveOrder(tempDir);
+                        lastTouchMoveDir = tempDir;
+                    }
+                    break;
+                case TouchPhase.Canceled:
+                case TouchPhase.Ended:
+                    canInputMoveDir = true;
+                    break;
             }
+        }
+        else
+        {
+            canInputMoveDir = true;
         }
     }
 
@@ -168,11 +188,11 @@ public class PlayerController : MonoBehaviour
                 break;
             case "Door":
                 ResetState();
-                GameCenter.Instance.EndGame(true);
+                TextAdventureGameController.Instance.EndGame(true);
                 break;
             case "Star":
                 Destroy(other.gameObject);
-                GameCenter.Instance.AddStar();
+                TextAdventureGameController.Instance.AddStar();
                 break;
             case "Coin":
                 Destroy(other.gameObject);
@@ -215,7 +235,7 @@ public class PlayerController : MonoBehaviour
     private void Death()
     {
         ResetState();
-        GameCenter.Instance.GameDeath();
+        TextAdventureGameController.Instance.GameDeath();
     }
 
     public void Revive()

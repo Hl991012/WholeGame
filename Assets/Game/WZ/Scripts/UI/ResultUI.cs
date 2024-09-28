@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ResultUI : MonoBehaviour
 {
+    [SerializeField] private TextAdventureUIPresenter textAdventureUIPresenter;
     [SerializeField] private GameObject winObj;
     [SerializeField] private GameObject loseObj;
     [SerializeField] private Button homeBtn;
@@ -20,48 +21,54 @@ public class ResultUI : MonoBehaviour
         homeBtn.onClick.AddListener(() =>
         {
             BaseUtilities.PlayCommonClick();
-            GameCenter.Instance.ChangeState(GameCenter.GameState.Home);
+            TextAdventureGameController.Instance.ChangeState(TextAdventureGameController.GameState.Home);
         });
         
         nextBtn.onClick.AddListener(() =>
         {
             BaseUtilities.PlayCommonClick();
-            if (GameCenter.Instance.CurGamingModel.CurrentStageLevel + 1 > StageConfigManager.Instance.TotalStageCount)
+            if (TextAdventureGameController.Instance.CurGamingModel.CurrentStageLevel + 1 > StageConfigManager.Instance.TotalStageCount)
             {
-                UIPresenter.Instance.ShowPopUps("更多关卡制作中~");
+                textAdventureUIPresenter.ShowPopUps("更多关卡制作中~");
             }
             else
             {
-                GameCenter.Instance.StartGame(GameCenter.Instance.CurGamingModel.CurrentStageLevel + 1);
+                TextAdventureGameController.Instance.StartGame(TextAdventureGameController.Instance.CurGamingModel.CurrentStageLevel + 1);
             }
         });
         
         onceAgainBtn.onClick.AddListener(() =>
         {
             BaseUtilities.PlayCommonClick();
-            GameCenter.Instance.StartGame(GameCenter.Instance.CurGamingModel.CurrentStageLevel);
+            TextAdventureGameController.Instance.StartGame(TextAdventureGameController.Instance.CurGamingModel.CurrentStageLevel);
         });
     }
 
     public void RefreshView()
     {
-        winObj.SetActive(GameCenter.Instance.CurGamingModel.GameResult == GameResult.Win);
-        loseObj.SetActive(GameCenter.Instance.CurGamingModel.GameResult == GameResult.Lose);
-        playTimeTmp.text = TimeSpan.FromSeconds(GameCenter.Instance.CurGamingModel.StageLevelRecordInfo.PassSeconds).ToString("mm':'ss");
+        winObj.SetActive(TextAdventureGameController.Instance.CurGamingModel.GameResult == GameResult.Win);
+        loseObj.SetActive(TextAdventureGameController.Instance.CurGamingModel.GameResult == GameResult.Lose);
+        playTimeTmp.text = TimeSpan.FromSeconds(TextAdventureGameController.Instance.CurGamingModel.StageLevelRecordInfo.PassSeconds).ToString("mm':'ss");
         for (var i = 0; i < singleStarItems.Length; i++)
         {
-            singleStarItems[i].RefreshView(GameCenter.Instance.CurGamingModel.StageLevelRecordInfo.CollectStar > i, true);
+            singleStarItems[i].RefreshView(TextAdventureGameController.Instance.CurGamingModel.StageLevelRecordInfo.CollectStar > i, true);
         }
 
-        if (GameCenter.Instance.CurGamingModel.GameResult == GameResult.Win)
+        if (TextAdventureGameController.Instance.CurGamingModel.GameResult == GameResult.Win)
         {
             AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.Win);
-            var isFirstPass =
-                !StageManager.Instance.StageInfoModel.StageLevelRecordInfos.ContainsKey(GameCenter.Instance
-                    .CurGamingModel.CurrentStageLevel);
+            var isFirstPass = false;
+            if (StageManager.Instance.StageInfoModel.StageLevelRecordInfos.ContainsKey(TextAdventureGameController
+                    .Instance
+                    .CurGamingModel.CurrentStageLevel))
+            {
+                isFirstPass = StageManager.Instance.StageInfoModel.StageLevelRecordInfos[TextAdventureGameController
+                    .Instance
+                    .CurGamingModel.CurrentStageLevel].ChallengeTimes <= 1;
+            }
             
             rewardCoinCount.text = !isFirstPass ? "10" :
-                GameCenter.Instance.CurGamingModel.StageLevelRecordInfo.CollectStar switch
+                TextAdventureGameController.Instance.CurGamingModel.StageLevelRecordInfo.CollectStar switch
             {
                 0 => "20",
                 1 => "30",

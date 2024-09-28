@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 
 namespace PuzzleGame.Gameplay.Make10
 {
-    public class GameControllerMake10 : BaseGameController<GameStateModelMake10>
+    public class GameControllerMake10 : BaseGameController<GameStateBaseModelMake10>
     {
         [Header("Mode fields")]
         public Brick emptyBrickPrefab;
@@ -49,10 +49,10 @@ namespace PuzzleGame.Gameplay.Make10
 
             SpawnNumbersText();
         
-            gameState = UserProgress.Current.GetGameState<GameStateModelMake10>(name);
+            gameState = UserProgress.Current.GetGameState<GameStateBaseModelMake10>(name);
             if (gameState == null)
             {
-                gameState = new GameStateModelMake10();
+                gameState = new GameStateBaseModelMake10();
                 UserProgress.Current.SetGameState(name, gameState);
             }
 

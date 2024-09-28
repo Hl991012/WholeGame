@@ -30,33 +30,34 @@ public class StageManager : Singleton<StageManager>
     
     public void StagePass()
     {
-        var isFirstPass = false;
-        if (StageInfoModel.StageLevelRecordInfos.ContainsKey(GameCenter.Instance.CurGamingModel.CurrentStageLevel))
+        if (StageInfoModel.StageLevelRecordInfos.ContainsKey(TextAdventureGameController.Instance.CurGamingModel.CurrentStageLevel))
         {
-            var stageLevelRecordInfo = StageInfoModel.StageLevelRecordInfos[GameCenter.Instance.CurGamingModel.CurrentStageLevel];
-            if (GameCenter.Instance.CurGamingModel.StageLevelRecordInfo.PassSeconds < stageLevelRecordInfo.PassSeconds)
+            var stageLevelRecordInfo = StageInfoModel.StageLevelRecordInfos[TextAdventureGameController.Instance.CurGamingModel.CurrentStageLevel];
+            if (TextAdventureGameController.Instance.CurGamingModel.StageLevelRecordInfo.PassSeconds < stageLevelRecordInfo.PassSeconds)
             {
-                stageLevelRecordInfo.PassSeconds = GameCenter.Instance.CurGamingModel.StageLevelRecordInfo.PassSeconds;
+                stageLevelRecordInfo.PassSeconds = TextAdventureGameController.Instance.CurGamingModel.StageLevelRecordInfo.PassSeconds;
             }
-            if (GameCenter.Instance.CurGamingModel.StageLevelRecordInfo.CollectStar > stageLevelRecordInfo.CollectStar)
+            if (TextAdventureGameController.Instance.CurGamingModel.StageLevelRecordInfo.CollectStar > stageLevelRecordInfo.CollectStar)
             {
-                stageLevelRecordInfo.CollectStar = GameCenter.Instance.CurGamingModel.StageLevelRecordInfo.CollectStar;
+                stageLevelRecordInfo.CollectStar = TextAdventureGameController.Instance.CurGamingModel.StageLevelRecordInfo.CollectStar;
             }
         }
         else
         {
-            isFirstPass = true;
-            StageInfoModel.StageLevelRecordInfos[GameCenter.Instance.CurGamingModel.CurrentStageLevel] = 
-                GameCenter.Instance.CurGamingModel.StageLevelRecordInfo;
+            StageInfoModel.StageLevelRecordInfos[TextAdventureGameController.Instance.CurGamingModel.CurrentStageLevel] = 
+                TextAdventureGameController.Instance.CurGamingModel.StageLevelRecordInfo;
         }
 
-        if (GameCenter.Instance.CurGamingModel.CurrentStageLevel >= StageInfoModel.CurStageLevel)
+        StageInfoModel.StageLevelRecordInfos[TextAdventureGameController.Instance.CurGamingModel.CurrentStageLevel]
+            .ChallengeTimes++;
+
+        if (TextAdventureGameController.Instance.CurGamingModel.CurrentStageLevel >= StageInfoModel.CurStageLevel)
         {
             StageInfoModel.CurStageLevel++;
         }
         
-        var addCoinCount = !isFirstPass ? 10 : 
-            GameCenter.Instance.CurGamingModel.StageLevelRecordInfo.CollectStar switch
+        var addCoinCount = StageInfoModel.StageLevelRecordInfos[TextAdventureGameController.Instance.CurGamingModel.CurrentStageLevel].ChallengeTimes > 1 ? 10 : 
+            TextAdventureGameController.Instance.CurGamingModel.StageLevelRecordInfo.CollectStar switch
         {
             0 => 20,
             1 => 30,
@@ -158,4 +159,6 @@ public class StageLevelRecordInfo
     [JsonProperty("level")] public int Level { get; set; }
     [JsonProperty("collect_star")] public int CollectStar { get; set; }
     [JsonProperty("pass_seconds")] public int PassSeconds { get; set; }
+
+    [JsonProperty("challenge_times")] public int ChallengeTimes { get; set; }
 }

@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using GameFrame;
 using PuzzleGame.Gameplay.Boosters;
 using UnityEngine;
 
 namespace PuzzleGame.Gameplay
 {
-    public abstract class BaseGameController<TGameState> : BaseGameController where TGameState : GameStateModel
+    public abstract class BaseGameController<TGameState> : BaseGameController where TGameState : GameStateBaseModel
     {
         protected TGameState gameState;
     
@@ -13,6 +14,8 @@ namespace PuzzleGame.Gameplay
         {
             gameState.SaveGameState();
         }
+        
+        
 
         protected override void BoosterExecute<T>(T target)
         {
@@ -55,7 +58,7 @@ namespace PuzzleGame.Gameplay
         }
     }
 
-    public abstract class BaseGameController : MonoBehaviour
+    public abstract class BaseGameController : MonoSingleton<BaseGameController>
     {
         public event Action GameOver = delegate { };
 
@@ -63,12 +66,6 @@ namespace PuzzleGame.Gameplay
         public Vector2Int bricksCount;
         public RectTransform fieldTransform;
         public NumberedBrick brickPrefab;
-
-        // public SoundCollection soundCollection;
-
-        // [Range(0f, 1f)] public float coinProbability;
-
-        // public Animator fieldAnimator;
 
         protected NumberedBrick[,] field;
     
@@ -79,7 +76,9 @@ namespace PuzzleGame.Gameplay
         public int HighlightSortingOrder { get; set; }
 
         protected abstract void StartGame();
-    
+
+        public virtual void ReplayGame() { }
+
         protected abstract void SaveGame();
 
         protected void OnGameOver()
@@ -336,7 +335,9 @@ namespace PuzzleGame.Gameplay
         protected abstract void BoosterExecute<T>(T target);
 
         protected abstract void SaveGameState();
-    
+
+        protected virtual void ClearGameState() { }
+
         protected virtual void OnBoostersComplete()
         {
             SaveGame();

@@ -17,7 +17,7 @@ namespace PuzzleGame.Themes
         public event Action<ThemePreset> ThemeChanged = delegate { };
         public event Action<ThemePreset> ThemePurchased = delegate { };
 
-        public static ThemeController Instance => instance ?? (instance = new ThemeController());
+        public static ThemeController Instance => instance ??= new ThemeController();
 
         public ThemePreset CurrentTheme
         {
@@ -49,7 +49,7 @@ namespace PuzzleGame.Themes
         void LoadThemeCollection()
         {
             currentGameId = UserProgress.Current.CurrentGameId;
-            themes = Resources.Load<ThemesCollection>($"Themes/ThemesCollection{currentGameId}").themes;
+            themes = Resources.Load<ThemesCollection>($"Themes/ThemesCollection_{currentGameId}").themes;
             CurrentTheme = Array.Find(themes, t => t.name == UserProgress.Current.CurrentThemeId) ?? themes[0];
         }
 

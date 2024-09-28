@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using NMNH.Utility;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -73,7 +74,7 @@ namespace PuzzleGame.Gameplay
             if (bricks.Count == 0 || !Interactable) return;
             
             transform.SetAsLastSibling();
-        
+            AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.PutUpBlock);
             targetPosition = ScreenPointToAnchoredPosition(eventData.position);
             StartCoroutine(MoveHelper.DoLerp(cachedPosition - targetPosition, offset, value => currentOffset = value));
             StartCoroutine(rectTransform.DoLocalScale(Vector3.one));
@@ -110,7 +111,7 @@ namespace PuzzleGame.Gameplay
                 out var position
             );
 
-            float yMin = float.MaxValue;
+            var yMin = float.MaxValue;
 
             foreach (var brick in bricks)
             {

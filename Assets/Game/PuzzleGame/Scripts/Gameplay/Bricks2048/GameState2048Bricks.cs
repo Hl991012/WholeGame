@@ -5,7 +5,7 @@ using UnityEngine;
 namespace PuzzleGame.Gameplay.Bricks2048
 {
     [Serializable]
-    public class GameState2048Bricks : GameStateModel
+    public class GameState2048Bricks : GameStateBaseModel
     {
         [SerializeField] 
         List<Save2048Bricks> saves = new List<Save2048Bricks>();

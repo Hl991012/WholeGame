@@ -22,7 +22,7 @@ public class SingleStageLevelItem : MonoBehaviour
         clickBtn.onClick.AddListener(() =>
         {
             BaseUtilities.PlayCommonClick();
-            GameCenter.Instance.StartGame(curStageConfigModel.Level);
+            TextAdventureGameController.Instance.StartGame(curStageConfigModel.Level);
         });
     }
 

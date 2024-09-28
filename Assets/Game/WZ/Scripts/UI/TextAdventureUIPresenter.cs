@@ -1,10 +1,9 @@
-using System;
 using GameFrame;
 using UnityEngine;
 
-public class UIPresenter : MonoSingleton<UIPresenter>
+public class TextAdventureUIPresenter : MonoBehaviour
 {
-    [SerializeField] private MainUI mainUI;
+    [SerializeField] private TextAdventureStageListUI textAdventureStageListUI;
     [SerializeField] private GameUI gameUI;
     [SerializeField] private ResultUI resultUI;
     [SerializeField] private ReviveUI reviveUI;
@@ -12,27 +11,27 @@ public class UIPresenter : MonoSingleton<UIPresenter>
 
     private void Start()
     {
-        GameCenter.Instance.OnGameStateChanged += OnGameStateChanged;
+        TextAdventureGameController.Instance.OnGameStateChanged += OnGameStateChanged;
         OnGameStateChanged();
     }
 
     private void OnGameStateChanged()
     {
-        mainUI.gameObject.SetActive(GameCenter.Instance.CurGameState == GameCenter.GameState.Home);
-        gameUI.gameObject.SetActive(GameCenter.Instance.CurGameState == GameCenter.GameState.Playing ||
-                                    GameCenter.Instance.CurGameState == GameCenter.GameState.Reviving ||
-                                    GameCenter.Instance.CurGameState == GameCenter.GameState.Settlement);
-        resultUI.gameObject.SetActive(GameCenter.Instance.CurGameState == GameCenter.GameState.Settlement);
-        reviveUI.gameObject.SetActive(GameCenter.Instance.CurGameState == GameCenter.GameState.Reviving);
-        switch (GameCenter.Instance.CurGameState)
+        textAdventureStageListUI.gameObject.SetActive(TextAdventureGameController.Instance.CurGameState == TextAdventureGameController.GameState.Home);
+        gameUI.gameObject.SetActive(TextAdventureGameController.Instance.CurGameState == TextAdventureGameController.GameState.Playing ||
+                                    TextAdventureGameController.Instance.CurGameState == TextAdventureGameController.GameState.Reviving ||
+                                    TextAdventureGameController.Instance.CurGameState == TextAdventureGameController.GameState.Settlement);
+        resultUI.gameObject.SetActive(TextAdventureGameController.Instance.CurGameState == TextAdventureGameController.GameState.Settlement);
+        reviveUI.gameObject.SetActive(TextAdventureGameController.Instance.CurGameState == TextAdventureGameController.GameState.Reviving);
+        switch (TextAdventureGameController.Instance.CurGameState)
         {
-            case GameCenter.GameState.Home:
-                mainUI.RefreshView();
+            case TextAdventureGameController.GameState.Home:
+                textAdventureStageListUI.RefreshView();
                 break;
-            case GameCenter.GameState.Playing:
+            case TextAdventureGameController.GameState.Playing:
                 gameUI.RefreshView();
                 break;
-            case GameCenter.GameState.Settlement:
+            case TextAdventureGameController.GameState.Settlement:
                 resultUI.RefreshView();
                 break;
         }

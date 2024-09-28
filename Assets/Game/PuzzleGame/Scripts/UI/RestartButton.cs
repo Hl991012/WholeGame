@@ -20,7 +20,7 @@ namespace PuzzleGame.UI
 
         void OnClick()
         {
-            UserProgress.Current.GetGameState<GameStateModel>(UserProgress.Current.CurrentGameId).Reset();
+            UserProgress.Current.GetGameState<GameStateBaseModel>(UserProgress.Current.CurrentGameId).Reset();
             UserProgress.Current.SaveGameState(UserProgress.Current.CurrentGameId);
             UserProgress.Current.Save();
 

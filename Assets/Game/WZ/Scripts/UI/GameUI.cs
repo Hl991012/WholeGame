@@ -11,12 +11,12 @@ public class GameUI : MonoBehaviour
     
     private void Awake()
     {
-        GameCenter.Instance.OnGameRecordChanged += RefreshRecordInfoView;
+        TextAdventureGameController.Instance.OnGameRecordChanged += RefreshRecordInfoView;
         
         backBtn.onClick.AddListener(() =>
         {
             BaseUtilities.PlayCommonClick();
-            GameCenter.Instance.EndGame(false, true);
+            TextAdventureGameController.Instance.EndGame(false, true);
         });
     }
 
@@ -27,11 +27,11 @@ public class GameUI : MonoBehaviour
 
     private void RefreshRecordInfoView()
     {
-        totalGameTimeTmp.text = TimeSpan.FromSeconds(GameCenter.Instance.CurGamingModel.StageLevelRecordInfo.PassSeconds)
+        totalGameTimeTmp.text = TimeSpan.FromSeconds(TextAdventureGameController.Instance.CurGamingModel.StageLevelRecordInfo.PassSeconds)
             .ToString("mm':'ss");
         for (var i = 0; i < starItems.Length; i++)
         {
-            starItems[i].RefreshView(i < GameCenter.Instance.CurGamingModel.StageLevelRecordInfo.CollectStar, false);
+            starItems[i].RefreshView(i < TextAdventureGameController.Instance.CurGamingModel.StageLevelRecordInfo.CollectStar, false);
         }
     }
 }

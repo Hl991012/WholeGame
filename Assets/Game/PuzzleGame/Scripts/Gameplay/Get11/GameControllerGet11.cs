@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 namespace PuzzleGame.Gameplay.Get11
 {
-    public class GameControllerGet11 : BaseGameController<GameStateModel>
+    public class GameControllerGet11 : BaseGameController<GameStateBaseModel>
     {
         float timeSinceMoveDown;
 
@@ -39,10 +39,10 @@ namespace PuzzleGame.Gameplay.Get11
         void Start()
         {
             field = new NumberedBrick[bricksCount.x, bricksCount.y];
-            gameState = UserProgress.Current.GetGameState<GameStateModel>(name);
+            gameState = UserProgress.Current.GetGameState<GameStateBaseModel>(name);
             if (gameState == null)
             {
-                gameState = new GameStateModel();
+                gameState = new GameStateBaseModel();
                 UserProgress.Current.SetGameState(name, gameState);
             }
 

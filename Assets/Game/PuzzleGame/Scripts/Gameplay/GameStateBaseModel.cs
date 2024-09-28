@@ -5,7 +5,7 @@ using UnityEngine;
 namespace PuzzleGame.Gameplay
 {
     [Serializable]
-    public class GameStateModel
+    public class GameStateBaseModel
     {
         public event Action StateUpdate;
 
@@ -87,7 +87,7 @@ namespace PuzzleGame.Gameplay
         {
             if (fieldSaves.Count == 0) return false;
 
-            GameSave save = fieldSaves[fieldSaves.Count - 1];
+            GameSave save = fieldSaves[^1];
             fieldSaves.RemoveAt(fieldSaves.Count - 1);
 
             score = save.score;
@@ -101,6 +101,7 @@ namespace PuzzleGame.Gameplay
         public void Reset()
         {
             isGameOver = true;
+            score = 0;
             ClearSave();
         }
 
@@ -117,9 +118,9 @@ namespace PuzzleGame.Gameplay
         public int score;
     
         [SerializeField]
-        public int[] field = new int[0];
+        public int[] field = Array.Empty<int>();
     
         [SerializeField]
-        public int[] nextBricks = new int[0];
+        public int[] nextBricks = Array.Empty<int>();
     }
 }

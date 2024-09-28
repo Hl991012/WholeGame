@@ -12,7 +12,7 @@ public class AppStatusPresenter : MonoBehaviour
     {
         if (!hasFocus)
         {
-            GameCenter.Instance.SaveData();
+            TextAdventureGameController.Instance.SaveData();
         }
     }
 
@@ -23,6 +23,6 @@ public class AppStatusPresenter : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        GameCenter.Instance.SaveData();
+        TextAdventureGameController.Instance.SaveData();
     }
 }
