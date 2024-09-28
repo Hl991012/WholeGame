@@ -36,9 +36,9 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   fieldColors:
   - {r: 0.11764707, g: 0.14117648, b: 0.27450982, a: 1}
-  - {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 0.5176471}
+  - {r: 0.027450982, g: 0.03529412, b: 0.10588236, a: 1}
   textColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   backgroundColor: {r: 0.11764707, g: 0.14117648, b: 0.27450982, a: 1}
   backgroundSprite: {fileID: 0}
-  fieldHighlightColor: {r: 0, g: 0, b: 0, a: 0.49803922}
+  fieldHighlightColor: {r: 0.027450982, g: 0.03529412, b: 0.10588236, a: 1}
   inactiveColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 0.5019608}

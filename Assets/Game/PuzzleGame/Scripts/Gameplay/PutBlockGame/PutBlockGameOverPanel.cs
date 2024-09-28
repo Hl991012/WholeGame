@@ -42,8 +42,8 @@ public class PutBlockGameOverPanel : MonoBehaviour
         showAnimSeq?.Kill();
         onceAgainBtn.interactable = false;
         showAnimSeq = DOTween.Sequence()
-            .AppendInterval(0.5f)
-            .Append(canvasGroup.DOFade(1, 1f))
+            .AppendInterval(0.3f)
+            .Append(canvasGroup.DOFade(1, 0.7f))
             .SetLink(gameObject)
             .SetUpdate(true)
             .OnComplete(() =>

@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using EnhancedUI.EnhancedScroller;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class StageListUIPresenter : MonoBehaviour, IEnhancedScrollerDelegate
 {
+    [SerializeField] private TextMeshProUGUI coinCountTmp;
     [SerializeField] private EnhancedScroller enhancedScroller;
     [SerializeField] private StageLevelGroup stageLevelGroup;
     [SerializeField] private Button backBtn;
@@ -29,11 +31,19 @@ public class StageListUIPresenter : MonoBehaviour, IEnhancedScrollerDelegate
             data.Add(temp.GetRange(i, Mathf.Min(3, temp.Count - i)));
             i += 3;
         }
+        
+        WealthManager.Instance.OnWealthChanged += RefreshCoinView;
     }
 
     public void RefreshView()
     {
         enhancedScroller.ReloadData();
+        RefreshCoinView();
+    }
+    
+    private void RefreshCoinView()
+    {
+        coinCountTmp.text = WealthManager.Instance.CurWealthModel.CoinCount.ToString();
     }
 
     public int GetNumberOfCells(EnhancedScroller scroller)

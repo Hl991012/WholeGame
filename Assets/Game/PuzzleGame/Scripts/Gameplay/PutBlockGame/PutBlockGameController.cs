@@ -13,6 +13,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
     public class PutBlockGameController : BaseGameController<PutBlockGameState>
     {
         [Header("PutBlockGame模式字段")] 
+        [SerializeField] private Button backHomeBtn;
         [SerializeField] private PutBlockGameOverPanel putBlockGameOverPanel;
         [SerializeField] private Brick emptyBrickPrefab;
         [SerializeField] private FigureController[] figureControllers;
@@ -26,6 +27,15 @@ namespace PuzzleGame.Gameplay.Puzzle1010
         private const int MaxBrickNumber = 7;
 
         private static int GetRandomBrickNumber() => Random.Range(1, MaxBrickNumber);
+
+        private void Awake()
+        {
+            backHomeBtn.onClick.AddListener(() =>
+            {
+                AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.CommonClick);
+                GameCenter.Instance.ChangeState(GameCenter.GameState.Home);
+            });
+        }
 
         private void Start()
         {
@@ -229,7 +239,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             figureRotations = new float[figureControllers.Length];
             for (var i = 0; i < figureControllers.Length; i++)
             {
-                var randomNum = Random.Range(0, 121);
+                var randomNum = Random.Range(0, 125);
                 for (var j = 0; j < PutBlockConfig.FiguresProbability.Length; j++)
                 {
                     if (randomNum <= PutBlockConfig.FiguresProbability[j])
@@ -415,7 +425,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             
             if (bricksToDestroy.Length > 0)
             {
-                AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.Eliminate);   
+                AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.Win);   
             }
 
             foreach (var c in bricksToDestroy)
