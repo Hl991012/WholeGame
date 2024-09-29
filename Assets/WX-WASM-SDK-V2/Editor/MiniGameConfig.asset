@@ -29,7 +29,7 @@ MonoBehaviour:
     HideAfterCallMain: 1
     preloadFiles: 
     Orientation: 0
-    bgImageSrc: Assets/Game/ArtAsset/UI/Bg.png
+    bgImageSrc: Assets/Game/Common/ArtAsset/OpenBg.png
     dataFileSubPrefix: 
     maxStorage: 200
     defaultReleaseSize: 31457280
@@ -52,7 +52,7 @@ MonoBehaviour:
     Il2CppOptimizeSize: 1
     profilingFuncs: 0
     Webgl2: 0
-    fbslim: 0
+    fbslim: 1
     DeleteStreamingAssets: 1
     ProfilingMemory: 0
     CleanBuild: 0

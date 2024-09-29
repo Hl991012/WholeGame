@@ -1,0 +1,47 @@
+﻿<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>22:50:21:4022</timestamp>
+  <msgtype>MsgWXLogLaunch</msgtype>
+  <content>[The WXLogger is launched!]</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.Options.OptionsConfig..ctor; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.App..ctor; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Program.Main; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>22:50:21:4142</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|String[]
+OptionsConfig,-option=mirrorImage
+-dataDir=D:/Softs/Fork/WholeGame/TextToolDatas
+-inPath=D:/Softs/Fork/WholeGame/TextToolDatas\firstBundleTextures\png\32\UnitySplash-HolographicTrackingLoss.cbf38e69.png
+-outPath=D:/Softs/Fork/WholeGame/TextToolDatas\mirrorImageTemp\temp5503.png
+-execRoot=D:/Softs/Fork/WholeGame/Assets\WX-WASM-SDK-V2\Editor\TextureEditor\Node
+</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.App..ctor; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Program.Main; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>22:50:21:4152</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|string
+UnityBridgeHandler - SetDataDir,D:/Softs/Fork/WholeGame/TextToolDatas\temp</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Program.Main; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>22:50:21:4222</timestamp>
+  <msgtype>MsgString</msgtype>
+  <content>WXMirrorImageExec</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.App..ctor; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Program.Main; File:.0
+</stackFrames>
+</wxlog>
