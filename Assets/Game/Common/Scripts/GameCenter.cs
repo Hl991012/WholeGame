@@ -1,5 +1,6 @@
 using System;
 using GameFrame;
+using UnityEngine;
 
 public class GameCenter : MonoSingleton<GameCenter>
 {
@@ -21,6 +22,7 @@ public class GameCenter : MonoSingleton<GameCenter>
         switch (CurGameState)
         {
             case GameState.Home:
+                if (Camera.main != null) Camera.main.transform.localPosition = Vector3.zero;
                 break;
             case GameState.Game:
                 break;

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Game.Manager;
 using GameFrame;
 
 namespace NMNH.Utility
@@ -70,9 +71,11 @@ namespace NMNH.Utility
 
         public void PlayBGM()
         {
+            if(!SettingManager.IsMusicOpen) return; 
             bgmAudioSource.clip = GetAudioClip(SoundEffectType.BGM.ToString());
             bgmAudioSource.loop = true;
             bgmAudioSource.Play();
+            bgmAudioSource.volume = 0.4f;
         }
 
         public void StopBgm()

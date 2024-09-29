@@ -616,7 +616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 752bd9808f1f3450181f4ed95ab7d295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalOffset: 70
+  verticalOffset: 175
   bricks: []
 --- !u!1 &2725069939167734000
 GameObject:
@@ -1516,7 +1516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 752bd9808f1f3450181f4ed95ab7d295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalOffset: 70
+  verticalOffset: 175
   bricks: []
 --- !u!1 &5577018607715236227
 GameObject:
@@ -2023,7 +2023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 752bd9808f1f3450181f4ed95ab7d295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalOffset: 70
+  verticalOffset: 175
   bricks: []
 --- !u!1 &6912398834111751841
 GameObject:
