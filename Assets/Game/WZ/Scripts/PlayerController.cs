@@ -94,12 +94,12 @@ public class PlayerController : MonoBehaviour
                     if (Mathf.Abs(deltaPosition.x) > Mathf.Abs(deltaPosition.y))
                     { 
                         // 水平滑动
-                        tempDir = deltaPosition.x < 0 ? Direction.Right : Direction.Left;
+                        tempDir = deltaPosition.x > 0 ? Direction.Right : Direction.Left;
                     }
                     else
                     {
                         // 垂直滑动
-                        tempDir = deltaPosition.y < 0 ? Direction.Up : Direction.Down;
+                        tempDir = deltaPosition.y > 0 ? Direction.Up : Direction.Down;
                     }
 
                     if (tempDir != lastTouchMoveDir && canInputMoveDir)
