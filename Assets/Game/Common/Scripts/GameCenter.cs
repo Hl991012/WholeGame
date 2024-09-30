@@ -22,9 +22,10 @@ public class GameCenter : MonoSingleton<GameCenter>
         switch (CurGameState)
         {
             case GameState.Home:
-                if (Camera.main != null) Camera.main.transform.localPosition = Vector3.zero;
+                CameraController.Instance.Reset();
                 break;
             case GameState.Game:
+                Time.timeScale = 1;
                 break;
         }
         OnGameStateChanged?.Invoke();

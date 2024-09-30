@@ -18,15 +18,19 @@ public class CameraController : MonoSingleton<CameraController>
     public void ForceLookPlayer()
     {
         var position = playerTrans.position;
-        transform.position = new Vector3(position.x, position.y, -10);   
+        transform.position = new Vector3(position.x, position.y, -10);
     }
     
     private void LateUpdate()
     {
-        if (playerTrans != null)
+        if (GameCenter.Instance.CurGameState == GameCenter.GameState.Game &&
+            GameCenter.Instance.CurGameType == GameType.TextAdventure)
         {
-            var position = playerTrans.position;
-            transform.position = Vector3.Slerp(transform.position, new Vector3(position.x, position.y, -10), Time.deltaTime * 10);   
+            if (playerTrans != null)
+            {
+                var position = playerTrans.position;
+                transform.position = Vector3.Slerp(transform.position, new Vector3(position.x, position.y, -10), Time.deltaTime * 10);   
+            }
         }
     }
 }
