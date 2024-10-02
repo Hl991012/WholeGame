@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class StageLoadPresenter : MonoSingleton<StageLoadPresenter>
 {
+    private GameObject levelPrefab;
+    
     public List<Ghost> activityGhosts = new ();
     
     public void LoadStagePrefab(int stageLevel)
@@ -16,7 +18,7 @@ public class StageLoadPresenter : MonoSingleton<StageLoadPresenter>
         var stageConfig = StageConfigManager.Instance.GetStageConfig(stageLevel);
         if (stageConfig != null)
         {
-            Instantiate(stageConfig.StagePrefab, transform);
+            levelPrefab = Instantiate(stageConfig.StagePrefab, transform);
             activityGhosts.Clear();
         }
     }
@@ -33,6 +35,10 @@ public class StageLoadPresenter : MonoSingleton<StageLoadPresenter>
             ghost.Stop();
         }
         activityGhosts.Clear();
+        if (levelPrefab != null)
+        {
+            Destroy(levelPrefab);
+        }
     }
 
     public void OnRevive()

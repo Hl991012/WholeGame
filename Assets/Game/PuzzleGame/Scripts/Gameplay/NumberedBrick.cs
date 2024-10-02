@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using PuzzleGame.Themes;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,7 @@ namespace PuzzleGame.Gameplay
     [RequireComponent(typeof(Animator))]
     public class NumberedBrick : Brick
     {
-        public Text label;
+        public TextMeshProUGUI label;
         public Image labelImage;
 
         [SerializeField]

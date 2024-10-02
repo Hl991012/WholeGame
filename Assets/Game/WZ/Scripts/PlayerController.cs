@@ -81,45 +81,88 @@ public class PlayerController : MonoBehaviour
             Move(curDirection);
         }
 
-        if (Input.touchCount > 0)
-        {
-            var touch = Input.GetTouch(0);
+        // if (Input.touchCount > 0)
+        // {
+        //     var touch = Input.GetTouch(0);
+        //
+        //     switch (touch.phase)
+        //     {
+        //         case TouchPhase.Moved:
+        //             Vector2 deltaPosition = touch.deltaPosition;
+        //             var tempDir = Direction.None;
+        //             // 检查滑动方向
+        //             if (Mathf.Abs(deltaPosition.x) > Mathf.Abs(deltaPosition.y))
+        //             { 
+        //                 // 水平滑动
+        //                 tempDir = deltaPosition.x < 0 ? Direction.Right : Direction.Left;
+        //             }
+        //             else
+        //             {
+        //                 // 垂直滑动
+        //                 tempDir = deltaPosition.y < 0 ? Direction.Up : Direction.Down;
+        //             }
+        //
+        //             if (tempDir != lastTouchMoveDir && canInputMoveDir)
+        //             {
+        //                 canInputMoveDir = false;
+        //                 AddMoveOrder(tempDir);
+        //                 lastTouchMoveDir = tempDir;
+        //             }
+        //             break;
+        //         case TouchPhase.Canceled:
+        //         case TouchPhase.Ended:
+        //             canInputMoveDir = true;
+        //             break;
+        //     }
+        // }
+        // else
+        // {
+        //     canInputMoveDir = true;
+        // }
 
-            switch (touch.phase)
-            {
-                case TouchPhase.Moved:
-                    Vector2 deltaPosition = touch.deltaPosition;
-                    var tempDir = Direction.None;
-                    // 检查滑动方向
-                    if (Mathf.Abs(deltaPosition.x) > Mathf.Abs(deltaPosition.y))
-                    { 
-                        // 水平滑动
-                        tempDir = deltaPosition.x > 0 ? Direction.Right : Direction.Left;
-                    }
-                    else
-                    {
-                        // 垂直滑动
-                        tempDir = deltaPosition.y > 0 ? Direction.Up : Direction.Down;
-                    }
-
-                    if (tempDir != lastTouchMoveDir && canInputMoveDir)
-                    {
-                        canInputMoveDir = false;
-                        AddMoveOrder(tempDir);
-                        lastTouchMoveDir = tempDir;
-                    }
-                    break;
-                case TouchPhase.Canceled:
-                case TouchPhase.Ended:
-                    canInputMoveDir = true;
-                    break;
-            }
-        }
-        else
+        if (Input.GetMouseButtonDown(0))
         {
+            pointDownPos = Input.mousePosition;
             canInputMoveDir = true;
         }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            pointDownPos = Vector3.zero;
+            canInputMoveDir = true;
+        }
+        
+        if(Input.GetMouseButton(0))
+        {
+            if (canInputMoveDir)
+            {
+                if(Vector3.Distance(Input.mousePosition, pointDownPos) < 1) return;
+                Vector2 deltaPosition = Input.mousePosition - pointDownPos;
+                
+                var tempDir = Direction.None;
+                // 检查滑动方向
+                if (Mathf.Abs(deltaPosition.x) > Mathf.Abs(deltaPosition.y))
+                { 
+                    // 水平滑动
+                    tempDir = deltaPosition.x > 0 ? Direction.Right : Direction.Left;
+                }
+                else
+                {
+                    // 垂直滑动
+                    tempDir = deltaPosition.y > 0 ? Direction.Up : Direction.Down;
+                }
+                
+                if (tempDir != lastTouchMoveDir && canInputMoveDir)
+                {
+                    canInputMoveDir = false;
+                    AddMoveOrder(tempDir);
+                    lastTouchMoveDir = tempDir;
+                }
+            }
+        }
     }
+
+    private Vector3 pointDownPos;
 
     private void Move(Direction moveDirection)
     {

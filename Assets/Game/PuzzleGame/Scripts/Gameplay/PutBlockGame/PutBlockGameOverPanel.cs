@@ -22,6 +22,7 @@ public class PutBlockGameOverPanel : MonoBehaviour
     {
         onceAgainBtn.onClick.AddListener(() =>
         {
+            BaseUtilities.PlayCommonClick();
             PutBlockGameController.Instance.ReplayGame();
             canvasGroup.alpha = 1;
             showAnimSeq?.Kill();

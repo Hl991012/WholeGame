@@ -4768,62 +4768,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 852259434}
     m_Modifications:
-    - target: {fileID: 1251398466, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 021aea9e847647548984c77a0815e11c, type: 2}
-    - target: {fileID: 1251398466, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1697835119, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 021aea9e847647548984c77a0815e11c, type: 2}
-    - target: {fileID: 1697835119, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 365965222652014498, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 021aea9e847647548984c77a0815e11c, type: 2}
-    - target: {fileID: 365965222652014498, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2835397473510078804, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 021aea9e847647548984c77a0815e11c, type: 2}
-    - target: {fileID: 2835397473510078804, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3528853928180163814, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 021aea9e847647548984c77a0815e11c, type: 2}
-    - target: {fileID: 3528853928180163814, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3559255052850410527, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 021aea9e847647548984c77a0815e11c, type: 2}
-    - target: {fileID: 3559255052850410527, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4527117448701224426, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 021aea9e847647548984c77a0815e11c, type: 2}
-    - target: {fileID: 4527117448701224426, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5011916533280100368, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}
       propertyPath: m_Name
       value: PutBlockGame
@@ -4875,14 +4819,6 @@ PrefabInstance:
     - target: {fileID: 5011916533280100369, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8371164021580652638, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 021aea9e847647548984c77a0815e11c, type: 2}
-    - target: {fileID: 8371164021580652638, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae0f6e930db664fdaa7e795abdc27c68, type: 3}

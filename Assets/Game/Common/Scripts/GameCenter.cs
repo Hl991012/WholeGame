@@ -26,6 +26,12 @@ public class GameCenter : MonoSingleton<GameCenter>
                 break;
             case GameState.Game:
                 Time.timeScale = 1;
+                switch (CurGameType)
+                {
+                    case GameType.TextAdventure:
+                        TextAdventureGameController.Instance.ChangeState(TextAdventureGameController.GameState.Home);
+                        break;
+                }
                 break;
         }
         OnGameStateChanged?.Invoke();

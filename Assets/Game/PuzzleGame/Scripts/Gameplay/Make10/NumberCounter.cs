@@ -1,16 +1,23 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace PuzzleGame.Gameplay.Make10
 {
     public class NumberCounter : MonoBehaviour
     {
-        [SerializeField] private Text label;
-        [SerializeField] private Text highlightedLabel;
+        [SerializeField] private TextMeshProUGUI label;
+        [SerializeField] private TextMeshProUGUI highlightedLabel;
         [SerializeField] private Animator animator;
 
         private int value;
         private static readonly int On = Animator.StringToHash("On");
+        
+        private void Awake()
+        {
+            label.text = "0";
+            highlightedLabel.gameObject.SetActive(false);
+        }
 
         public void UpdateValue(int value, int maxValue)
         {
@@ -24,12 +31,6 @@ namespace PuzzleGame.Gameplay.Make10
 
             highlightedLabel.gameObject.SetActive(value > maxValue);
             label.gameObject.SetActive(value <= maxValue);
-        }
-
-        private void Awake()
-        {
-            label.text = "0";
-            highlightedLabel.gameObject.SetActive(false);
         }
     }
 }
