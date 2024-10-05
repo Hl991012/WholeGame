@@ -43,4 +43,5 @@ public enum GameType
     None,
     PutBlockGame, // 放置方块
     TextAdventure, // 文字冒险
+    DrawLineGame, // 一笔画成
 }

@@ -7,6 +7,7 @@ public class UIPresenter : MonoBehaviour
     [SerializeField] private Button settingBtn;
     [SerializeField] private Button putBlockGameBtn;
     [SerializeField] private Button textAdventureGameBtn;
+    [SerializeField] private Button drawLineGameBtn;
     [SerializeField] private SettingPanel settingPanel;
     
     private void Awake()
@@ -27,6 +28,12 @@ public class UIPresenter : MonoBehaviour
         {
             BaseUtilities.PlayCommonClick();
             GameCenter.Instance.ChangeState(GameCenter.GameState.Game, GameType.TextAdventure);
+        });
+        
+        drawLineGameBtn.onClick.AddListener(() =>
+        {
+            BaseUtilities.PlayCommonClick();
+            GameCenter.Instance.ChangeState(GameCenter.GameState.Game, GameType.DrawLineGame);
         });
     }
 }
