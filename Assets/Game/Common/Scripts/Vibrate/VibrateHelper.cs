@@ -28,10 +28,10 @@ public class VibrateHelper
         
 #if UNITY_EDITOR
         // WX.VibrateShort(null);
-#elif UNITY_ANDROID
-            AndroidVibration.Vibrate(milliseconds);
-#elif UNITY_IOS
-            IOSHelper.VibrateMedium();            
+// #elif UNITY_ANDROID
+//             AndroidVibration.Vibrate(milliseconds);
+// #elif UNITY_IOS
+//             IOSHelper.VibrateMedium();            
 #else
             WX.VibrateShort(null);
 #endif
@@ -42,11 +42,11 @@ public class VibrateHelper
         if (!SettingManager.IsVibrationOpen) return;
 #if UNITY_EDITOR
         // WX.VibrateLong(null);
-#elif UNITY_ANDROID
-            AndroidVibration.Vibrate(milliseconds);
-#elif UNITY_IOS
-            IOSHelper.VibrateHeavy();            
-#else
+// #elif UNITY_ANDROID
+//             AndroidVibration.Vibrate(milliseconds);
+// #elif UNITY_IOS
+//             IOSHelper.VibrateHeavy();            
+ #else
             WX.VibrateShort(null);
 #endif
     }
@@ -54,12 +54,12 @@ public class VibrateHelper
     private static void VibrateLight()
     {
         if (!SettingManager.IsVibrationOpen) return;
-#if UNITY_EDITOR
-        // WX.VibrateShort(null);
-#elif UNITY_ANDROID
-            AndroidVibration.Vibrate(milliseconds);
-#elif UNITY_IOS
-            IOSHelper.VibrateLight();            
+ #if UNITY_EDITOR
+//         // WX.VibrateShort(null);
+// #elif UNITY_ANDROID
+//             AndroidVibration.Vibrate(milliseconds);
+// #elif UNITY_IOS
+//             IOSHelper.VibrateLight();            
 #else
             WX.VibrateShort(null);
 #endif
