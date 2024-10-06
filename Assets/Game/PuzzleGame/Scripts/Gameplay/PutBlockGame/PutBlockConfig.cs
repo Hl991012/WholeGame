@@ -81,7 +81,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
 
         public static readonly int[] FiguresProbability = 
         {
-            6, 16, 14, 4, 12, 8, 7, 7, 8, 8, 5, 5, 2, 16, 7,
+            6, 16, 10, 15, 5, 5, 5, 5, 8, 8, 5, 5, 1, 10, 3,
         };
     }
 }

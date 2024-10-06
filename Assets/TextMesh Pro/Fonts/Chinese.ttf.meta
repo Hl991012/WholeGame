@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a62fd2213b8cb65458a7e6e0ab21499f
+guid: 0418a00c62e01a345b11e3c83ade1804
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -10,7 +10,9 @@ TrueTypeFontImporter:
   includeFontData: 1
   fontNames:
   - ChillKai
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: d79f1e5d57fe7de4d91696e490fb30c7, type: 3}
+  - {fileID: 12800000, guid: a62fd2213b8cb65458a7e6e0ab21499f, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

@@ -15,6 +15,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
         [Header("PutBlockGame模式字段")] 
         [SerializeField] private Button backHomeBtn;
         [SerializeField] private PutBlockGameOverPanel putBlockGameOverPanel;
+        [SerializeField] private PutBlockGameRevivePanel putBlockGameRevivePanel;
         [SerializeField] private Brick emptyBrickPrefab;
         [SerializeField] private FigureController[] figureControllers;
 
@@ -33,6 +34,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             backHomeBtn.onClick.AddListener(() =>
             {
                 AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.CommonClick);
+                SaveGame();
                 GameCenter.Instance.ChangeState(GameCenter.GameState.Home);
             });
         }
@@ -67,6 +69,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             }
 
             StartGame();
+            CheckGameOver();
         }
 
         protected override void StartGame()
@@ -84,7 +87,8 @@ namespace PuzzleGame.Gameplay.Puzzle1010
 
         public override void ReplayGame()
         {
-            gameState.IsGameOver = true;
+            gameState.IsGameOver = false;
+            gameState.HasRevive = false;
             
             // 清除已经生成的内容
             gameState.Score = 0;
@@ -239,7 +243,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             figureRotations = new float[figureControllers.Length];
             for (var i = 0; i < figureControllers.Length; i++)
             {
-                var randomNum = Random.Range(0, 125);
+                var randomNum = Random.Range(0, 107);
                 for (var j = 0; j < PutBlockConfig.FiguresProbability.Length; j++)
                 {
                     if (randomNum <= PutBlockConfig.FiguresProbability[j])
@@ -450,12 +454,26 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             if (figureControllers.Any(figure => figure.bricks.Count > 0 && IsCanPlaceFigure(figure)))
                 return;
 
-            gameState.IsGameOver = true;
-            
-            putBlockGameOverPanel.gameObject.SetActive(true);
-            putBlockGameOverPanel.Show();
-            UserProgress.Current.ClearGameState(name);
-            OnGameOver();
+            // 判断是否复活过
+            if (gameState.HasRevive)
+            {
+                gameState.IsGameOver = true;
+                putBlockGameOverPanel.gameObject.SetActive(true);
+                putBlockGameOverPanel.Show();
+                UserProgress.Current.ClearGameState(name);
+                OnGameOver();
+            }
+            else
+            {
+                putBlockGameRevivePanel.Show(OnRevive, () =>
+                {
+                    gameState.IsGameOver = true;
+                    putBlockGameOverPanel.gameObject.SetActive(true);
+                    putBlockGameOverPanel.Show();
+                    UserProgress.Current.ClearGameState(name);
+                    OnGameOver();
+                });
+            }
         }
 
         private void CheckFigures()
@@ -472,6 +490,34 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                     brick.SetOverrideColorType(canPlaceFigure ? null : ColorType.Inactive);
                 }
             }
+        }
+
+        private void OnRevive()
+        {
+            gameState.HasRevive = true;
+            // 生成小单位的格子
+            foreach (var item in figureControllers)
+            {
+                foreach (var brick in item.bricks)
+                {
+                    Destroy(brick.gameObject);
+                }
+                
+                item.bricks.Clear();
+                item.ResetPosition();
+                item.Interactable = true;
+            }
+            
+            figures = new int[figureControllers.Length];
+            figureRotations = new float[figureControllers.Length];
+            for (var i = 0; i < figureControllers.Length; i++)
+            {
+                var figureIndex = i == 0 ? 0 : (Random.Range(0, 1) > 0.5f ? 0 : 1);
+                SpawnFigure(figureControllers[i], figureIndex, 0, GetRandomBrickNumber());
+                figures[i] = 0;
+                figureRotations[i] = 0;
+            }
+            SaveGame();
         }
 
         private bool IsCanPlaceFigure(FigureController figureController)

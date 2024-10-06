@@ -12,6 +12,8 @@ namespace PuzzleGame.Gameplay.Puzzle1010
         [SerializeField] private float[] figureRotations = Array.Empty<float>();
         [SerializeField] private int[] figureIndexes = Array.Empty<int>();
 
+        public bool HasRevive { get; set; }
+
         public void SetFigures(int[] value, int[] indexes, float[] rotations)
         {
             figures = (int[]) value.Clone();
@@ -38,11 +40,12 @@ namespace PuzzleGame.Gameplay.Puzzle1010
         {
             base.SaveGameState();
         
-            PutBlockGameStateSaveInfo save = new PutBlockGameStateSaveInfo
+            var save = new PutBlockGameStateSaveInfo
             {
                 figures = GetFigures(),
                 figureRotations = GetFigureRotations(),
-                figureIndexes = GetFigureIndexes()
+                figureIndexes = GetFigureIndexes(),
+                HasRevive = HasRevive
             };
 
             saves.Add(save);
@@ -73,13 +76,12 @@ namespace PuzzleGame.Gameplay.Puzzle1010
     [Serializable]
     public class PutBlockGameStateSaveInfo
     {
-        [SerializeField]
-        public int[] figures = new int[0];
+        [SerializeField] public bool HasRevive { get; set; }
+
+        [SerializeField] public int[] figures = Array.Empty<int>();
     
-        [SerializeField]
-        public float[] figureRotations = new float[0];
+        [SerializeField] public float[] figureRotations = Array.Empty<float>();
     
-        [SerializeField]
-        public int[] figureIndexes = new int[0];
+        [SerializeField] public int[] figureIndexes = Array.Empty<int>();
     }
 }
