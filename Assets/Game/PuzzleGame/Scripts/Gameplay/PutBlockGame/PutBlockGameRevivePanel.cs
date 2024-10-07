@@ -19,12 +19,21 @@ public class PutBlockGameRevivePanel : MonoBehaviour
     {
         reviveBtn.onClick.AddListener(() =>
         {
-            
-            
-            BaseUtilities.PlayCommonClick();
-            OnRevive?.Invoke();
-            showAnimSeq?.Kill();
-            gameObject.SetActive(false);
+            showAnimSeq?.Pause();
+            WXSDKManager.Instance.ShowRewardVideo(isSuccess =>
+            {
+                if (isSuccess)
+                {
+                    BaseUtilities.PlayCommonClick();
+                    OnRevive?.Invoke();
+                    showAnimSeq?.Kill();
+                    gameObject.SetActive(false);
+                }
+                else
+                {
+                    showAnimSeq?.Play();
+                }
+            });
         });
     }
 
