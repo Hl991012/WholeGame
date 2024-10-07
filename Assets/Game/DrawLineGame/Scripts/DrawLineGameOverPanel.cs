@@ -1,11 +1,15 @@
 ﻿using DG.Tweening;
+using NMNH.Utility;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DrawLineGameOverPanel : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI hintTmp;
     [SerializeField] private Button continueBtn;
     [SerializeField] private CanvasGroup canvasGroup;
+    [SerializeField] private string[] hints;
     
     private Sequence showAnimSeq;
     
@@ -31,17 +35,26 @@ public class DrawLineGameOverPanel : MonoBehaviour
     
     public void Show()
     {
+        hintTmp.text = hints[Random.Range(0, hints.Length)];
+        AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.Win);
         canvasGroup.alpha = 0;
         showAnimSeq?.Kill();
-        continueBtn.interactable = false;
+        // continueBtn.interactable = false;
         showAnimSeq = DOTween.Sequence()
-            .AppendInterval(0.6f)
+            .AppendInterval(0.3f)
             .Append(canvasGroup.DOFade(1, 0.7f))
+            .AppendInterval(0.5f)
+            .AppendCallback(() =>
+            {
+                DrawLineGameConctrol.Instance.DrawLineGameRoomPresenter.StartGame();
+            })
+            // .Append(canvasGroup.DOFade(0, 0.3f))
             .SetLink(gameObject)
             .SetUpdate(true)
             .OnComplete(() =>
             {
-                continueBtn.interactable = true;
+                // continueBtn.interactable = true;
+                gameObject.SetActive(false);
             });
     }
 }

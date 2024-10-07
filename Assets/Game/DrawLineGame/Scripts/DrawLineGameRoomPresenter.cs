@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using NMNH.Utility;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -138,6 +139,10 @@ public class DrawLineGameRoomPresenter : MonoBehaviour
         item.SetPlayer(true);
         UpdatePlayerPosition(item);
         UpdateLineView();
+        if (mapCells.Count > 1)
+        {
+            AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.PutUpBlock);   
+        }
     }
 
     private void UndoMove(CellItem item)
