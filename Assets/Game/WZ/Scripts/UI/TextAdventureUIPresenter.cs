@@ -32,6 +32,7 @@ public class TextAdventureUIPresenter : MonoBehaviour
                 gameUI.RefreshView();
                 break;
             case TextAdventureGameController.GameState.Settlement:
+                WXSDKManager.Instance.ShowInterstitialVideo(null);
                 resultUI.RefreshView();
                 break;
         }

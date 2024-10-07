@@ -33,7 +33,13 @@ public class ReviveUI : MonoBehaviour
         reviveByAdBtn.onClick.AddListener(() =>
         {
             BaseUtilities.PlayCommonClick();
-            TextAdventureGameController.Instance.Revive();
+            WXSDKManager.Instance.ShowRewardVideo(isSuccess =>
+            {
+                if (isSuccess)
+                {
+                    TextAdventureGameController.Instance.Revive();     
+                }
+            });
         });
     }
 }

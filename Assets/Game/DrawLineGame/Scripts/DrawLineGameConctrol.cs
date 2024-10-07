@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DrawLineGameConctrol : MonoSingleton<DrawLineGameConctrol>
 {
+    private int totalPassLevelCount = 0;
     public DrawLineGameRoomPresenter DrawLineGameRoomPresenter { get; private set; }
 
     public void Register(DrawLineGameRoomPresenter drawLineGameRoomPresenter)
@@ -23,6 +24,11 @@ public class DrawLineGameConctrol : MonoSingleton<DrawLineGameConctrol>
     {
         GameLevel++;
         GameLevel = Mathf.Clamp(GameLevel, 0, 800);
+        totalPassLevelCount++;
+        if (totalPassLevelCount % 4 == 0)
+        {
+            WXSDKManager.Instance.ShowInterstitialVideo(null);
+        }
     }
 
     public MapData LoadConfig()

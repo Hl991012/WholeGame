@@ -1,19 +1,21 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using GameFrame;
 using UnityEngine;
 using WeChatWASM;
 
 public class WXSDKManager : Singleton<WXSDKManager>
 {
-    private bool hasInit = false;
+    private bool hasInit;
 
     private WXRewardedVideoAd wxRewardedVideoAd;
+
+    private WXInterstitialAd wxInterstitialAd;
     
     public void Init()
     {
-        WX.InitSDK(val =>
+        #if UNITY_EDITOR
+        #else
+            WX.InitSDK(val =>
         {
             hasInit = true;
             
@@ -23,7 +25,14 @@ public class WXSDKManager : Singleton<WXSDKManager>
                     adUnitId = "adunit-6918133c0430e1e9",
                     multiton = true
                 });
+            
+            wxInterstitialAd = WX.CreateInterstitialAd(
+                new WXCreateInterstitialAdParam()
+                {
+                    adUnitId = "adunit-dc63d74f56278361"
+                });
         });
+        #endif
     }
 
     public void ShowRewardVideo(Action<bool> onClose)
@@ -53,6 +62,27 @@ public class WXSDKManager : Singleton<WXSDKManager>
         }, val =>
         {
             onClose?.Invoke(false);
+        });
+    }
+
+    // private long lastTimeWatchInterstitialVideoTime;
+    
+    public void ShowInterstitialVideo(Action onClose)
+    {
+        if (!hasInit || wxInterstitialAd == null)
+        {
+            onClose?.Invoke();
+            return;
+        }
+        
+        wxInterstitialAd.Show(val =>
+        {
+            wxInterstitialAd.OnClose(()=>
+            {
+                onClose?.Invoke();
+                Debug.Log("播放插屏广告");
+                wxRewardedVideoAd.OffClose(null);
+            });
         });
     }
 }

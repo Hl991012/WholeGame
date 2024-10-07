@@ -84,6 +84,7 @@ public class PutBlockGameRevivePanel : MonoBehaviour
             {
                 gameObject.SetActive(false);
                 onGiveUp?.Invoke();
+                WXSDKManager.Instance.ShowInterstitialVideo(null);
             });
 
         showAnimSeq.Insert(0, DOTween.To(val =>
