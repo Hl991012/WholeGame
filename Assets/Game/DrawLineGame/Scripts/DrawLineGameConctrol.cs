@@ -25,7 +25,7 @@ public class DrawLineGameConctrol : MonoSingleton<DrawLineGameConctrol>
         GameLevel++;
         GameLevel = Mathf.Clamp(GameLevel, 0, 800);
         totalPassLevelCount++;
-        if (totalPassLevelCount % 4 == 0)
+        // if (totalPassLevelCount % 4 == 0)
         {
             WXSDKManager.Instance.ShowInterstitialVideo(null);
         }

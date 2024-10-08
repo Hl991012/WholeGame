@@ -1,28 +1,37 @@
+using System;
 using Game.Manager;
-using UnityEngine;
 using WeChatWASM;
 
 public class VibrateHelper
 {
-    public static void Vibrate()
-    {
-        if (!SettingManager.IsVibrationOpen) return;
-        VibrateMedium();
-    }
-
-    public static void WeakVibrate()
-    {
-        if (!SettingManager.IsVibrationOpen) return;
-        VibrateLight();
-    }
-
-    public static void VibrateHeavy()
-    {
-        if (!SettingManager.IsVibrationOpen) return;
-        VibrateHeavy();
-    }
+    private static Action<GeneralCallbackResult> vibrateShortComplete = callback => { };
+    private static Action<VibrateShortFailCallbackResult> vibrateShortFail = callback => { };
+    private static Action<GeneralCallbackResult> vibrateShortSuccess = callback => { };
     
-    private static void VibrateMedium(long milliseconds = 20)
+    public static void VibrateLight()
+    {
+        if (!SettingManager.IsVibrationOpen) return;
+       
+        if (!SettingManager.IsVibrationOpen) return;
+#if UNITY_EDITOR
+//         // WX.VibrateShort(null);
+// #elif UNITY_ANDROID
+//             AndroidVibration.Vibrate(milliseconds);
+// #elif UNITY_IOS
+//             IOSHelper.VibrateLight();            
+#else
+            var vibrateShortOption = new VibrateShortOption()
+            {
+                type = "light",
+                complete = vibrateShortComplete,
+                fail = vibrateShortFail,
+                success = vibrateShortSuccess
+            };
+            WX.VibrateShort(vibrateShortOption);
+#endif
+    }
+
+    public static void VibrateMedium()
     {
         if (!SettingManager.IsVibrationOpen) return;
         
@@ -33,12 +42,21 @@ public class VibrateHelper
 // #elif UNITY_IOS
 //             IOSHelper.VibrateMedium();            
 #else
-            WX.VibrateShort(null);
+            var vibrateShortOption = new VibrateShortOption()
+            {
+                type = "medium",
+                complete = vibrateShortComplete,
+                fail = vibrateShortFail,
+                success = vibrateShortSuccess
+            };
+            WX.VibrateShort(vibrateShortOption);
 #endif
     }
 
-    private static void VibrateHeavy(long milliseconds = 20)
+    public static void VibrateHeavy()
     {
+        if (!SettingManager.IsVibrationOpen) return;
+     
         if (!SettingManager.IsVibrationOpen) return;
 #if UNITY_EDITOR
         // WX.VibrateLong(null);
@@ -46,22 +64,15 @@ public class VibrateHelper
 //             AndroidVibration.Vibrate(milliseconds);
 // #elif UNITY_IOS
 //             IOSHelper.VibrateHeavy();            
- #else
-            WX.VibrateShort(null);
-#endif
-    }
-
-    private static void VibrateLight()
-    {
-        if (!SettingManager.IsVibrationOpen) return;
- #if UNITY_EDITOR
-//         // WX.VibrateShort(null);
-// #elif UNITY_ANDROID
-//             AndroidVibration.Vibrate(milliseconds);
-// #elif UNITY_IOS
-//             IOSHelper.VibrateLight();            
 #else
-            WX.VibrateShort(null);
+            var vibrateShortOption = new VibrateShortOption()
+            {
+                type = "heavy",
+                complete = vibrateShortComplete,
+                fail = vibrateShortFail,
+                success = vibrateShortSuccess
+            };
+            WX.VibrateShort(vibrateShortOption);
 #endif
     }
 }

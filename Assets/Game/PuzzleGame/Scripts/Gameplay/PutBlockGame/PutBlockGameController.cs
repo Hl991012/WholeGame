@@ -33,7 +33,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
         {
             backHomeBtn.onClick.AddListener(() =>
             {
-                AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.CommonClick);
+                BaseUtilities.PlayCommonClick();
                 SaveGame();
                 GameCenter.Instance.ChangeState(GameCenter.GameState.Home);
             });

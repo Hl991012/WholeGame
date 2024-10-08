@@ -42,6 +42,10 @@ public enum GameType
 {
     None,
     PutBlockGame, // 放置方块
+    PutBlockGameStage, // 放置方块关卡模式
     TextAdventure, // 文字冒险
     DrawLineGame, // 一笔画成
+    Game2048, // 2048
+    Minesweeper, // 扫雷
+    
 }

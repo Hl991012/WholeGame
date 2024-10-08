@@ -6,7 +6,7 @@ public class BaseUtilities
     public static void PlayCommonClick()
     {
         AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.CommonClick);
-        // VibrateHelper.WeakVibrate();
+        VibrateHelper.VibrateLight();
     }
 
     /// <summary>
