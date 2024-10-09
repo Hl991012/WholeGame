@@ -100,7 +100,7 @@ namespace PuzzleGame.Gameplay.Bricks2048
 
             gameState.Score = 0;
             gameState.IsGameOver = false;
-            SpawnStartingBricks();
+            // SpawnStartingBricks();
             nextBrick.Number = GetRandomNumber();
             nextBrick.ColorIndex = GetColorIndex(nextBrick.Number);
             SetStartBoosters();
@@ -108,27 +108,27 @@ namespace PuzzleGame.Gameplay.Bricks2048
             SaveGame();
         }
 
-        void SpawnStartingBricks()
-        {
-            currentBrickCoords = new Vector2Int(bricksCount.x / 2, bricksCount.y - 1);
-            CurrentBrick = SpawnBrick(currentBrickCoords, GetRandomNumber());
-
-            List<int> numbers = new List<int>(bricksCount.x);
-            for (int i = 1; i <= bricksCount.x; i++)
-            {
-                numbers.Add(Mathf.RoundToInt(Mathf.Pow(2, i)));
-            }
-
-            for (int i = 0; i < bricksCount.x; i++)
-            {
-                int rand = Random.Range(0, numbers.Count);
-                var brick = SpawnBrick(new Vector2Int(i, 0), numbers[rand]);
-                brick.PointerClick += OnHighlightedTargetClick;
-                field[i, 0] = brick;
-
-                numbers.RemoveAt(rand);
-            }
-        }
+        // void SpawnStartingBricks()
+        // {
+        //     currentBrickCoords = new Vector2Int(bricksCount.x / 2, bricksCount.y - 1);
+        //     CurrentBrick = SpawnBrick(currentBrickCoords, GetRandomNumber());
+        //
+        //     List<int> numbers = new List<int>(bricksCount.x);
+        //     for (int i = 1; i <= bricksCount.x; i++)
+        //     {
+        //         numbers.Add(Mathf.RoundToInt(Mathf.Pow(2, i)));
+        //     }
+        //
+        //     for (int i = 0; i < bricksCount.x; i++)
+        //     {
+        //         int rand = Random.Range(0, numbers.Count);
+        //         var brick = SpawnBrick(new Vector2Int(i, 0), numbers[rand]);
+        //         brick.PointerClick += OnHighlightedTargetClick;
+        //         field[i, 0] = brick;
+        //
+        //         numbers.RemoveAt(rand);
+        //     }
+        // }
 
         void SpawnColumns()
         {
@@ -667,7 +667,6 @@ namespace PuzzleGame.Gameplay.Bricks2048
 
         protected override void OnBoostersComplete()
         {
-
             Normalize(
                 normalized =>
                 {

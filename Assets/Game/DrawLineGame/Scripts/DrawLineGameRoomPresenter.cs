@@ -18,7 +18,6 @@ public class DrawLineGameRoomPresenter : MonoBehaviour
     private List<CellItem> mapCellData = new ();
     private int mapWidth;
     private int mapHeight;
-    private int cellWidth;
     
     private Color curColor = Color.white;
     
@@ -69,8 +68,6 @@ public class DrawLineGameRoomPresenter : MonoBehaviour
         mapCells.Clear();
         
         mapGridLayoutGroup.constraintCount = mapWidth;
-
-        cellWidth = 100;
         
         var firstData = mapData.L[0];
 

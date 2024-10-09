@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using NMNH.Utility;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 
@@ -13,8 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ConstantForce2D constantForce2D;
     
     public float moveSpeed = 15;
-    
-    public Direction CurDirection { get; private set; } = Direction.None;
+
+    private Direction CurDirection { get; set; } = Direction.None;
 
     private Queue<Direction> moveOrderQueue = new();
 

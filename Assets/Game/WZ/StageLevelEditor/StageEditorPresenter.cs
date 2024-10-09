@@ -24,7 +24,7 @@ public class StageEditorPresenter : MonoBehaviour
         RevivePoint = 101,
     }
     
-    public Camera camera;
+    public new Camera camera;
     public GameObject wallPrefab;
     public GameObject stabPrefab;
     public GameObject electricityPrefab;
