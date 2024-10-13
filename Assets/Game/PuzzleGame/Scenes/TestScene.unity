@@ -320,17 +320,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7385471460361137410, guid: 4804b6d5072423a45a7b78f42fff373d, type: 3}
-      propertyPath: spawnColumns
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7385471460361137411, guid: 4804b6d5072423a45a7b78f42fff373d, type: 3}
       propertyPath: m_Name
       value: 2048Bricks_Tap
       objectReference: {fileID: 0}
     - target: {fileID: 7385471460361137411, guid: 4804b6d5072423a45a7b78f42fff373d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7385471460361137421, guid: 4804b6d5072423a45a7b78f42fff373d, type: 3}
       propertyPath: m_RootOrder
@@ -373,26 +369,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7385471460361137421, guid: 4804b6d5072423a45a7b78f42fff373d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385471460512921706, guid: 4804b6d5072423a45a7b78f42fff373d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385471460512921706, guid: 4804b6d5072423a45a7b78f42fff373d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385471460512921706, guid: 4804b6d5072423a45a7b78f42fff373d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385471460512921706, guid: 4804b6d5072423a45a7b78f42fff373d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385471460512921706, guid: 4804b6d5072423a45a7b78f42fff373d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}

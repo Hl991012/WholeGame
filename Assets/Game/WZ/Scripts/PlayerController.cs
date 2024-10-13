@@ -230,14 +230,17 @@ public class PlayerController : MonoBehaviour
             case "Door":
                 ResetState();
                 TextAdventureGameController.Instance.EndGame(true);
+                VibrateHelper.VibrateHeavy();
                 break;
             case "Star":
                 Destroy(other.gameObject);
                 TextAdventureGameController.Instance.AddStar();
+                VibrateHelper.VibrateMedium();
                 break;
             case "Coin":
                 Destroy(other.gameObject);
                 WealthManager.Instance.AddCoin(1);
+                VibrateHelper.VibrateMedium();
                 break;
         }
     }

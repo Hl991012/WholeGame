@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using GameFrame;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -25,6 +24,7 @@ public class GameDataSaveHelper : Singleton<GameDataSaveHelper>
         var tempModel = JsonConvert.DeserializeObject<T>(PlayerPrefs.GetString(gameType.ToString(), ""));
         tempModel ??= new T();
         allGameData[gameType] = tempModel;
+        
         return tempModel;
     }
 
@@ -35,7 +35,25 @@ public class GameDataSaveHelper : Singleton<GameDataSaveHelper>
         tempData.SetGameState(gameStateSaveBaseModel);
         Debug.LogError("玩家数据更新");
         OnGameDataUpdate?.Invoke(gameType);
-        SaveGameData<T>(gameType);
+        SaveGameData(gameType);
+    }
+
+    public void UpDataScore<T>(GameType gameType, int score) where T : GameDataSaveBaseModel, new()
+    {
+        var tempGameData = GetGameData<T>(gameType);
+        if (tempGameData == null)
+        {
+            Debug.LogError("玩家数据为空");
+            return;
+        }
+
+        tempGameData.CurScore += score;
+        if (tempGameData.BestScore < tempGameData.CurScore)
+        {
+            tempGameData.BestScore = tempGameData.CurScore;
+        }
+        OnGameDataUpdate?.Invoke(gameType);
+        SaveGameData(gameType);
     }
 
     #endregion
@@ -46,12 +64,12 @@ public class GameDataSaveHelper : Singleton<GameDataSaveHelper>
     {
         if (allGameStates.TryGetValue(gameType, out var state))
         {
-            return  state;
+            return state;
         }
 
         state = new Stack<GameStateSaveBaseModel>();
         allGameStates[gameType] = state;
-        return  state;
+        return state;
     }
 
     public void AddState<T>(GameType gameType, T gameStateSaveBaseModel) where T : GameStateSaveBaseModel, new()
@@ -59,14 +77,14 @@ public class GameDataSaveHelper : Singleton<GameDataSaveHelper>
         if (allGameStates.TryGetValue(gameType, out var state))
         {
             state.Push(gameStateSaveBaseModel);
-            // UpdateGameData<T>(gameType, gameStateSaveBaseModel);
+            SaveGameData(gameType);
             return;
         }
 
         state = new Stack<GameStateSaveBaseModel>();
         allGameStates[gameType] = state;
         state.Push(gameStateSaveBaseModel);
-        // UpdateGameData<T>(gameType, gameStateSaveBaseModel);
+        SaveGameData(gameType);
     }
 
     public T PopGameState<T>(GameType gameType) where T : GameStateSaveBaseModel
@@ -75,6 +93,7 @@ public class GameDataSaveHelper : Singleton<GameDataSaveHelper>
         {
             if (temp.TryPop(out var model))
             {
+                SaveGameData(gameType);
                 return (T)model;
             }
         }
@@ -99,22 +118,44 @@ public class GameDataSaveHelper : Singleton<GameDataSaveHelper>
         {
             temp.Clear();
         }
+
+        if (allGameData.TryGetValue(gameType, out var tempData))
+        {
+            allGameData[gameType].CurScore = 0;
+        }
+        
+        SaveGameData(gameType);
     }
 
-    public void SaveGameData<T>(GameType gameType) where T : GameDataSaveBaseModel, new()
+    public void SaveGameData(GameType gameType)
     {
-        T model = null;
+        GameDataSaveBaseModel model = null;
         if (allGameData.TryGetValue(gameType, out var tempModel))
         {
-            model = (T)tempModel;
+            model = tempModel;
         }
 
-        model ??= new T();
-
-        
-        
-        var tempJson = JsonConvert.SerializeObject(model);
-        PlayerPrefs.SetString(gameType.ToString(), tempJson);
+        if (model != null)
+        {
+            if (allGameStates.TryGetValue(gameType, out var state))
+            {
+                if (state.Count > 0)
+                {
+                    model.SetGameState(state.Peek());
+                }
+                else
+                {
+                    model.CurGameStateSaveBaseModel = null;
+                }
+            }
+            else
+            {
+                model.CurGameStateSaveBaseModel = null;
+            }
+            
+            var tempJson = JsonConvert.SerializeObject(model, Formatting.Indented);
+            PlayerPrefs.SetString(gameType.ToString(), tempJson);
+        }
     }
 
     #endregion

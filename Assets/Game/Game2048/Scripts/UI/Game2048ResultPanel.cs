@@ -11,7 +11,8 @@ public class Game2048ResultPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI curScoreTmp;
     [SerializeField] private Button onceAgainBtn;
     [SerializeField] private CanvasGroup canvasGroup;
-
+    [SerializeField] private TileManager tileManager;
+    
     private Sequence showAnimSeq;
     
     private void Awake()
@@ -19,7 +20,7 @@ public class Game2048ResultPanel : MonoBehaviour
         onceAgainBtn.onClick.AddListener(() =>
         {
             BaseUtilities.PlayCommonClick();
-            PutBlockGameController.Instance.ReplayGame();
+            tileManager.RestartGame();
             canvasGroup.alpha = 1;
             showAnimSeq?.Kill();
             showAnimSeq = DOTween.Sequence()

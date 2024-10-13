@@ -19,6 +19,7 @@ namespace NMNH.Utility
             Win,
             Stab,
             PutUpBlock, // 拿起方块
+            Drop,
         }
 
         private Dictionary<string, AudioClip> seDict = new ();
@@ -90,7 +91,7 @@ namespace NMNH.Utility
         /// </summary>
         public void PlayOneShot(SoundEffectType soundEffectType)
         {
-            // if (!SettingManager.IsSoundEffectOpen) return;
+            if (!SettingManager.IsSoundEffectOpen) return;
 
             if (soundEffectType is SoundEffectType.None) return;
 

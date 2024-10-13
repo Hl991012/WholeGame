@@ -139,6 +139,7 @@ public class DrawLineGameRoomPresenter : MonoBehaviour
         if (mapCells.Count > 1)
         {
             AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.PutUpBlock);   
+            VibrateHelper.VibrateMedium();
         }
     }
 

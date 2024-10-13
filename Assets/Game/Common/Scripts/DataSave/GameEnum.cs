@@ -11,6 +11,7 @@ public enum GameType
     DrawLineGame, // 一笔画成
     Game2048, // 2048
     Minesweeper, // 扫雷
+    X2BlockGame, // 2048下落
 }
 
 public static class GameTypeExtension
@@ -21,16 +22,19 @@ public static class GameTypeExtension
     {
         return GameDataSaveHelper.Instance.GetGameData<T>(gameType);
     }
-    
-    
+
+    public static void UpDataScore<T>(this GameType gameType, int score) where T : GameDataSaveBaseModel, new()
+    {
+        GameDataSaveHelper.Instance.UpDataScore<T>(gameType, score);
+    }
 
     #endregion
     
     #region 游戏状态相关内容
 
-    public static void SaveGameData<T>(this GameType gameType) where T : GameDataSaveBaseModel, new()
+    public static void SaveGameData(this GameType gameType)
     {
-        GameDataSaveHelper.Instance.SaveGameData<T>(gameType);
+        GameDataSaveHelper.Instance.SaveGameData(gameType);
     }
     
     public static Stack<GameStateSaveBaseModel> GetGameStates(this GameType gameType)

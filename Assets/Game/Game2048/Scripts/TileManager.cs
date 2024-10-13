@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -11,6 +10,7 @@ using Random = UnityEngine.Random;
 public class TileManager : MonoBehaviour
 {
     [SerializeField] private GameType curGameType;
+    [SerializeField] private Button backBtn;
     [SerializeField] private Transform emptyGridParent;
     [SerializeField] private Transform tileParent;
     [SerializeField] private Tile tilePrefab;
@@ -28,8 +28,6 @@ public class TileManager : MonoBehaviour
     private static int GridSize = 4;
     
     private bool isPlayingAnim;//bug修补：进行动画禁用移动。跟踪动画->设置在没有进行动画的情况下才尝试移动。带来新bug：无法移动时还需等待。添加一个字段跟踪格子是否真实移动并更新。
-    private int curScore;
-    private int bestScore;//最佳分数
 
     private void Awake()
     {
@@ -43,6 +41,12 @@ public class TileManager : MonoBehaviour
         {
             BaseUtilities.PlayCommonClick();
             RestartGame();
+        });
+        
+        backBtn.onClick.AddListener(() =>
+        {
+            BaseUtilities.PlayCommonClick();
+            GameCenter.Instance.ChangeState(GameCenter.GameState.Home);
         });
     }
 
@@ -64,52 +68,40 @@ public class TileManager : MonoBehaviour
             TryMove(input.XInput, input.YInput);//浮点值并不想要：四舍五入判断是否输入 问题：抓取并尝试移动无论当前是否正在设置动画->添加一个字段更新这个点
     }
 
-    //分数
-    public void AddScore(int value)
-    {
-        //获取值加入字段—>Tile.cs合并平铺立即更新
-        curScore += value;
-        scoreUpdated.Invoke(curScore);
-        //检查现有分数是否优于最佳分数（只需覆盖最高分）
-        if(curScore > bestScore)
-        {
-            bestScore = curScore;
-            bestScoreUpdated.Invoke(bestScore);//调用UI事件更新
-            SaveGame();
-        }
-    }
-
     private void StartGame()
     {
-        var tempState = JsonConvert.DeserializeObject<Game2048StateModel>(PlayerPrefs.GetString(curGameType.ToString()));
-        if (tempState == null)
+
+        var tempState = curGameType.GetGameData<Game2048SaveModel>().CurGameStateSaveBaseModel;
+        if (tempState is not Game2048StateModel)
         {
             TrySpawnTile();
             TrySpawnTile();
-            UpdateTilePositions(true);//初始化预制格子不想出现动画
-            tempState = new Game2048StateModel()
-            {
-                tailValues = GetCurrentTileValues(),
-            };
-            curGameType.AddGameState(tempState);
         }
         else
         {
-            curGameType.AddGameState(tempState);
-            curGameType.AddGameState(tempState);
-            LoadLastStates();
+            var tempTailValues = (tempState as Game2048StateModel).tailValues;
+            for (var x = 0; x < GridSize; x++)
+            {
+                for(var y = 0; y < GridSize; y++)
+                {
+                    tiles[x, y] = null;
+                    if(tempTailValues[x, y] == 0) continue;
+                    var tile = Instantiate(tilePrefab, tileParent);
+                    tile.SetValue(tempTailValues[x, y]);
+                    tiles[x, y] = tile;
+                }
+            }
         }
         
+        UpdateTilePositions(true);
         RefreshBackBtnState();
-        bestScore = 0;// tempState.bestScore ;//初始化；将在第一次玩游戏时返回
-        bestScoreUpdated.Invoke(bestScore);//更新最佳分数
-        curScore = 0; // tempState.curScore;
-        scoreUpdated.Invoke(curScore);
-        SaveGame();
+        
+        scoreUpdated.Invoke(curGameType.GetGameData<Game2048SaveModel>().CurScore);
+        bestScoreUpdated.Invoke(curGameType.GetGameData<Game2048SaveModel>().BestScore);
     }
 
     //重启游戏
-    private void RestartGame()
+    public void RestartGame()
     {
         ClearGame();
         StartGame();
@@ -118,6 +110,14 @@ public class TileManager : MonoBehaviour
     private void RefreshBackBtnState()
     {
         undoBtn.interactable = curGameType.GetGameStates().Count > 1;
+    }
+    
+    //分数
+    public void AddScore(int value)
+    {
+        curGameType.UpDataScore<Game2048SaveModel>(value);
+        scoreUpdated.Invoke(curGameType.GetGameData<Game2048SaveModel>().CurScore);
+        bestScoreUpdated.Invoke(curGameType.GetGameData<Game2048SaveModel>().BestScore);
     }
 
     //初始化全局位置
@@ -173,12 +173,11 @@ public class TileManager : MonoBehaviour
     private void UpdateTilePositions(bool instant)//告诉平铺设置动画到新位置的函数
     {
         //不是一个即时的位置更新：判断
-        if(!instant)
+        if (!instant)
         {
             isPlayingAnim = true;
             //需要一定时间完成动画 解决：不使用太多关于细节处理->例程功能
-            StartCoroutine(WaitForTileAnimation());//重载接受一个返回枚举数的函数：等待平铺动画
-             
+            StartCoroutine(WaitForTileAnimation()); //重载接受一个返回枚举数的函数：等待平铺动画
         }
         for (var x = 0; x < GridSize; x++)
             for (var y = 0; y < GridSize; y++)
@@ -186,6 +185,12 @@ public class TileManager : MonoBehaviour
                 if (tiles[x, y] != null)
                     //生成平铺后调用
                     tiles[x, y].SetPosition(tilePositions[x, y].position, instant);
+
+        if (instant)
+        {
+            curGameType.AddGameState(new Game2048StateModel { tailValues = GetCurrentTileValues() });
+            RefreshBackBtnState();
+        }
     }
 
     private IEnumerator WaitForTileAnimation()//返回一个等待数秒的函数
@@ -227,7 +232,6 @@ public class TileManager : MonoBehaviour
         }
 
         tilesUpdated = false;//初始化
-        var preMoveTileValues = GetCurrentTileValues();//预移动的平铺值，若移动则将一个新的游戏状态推到堆栈
 
         switch (x)
         {
@@ -248,13 +252,10 @@ public class TileManager : MonoBehaviour
         //只有实际进行平铺更新时才会调用更新平铺位置函数。若不调用则没有动画可以等待
         if(tilesUpdated)//成功移动后调用位置更新函数
         {
-            curGameType.AddGameState(new Game2048StateModel { tailValues = preMoveTileValues
-                // , curScore = curScore, bestScore = bestScore
-                });//更新将游戏状态推送到堆栈：创建游戏设置分数字段在当前储存,指定移动增加计数
+            //更新将游戏状态推送到堆栈：创建游戏设置分数字段在当前储存,指定移动增加计数
             //使用用户首选类储存游戏最佳分数->简单的事务：存储角色串和数字并检索
             UpdateTilePositions(false);//平衡处理
             RefreshBackBtnState();
-            SaveGame();
         }
 
     }
@@ -281,15 +282,16 @@ public class TileManager : MonoBehaviour
         if (curGameType.GetGameStates().Count <= 0)
             return;
         //获取上一个游戏状态
+        curGameType.PopGameState<Game2048StateModel>();
         var previousGameState = curGameType.PopGameState<Game2048StateModel>();
-        //恢复比分
-        curScore = 0;// previousGameState.curScore;
-        //确保调用或记录更新的事件
-        scoreUpdated.Invoke(curScore);
+
         //清除当前场景在所有磁贴中的循环
-        foreach (Tile t in tiles)
-            if (t != null)
-                Destroy(t.gameObject);//摧毁游戏对象->下一帧时完全删除
+        foreach (var t in tiles)
+        {
+            if (t == null) continue;
+            DestroyImmediate(t.gameObject);
+        }
+            
         //销毁后则循环
         for(var x = 0; x < GridSize; x ++)
             for(var y = 0; y < GridSize; y++)
@@ -306,7 +308,6 @@ public class TileManager : MonoBehaviour
             }
         //调用更新执行一系列操作
         UpdateTilePositions(true);
-        SaveGame();
     }
 
     private bool TileExistsBetween(int x, int y, int x2, int y2)
@@ -578,25 +579,15 @@ public class TileManager : MonoBehaviour
         return false;
     }
 
-    private void SaveGame()
-    {
-        var curGameState = new Game2048StateModel()
-        {
-            // curScore = curScore,
-            // bestScore = bestScore,
-            tailValues = GetCurrentTileValues(),
-        };
-        var tempJson = JsonConvert.SerializeObject(curGameState);
-        PlayerPrefs.SetString(curGameType.ToString(), tempJson);
-    }
-
     private void ClearGame()
     {
-        PlayerPrefs.SetString(curGameType.ToString(), "");
-        
         foreach (var t in tiles)
+        {
             if (t != null)
-                Destroy(t.gameObject);
+            {
+                DestroyImmediate(t.gameObject);
+            }   
+        }
         
         curGameType.ClearGameState();
     }

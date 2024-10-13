@@ -7,12 +7,16 @@ public class PlayRoomPresenter : MonoSingleton<PlayRoomPresenter>
     [SerializeField] private PutBlockGameController putBlockGameController;
     [SerializeField] private TextAdventureGameController textAdventureGameController;
     [SerializeField] private DrawLineGameRoomPresenter drawLineGameRoomPresenter;
+    [SerializeField] private GameObject game2048Prefab;
+    [SerializeField] private GameObject x2BlockGamePrefab;
     
     public void RefreshView()
     {
         putBlockGameController.gameObject.SetActive(GameCenter.Instance.CurGameType == GameType.PutBlockGame);
         textAdventureGameController.gameObject.SetActive(GameCenter.Instance.CurGameType == GameType.TextAdventure);
         drawLineGameRoomPresenter.gameObject.SetActive(GameCenter.Instance.CurGameType == GameType.DrawLineGame);
+        game2048Prefab.gameObject.SetActive(GameCenter.Instance.CurGameType == GameType.Game2048);
+        x2BlockGamePrefab.gameObject.SetActive(GameCenter.Instance.CurGameType == GameType.X2BlockGame);
         switch (GameCenter.Instance.CurGameType)
         {
             case GameType.PutBlockGame:
@@ -23,6 +27,10 @@ public class PlayRoomPresenter : MonoSingleton<PlayRoomPresenter>
                 break;
             case GameType.DrawLineGame:
                 drawLineGameRoomPresenter.StartGame();
+                break;
+            case GameType.Game2048:
+                break;
+            case GameType.X2BlockGame:
                 break;
         }
     }

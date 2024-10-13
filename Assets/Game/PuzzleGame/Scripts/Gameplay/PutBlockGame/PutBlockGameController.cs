@@ -333,6 +333,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             }
 
             AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.Stab);
+            VibrateHelper.VibrateLight();
 
             var index = Array.IndexOf(figureControllers, figureController);
             figures[index] = -1;
@@ -429,7 +430,8 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             
             if (bricksToDestroy.Length > 0)
             {
-                AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.Win);   
+                AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.Win);
+                VibrateHelper.VibrateMedium();
             }
 
             foreach (var c in bricksToDestroy)

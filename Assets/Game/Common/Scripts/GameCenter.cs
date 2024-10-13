@@ -23,6 +23,7 @@ public class GameCenter : MonoSingleton<GameCenter>
         {
             case GameState.Home:
                 CameraController.Instance.Reset();
+                GC.Collect();
                 break;
             case GameState.Game:
                 Time.timeScale = 1;

@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 4eeb174848882f0428736876246734a9
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - ChillKai
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 300ed78732378ab4484ebd6d80b2a33d, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
