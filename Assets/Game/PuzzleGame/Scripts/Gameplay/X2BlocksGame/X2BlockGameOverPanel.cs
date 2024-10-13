@@ -56,6 +56,7 @@ public class X2BlockGameOverPanel : MonoBehaviour
             .OnComplete(() =>
             {
                 onceAgainBtn.interactable = true;
+                WXSDKManager.Instance.ShowInterstitialVideo(null);
             });
 
         var gameStata = UserProgress.Current.GetGameState<GameStateBaseModel>(UserProgress.Current.CurrentGameId);

@@ -72,15 +72,13 @@ namespace PuzzleGame.Gameplay.Bricks2048
             pauseBtn.onClick.AddListener(() =>
             {
                 BaseUtilities.PlayCommonClick();
+                if (Time.timeScale == 1)
+                {
+                    WXSDKManager.Instance.ShowInterstitialVideo(null);
+                }
+                
                 Time.timeScale = Time.timeScale == 0 ? 1 : 0;
             });
-        }
-
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-            
-            UserProgress.Current.CurrentGameId = name;
         }
 
         private void Start()
@@ -96,8 +94,6 @@ namespace PuzzleGame.Gameplay.Bricks2048
 
         public void PlayGame()
         {
-            UserProgress.Current.CurrentGameId = name;
-            
             IsAnimating = false;
             isFalling = false;
 
@@ -127,14 +123,14 @@ namespace PuzzleGame.Gameplay.Bricks2048
                 DestroyImmediate(nextBrick.gameObject);
             }
             
-            SpawnNextBrick();
-
             gameState = UserProgress.Current.GetGameState<X2BlocksGameState>(name);
             if (gameState == null)
             {
                 gameState = new X2BlocksGameState();
                 UserProgress.Current.SetGameState(name, gameState);
             }
+            
+            SpawnNextBrick();
             
             StartGame();
         }

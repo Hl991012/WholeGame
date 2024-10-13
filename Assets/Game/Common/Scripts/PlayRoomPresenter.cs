@@ -1,4 +1,5 @@
 using GameFrame;
+using PuzzleGame;
 using PuzzleGame.Gameplay.Bricks2048;
 using PuzzleGame.Gameplay.Puzzle1010;
 using UnityEngine;
@@ -21,6 +22,7 @@ public class PlayRoomPresenter : MonoSingleton<PlayRoomPresenter>
         switch (GameCenter.Instance.CurGameType)
         {
             case GameType.PutBlockGame:
+                UserProgress.Current.CurrentGameId = putBlockGameController.gameObject.name;
                 // 创建游戏
                 break;
             case GameType.TextAdventure:
@@ -32,6 +34,7 @@ public class PlayRoomPresenter : MonoSingleton<PlayRoomPresenter>
             case GameType.Game2048:
                 break;
             case GameType.X2BlockGame:
+                UserProgress.Current.CurrentGameId = x2BlocksGameController.gameObject.name;
                 x2BlocksGameController.PlayGame();
                 break;
         }

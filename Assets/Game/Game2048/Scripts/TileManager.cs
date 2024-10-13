@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using NMNH.Utility;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -34,13 +35,20 @@ public class TileManager : MonoBehaviour
         undoBtn.onClick.AddListener(() =>
         {
             BaseUtilities.PlayCommonClick();
-            LoadLastStates();
+            WXSDKManager.Instance.ShowRewardVideo(isSuccess =>
+            {
+                if (isSuccess)
+                {
+                    LoadLastStates();
+                }
+            });
         });
         
         restartBtn.onClick.AddListener(() =>
         {
             BaseUtilities.PlayCommonClick();
             RestartGame();
+            WXSDKManager.Instance.ShowInterstitialVideo(null);
         });
         
         backBtn.onClick.AddListener(() =>
@@ -249,6 +257,7 @@ public class TileManager : MonoBehaviour
                 break;
         }
 
+        AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.Stab);
         //只有实际进行平铺更新时才会调用更新平铺位置函数。若不调用则没有动画可以等待
         if(tilesUpdated)//成功移动后调用位置更新函数
         {
@@ -256,6 +265,7 @@ public class TileManager : MonoBehaviour
             //使用用户首选类储存游戏最佳分数->简单的事务：存储角色串和数字并检索
             UpdateTilePositions(false);//平衡处理
             RefreshBackBtnState();
+            VibrateHelper.VibrateHeavy();
         }
 
     }

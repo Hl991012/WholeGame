@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class MainSceneCenter : MonoBehaviour
@@ -13,6 +14,14 @@ public class MainSceneCenter : MonoBehaviour
     private void Start()
     {
         OnGameStateChanged();
+    }
+
+    private void Update()
+    {
+        if (!WXSDKManager.Instance.IsShowBanner)
+        {
+            WXSDKManager.Instance.ShowCustomAd();
+        }
     }
 
     private void OnGameStateChanged()

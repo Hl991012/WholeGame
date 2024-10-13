@@ -48,6 +48,7 @@ public class Game2048ResultPanel : MonoBehaviour
             .OnComplete(() =>
             {
                 onceAgainBtn.interactable = true;
+                WXSDKManager.Instance.ShowInterstitialVideo(null);
             });
         
         curScoreTmp.text = UserProgress.Current.GetGameState<GameStateBaseModel>(UserProgress.Current.CurrentGameId).Score

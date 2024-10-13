@@ -26,12 +26,16 @@ namespace PuzzleGame.UI
 
         private void OnEnable()
         {
-            isFirstSetValue = true;
-            OnProgressUpdate();
-            UserProgress.Current.ProgressUpdate += OnProgressUpdate;
+            isFirstSetValue = true;   
         }
 
-        private void OnDisable()
+        private void Start()
+        {
+            UserProgress.Current.ProgressUpdate += OnProgressUpdate;
+            OnProgressUpdate();
+        }
+
+        private void OnDestroy()
         {
             UserProgress.Current.ProgressUpdate -= OnProgressUpdate;
 
@@ -49,7 +53,9 @@ namespace PuzzleGame.UI
             currentGameStateBaseModel = gameState;
 
             if (gameState == null)
-                return;
+            {
+                return;   
+            }
 
             OnStateUpdate();
             gameState.StateUpdate += OnStateUpdate;

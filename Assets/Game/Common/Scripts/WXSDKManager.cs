@@ -10,10 +10,18 @@ public class WXSDKManager : Singleton<WXSDKManager>
     private WXRewardedVideoAd wxRewardedVideoAd;
 
     private WXInterstitialAd wxInterstitialAd;
+
+    private WXCustomAd wXCustomAd;
+
+    private Action<WXRewardedVideoAdOnCloseResponse> onCloseRewardedVideoAd;
+    private Action onCloseInterstitialVideo;
     
     public void Init()
     {
+        var width = (int)(Screen.height / 1560f * 720);
+        
         #if UNITY_EDITOR
+        
         #else
             WX.InitSDK(val =>
         {
@@ -31,7 +39,31 @@ public class WXSDKManager : Singleton<WXSDKManager>
                 {
                     adUnitId = "adunit-dc63d74f56278361"
                 });
+
+            wXCustomAd = new WXCustomAd("adunit-e45f98074d27985a",
+                new CustomStyle()
+                {
+                    left = 0,
+                    top = 1392,
+                    width = width,
+                });
+
+            wxInterstitialAd.OnError((WXADErrorResponse result) =>
+            {
+                Debug.LogError("被动广告错误" + result.ToString());
+            });
+            
+            wxRewardedVideoAd.OnError((WXADErrorResponse result) =>
+            {
+                Debug.LogError("主动广告错误" + result.ToString());
+            });
+            
+            wXCustomAd.OnError((WXADErrorResponse result) =>
+            {
+                Debug.LogError("自定义广告错误" + result.ToString());
+            });
         });
+            
         #endif
     }
 
@@ -45,7 +77,7 @@ public class WXSDKManager : Singleton<WXSDKManager>
         
         wxRewardedVideoAd.Show(val =>
         {
-            wxRewardedVideoAd.OnClose((WXRewardedVideoAdOnCloseResponse res)=>
+            onCloseRewardedVideoAd = (WXRewardedVideoAdOnCloseResponse res) =>
             {
                 if ((res != null && res.isEnded) || res == null)
                 {
@@ -57,15 +89,17 @@ public class WXSDKManager : Singleton<WXSDKManager>
                     // 播放中途退出，不下发游戏奖励
                     onClose?.Invoke(false);
                 }
-                wxRewardedVideoAd.OffClose(null);
-            });
+
+                wxRewardedVideoAd.OffClose(onCloseRewardedVideoAd);
+                onCloseRewardedVideoAd = null;
+            };
+            
+            wxRewardedVideoAd.OnClose(onCloseRewardedVideoAd);
         }, val =>
         {
             onClose?.Invoke(false);
         });
     }
-
-    // private long lastTimeWatchInterstitialVideoTime;
     
     public void ShowInterstitialVideo(Action onClose)
     {
@@ -74,15 +108,42 @@ public class WXSDKManager : Singleton<WXSDKManager>
             onClose?.Invoke();
             return;
         }
+
+        onCloseInterstitialVideo = () =>
+        {
+            onClose?.Invoke();
+            Debug.Log("播放插屏广告");
+            wxInterstitialAd.OffClose(onCloseInterstitialVideo);
+        };
         
         wxInterstitialAd.Show(val =>
         {
-            wxInterstitialAd.OnClose(()=>
-            {
-                onClose?.Invoke();
-                Debug.Log("播放插屏广告");
-                wxRewardedVideoAd.OffClose(null);
-            });
+            wxInterstitialAd.OnClose(onCloseInterstitialVideo);
         });
+    }
+
+    public bool IsShowBanner { get; private set; } = false;
+
+    public void ShowCustomAd()
+    {
+        if (!hasInit || wXCustomAd == null)
+        {
+            return;
+        }
+
+        Debug.Log("展示自定义广告");
+        IsShowBanner = true;
+        wXCustomAd.Show();
+    }
+
+    public void CloseCustomAd()
+    {
+        IsShowBanner = false;
+        if (!hasInit || wXCustomAd == null)
+        {
+            return;
+        }
+        
+        wXCustomAd.Hide();
     }
 }

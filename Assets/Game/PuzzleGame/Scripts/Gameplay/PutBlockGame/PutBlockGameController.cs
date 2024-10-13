@@ -38,17 +38,6 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 GameCenter.Instance.ChangeState(GameCenter.GameState.Home);
             });
             
-            UserProgress.Current.CurrentGameId = name;
-        }
-
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-            UserProgress.Current.CurrentGameId = name;
-        }
-
-        private void Start()
-        {
             field = new NumberedBrick[bricksCount.x, bricksCount.y];
             backgroundBricks = new Brick[bricksCount.x, bricksCount.y];
 
@@ -74,6 +63,10 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 figureController.PointerDrag += FigureOnPointerDrag;
             }
 
+        }
+        
+        private void Start()
+        {
             StartGame();
             CheckGameOver();
         }

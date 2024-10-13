@@ -39,7 +39,6 @@ public class DrawLineGameOverPanel : MonoBehaviour
         AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.Win);
         canvasGroup.alpha = 0;
         showAnimSeq?.Kill();
-        // continueBtn.interactable = false;
         showAnimSeq = DOTween.Sequence()
             .AppendInterval(0.3f)
             .Append(canvasGroup.DOFade(1, 0.7f))
@@ -48,12 +47,11 @@ public class DrawLineGameOverPanel : MonoBehaviour
             {
                 DrawLineGameConctrol.Instance.DrawLineGameRoomPresenter.StartGame();
             })
-            // .Append(canvasGroup.DOFade(0, 0.3f))
             .SetLink(gameObject)
             .SetUpdate(true)
             .OnComplete(() =>
             {
-                // continueBtn.interactable = true;
+                WXSDKManager.Instance.ShowInterstitialVideo(null);
                 gameObject.SetActive(false);
             });
     }
