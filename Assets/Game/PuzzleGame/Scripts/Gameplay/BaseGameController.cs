@@ -16,7 +16,6 @@ namespace PuzzleGame.Gameplay
         }
         
         
-
         protected override void BoosterExecute<T>(T target)
         {
             if (boosterType != BoosterType.Undo)

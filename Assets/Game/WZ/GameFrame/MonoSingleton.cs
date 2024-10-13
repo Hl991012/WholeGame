@@ -9,7 +9,7 @@ namespace GameFrame
 
         protected MonoSingleton () { }
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             if (transform.parent == null)
             {

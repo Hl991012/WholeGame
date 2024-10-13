@@ -76,10 +76,15 @@ namespace PuzzleGame.Gameplay.Bricks2048
             });
         }
 
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            
+            UserProgress.Current.CurrentGameId = name;
+        }
+
         private void Start()
         {
-            UserProgress.Current.CurrentGameId = name;
-            
             if (spawnColumns)
                 SpawnColumns();
 
@@ -87,8 +92,41 @@ namespace PuzzleGame.Gameplay.Bricks2048
             InputController.Right += OnRight;
             InputController.Down += OnDown;
             InputController.Move += OnTapMove;
-        
-            field = new NumberedBrick[bricksCount.x, bricksCount.y];
+        }
+
+        public void PlayGame()
+        {
+            UserProgress.Current.CurrentGameId = name;
+            
+            IsAnimating = false;
+            isFalling = false;
+
+            if (field != null)
+            {
+                // 清除已经生成的内容
+                foreach (var item in field)
+                {
+                    if (item != null)
+                    {
+                        DestroyImmediate(item.gameObject);
+                    }
+                }
+            }
+            else
+            {
+                field = new NumberedBrick[bricksCount.x, bricksCount.y];
+            }
+
+            if (currentBrick != null)
+            {
+                DestroyImmediate(currentBrick.gameObject);
+            }
+            
+            if (nextBrick != null)
+            {
+                DestroyImmediate(nextBrick.gameObject);
+            }
+            
             SpawnNextBrick();
 
             gameState = UserProgress.Current.GetGameState<X2BlocksGameState>(name);
@@ -97,7 +135,7 @@ namespace PuzzleGame.Gameplay.Bricks2048
                 gameState = new X2BlocksGameState();
                 UserProgress.Current.SetGameState(name, gameState);
             }
-
+            
             StartGame();
         }
 

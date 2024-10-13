@@ -19,20 +19,19 @@ namespace PuzzleGame.UI
 
         private int curShowValue;
 
-        private void Start()
+        private void Awake()
         {
             labelTmp = GetComponent<TextMeshProUGUI>();
-
-            OnProgressUpdate();
-            UserProgress.Current.ProgressUpdate += OnProgressUpdate;
         }
 
         private void OnEnable()
         {
             isFirstSetValue = true;
+            OnProgressUpdate();
+            UserProgress.Current.ProgressUpdate += OnProgressUpdate;
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             UserProgress.Current.ProgressUpdate -= OnProgressUpdate;
 

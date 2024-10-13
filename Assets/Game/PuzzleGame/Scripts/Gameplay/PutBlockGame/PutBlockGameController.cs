@@ -28,7 +28,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
         private const int MaxBrickNumber = 7;
 
         private static int GetRandomBrickNumber() => Random.Range(1, MaxBrickNumber);
-
+        
         private void Awake()
         {
             backHomeBtn.onClick.AddListener(() =>
@@ -37,6 +37,14 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 SaveGame();
                 GameCenter.Instance.ChangeState(GameCenter.GameState.Home);
             });
+            
+            UserProgress.Current.CurrentGameId = name;
+        }
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            UserProgress.Current.CurrentGameId = name;
         }
 
         private void Start()
@@ -58,8 +66,6 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 gameState = new PutBlockGameState();
                 UserProgress.Current.SetGameState(name, gameState);
             }
-
-            UserProgress.Current.CurrentGameId = name;
 
             foreach (var figureController in figureControllers)
             {
