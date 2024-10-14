@@ -8060,7 +8060,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1937004005}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 368ad5e839772294e871145f5181a025, type: 3}
+  m_Script: {fileID: 11500000, guid: c7266702f1aa3d74e8937a623fb76a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   coinCountTmp: {fileID: 1252722553}

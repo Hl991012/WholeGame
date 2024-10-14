@@ -16,13 +16,13 @@ public class MainSceneCenter : MonoBehaviour
         OnGameStateChanged();
     }
 
-    private void Update()
-    {
-        if (!WXSDKManager.Instance.IsShowBanner)
-        {
-            WXSDKManager.Instance.ShowCustomAd();
-        }
-    }
+    // private void Update()
+    // {
+    //     if (!WXSDKManager.Instance.IsShowBanner)
+    //     {
+    //         WXSDKManager.Instance.ShowCustomAd();
+    //     }
+    // }
 
     private void OnGameStateChanged()
     {

@@ -40,13 +40,13 @@ public class WXSDKManager : Singleton<WXSDKManager>
                     adUnitId = "adunit-dc63d74f56278361"
                 });
 
-            wXCustomAd = new WXCustomAd("adunit-e45f98074d27985a",
-                new CustomStyle()
-                {
-                    left = 0,
-                    top = 1392,
-                    width = width,
-                });
+            // wXCustomAd = new WXCustomAd("adunit-e45f98074d27985a",
+            //     new CustomStyle()
+            //     {
+            //         left = 0,
+            //         top = 1392,
+            //         width = width,
+            //     });
 
             wxInterstitialAd.OnError((WXADErrorResponse result) =>
             {
@@ -58,10 +58,10 @@ public class WXSDKManager : Singleton<WXSDKManager>
                 Debug.LogError("主动广告错误" + result.ToString());
             });
             
-            wXCustomAd.OnError((WXADErrorResponse result) =>
-            {
-                Debug.LogError("自定义广告错误" + result.ToString());
-            });
+            // wXCustomAd.OnError((WXADErrorResponse result) =>
+            // {
+            //     Debug.LogError("自定义广告错误" + result.ToString());
+            // });
         });
             
         #endif

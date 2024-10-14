@@ -50,8 +50,7 @@ public class Game2048ResultPanel : MonoBehaviour
                 onceAgainBtn.interactable = true;
                 WXSDKManager.Instance.ShowInterstitialVideo(null);
             });
-        
-        curScoreTmp.text = UserProgress.Current.GetGameState<GameStateBaseModel>(UserProgress.Current.CurrentGameId).Score
-            .ToString();
+
+        curScoreTmp.text = GameDataSaveHelper.Instance.GetGameData<Game2048SaveModel>(GameType.Game2048)?.CurScore.ToString();;
     }
 }
