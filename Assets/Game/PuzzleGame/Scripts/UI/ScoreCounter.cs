@@ -82,7 +82,7 @@ namespace PuzzleGame.UI
                     {
                         curShowValue = Mathf.CeilToInt(val);
                         labelTmp.text = curShowValue.ToString();
-                    }, curShowValue, Value, 0.5f)
+                    }, curShowValue, Value, 1f)
                 .SetLink(gameObject)
                 .SetUpdate(true);
             }

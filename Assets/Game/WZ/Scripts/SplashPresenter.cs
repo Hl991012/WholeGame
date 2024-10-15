@@ -25,6 +25,7 @@ public class SplashPresenter : MonoBehaviour
         progressSlider.fillAmount = 0;
         WXSDKManager.Instance.Init();
         TextAdventureGameController.Instance.LoadData();
+        ComboManager.Instance.Init();
         progressSlider.fillAmount = 0.3f;
         await SceneManager.LoadSceneAsync("MainScene", LoadSceneMode.Additive);
         progressSlider.fillAmount = 0.9f;

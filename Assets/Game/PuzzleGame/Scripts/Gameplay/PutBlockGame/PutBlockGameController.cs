@@ -86,6 +86,8 @@ namespace PuzzleGame.Gameplay.Puzzle1010
 
         public override void ReplayGame()
         {
+            ComboManager.Instance.ResetComboState(GameType.PutBlockGame);
+            
             gameState.IsGameOver = false;
             gameState.HasRevive = false;
             
@@ -376,8 +378,11 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 field[c.x, c.y] = null;
         }
 
+        private int completeLineCount;
+
         protected virtual Vector2Int[] GetCompleteLines()
         {
+            completeLineCount = 0;
             var linesBricks = new List<Vector2Int>();
 
             for (var x = 0; x < bricksCount.x; x++)
@@ -395,7 +400,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
 
                 if (!line)
                     continue;
-
+                completeLineCount++;
                 for (var y = 0; y < bricksCount.y; y++)
                     linesBricks.Add(new Vector2Int(x, y));
             }
@@ -415,7 +420,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
 
                 if (!line)
                     continue;
-
+                completeLineCount++;
                 for (var x = 0; x < bricksCount.x; x++)
                     linesBricks.Add(new Vector2Int(x, y));
             }
@@ -432,6 +437,9 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.Win);
                 VibrateHelper.VibrateMedium();
             }
+            
+            var addScore = ComboManager.Instance.AddPlayerOperate(GameType.PutBlockGame, completeLineCount, Vector3.zero);
+            gameState.Score += addScore;
 
             foreach (var c in bricksToDestroy)
             {
