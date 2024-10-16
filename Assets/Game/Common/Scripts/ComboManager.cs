@@ -43,13 +43,16 @@ public class ComboManager : MonoSingleton<ComboManager>
             }
             else
             {
-                tempState.EnterComboOperateRemainCount--;
-                if (tempState.EnterComboOperateRemainCount <= 0)
+                for (var i = 0; i < addComboCount; i++)
                 {
-                    tempState.ComboCount += addComboCount;
-                    tempState.EnterComboOperateRemainCount = 0;
-                    tempState.ComboKeepRemainCount = GetComboDefaultKeepCount(gameType);
+                    tempState.EnterComboOperateRemainCount--;
+                    if (tempState.EnterComboOperateRemainCount <= 0)
+                    {
+                        tempState.ComboCount++;
+                        tempState.EnterComboOperateRemainCount = 0;
+                        tempState.ComboKeepRemainCount = GetComboDefaultKeepCount(gameType);
                     
+                    }
                 }
             }
 
@@ -69,7 +72,7 @@ public class ComboManager : MonoSingleton<ComboManager>
             }
         }
         
-        Debug.LogError("Combo" + tempState.ComboCount);
+        // Debug.LogError("Combo" + tempState.ComboCount);
         Save();
 
         return addScoreCount;

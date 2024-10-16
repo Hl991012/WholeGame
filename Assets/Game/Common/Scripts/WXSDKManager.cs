@@ -7,15 +7,23 @@ public class WXSDKManager : Singleton<WXSDKManager>
 {
     private bool hasInit;
 
-    private WXRewardedVideoAd wxRewardedVideoAd;
+    private static WXRewardedVideoAd wxRewardedVideoAd;
 
-    private WXInterstitialAd wxInterstitialAd;
+    private static WXInterstitialAd wxInterstitialAd;
 
-    private WXCustomAd wXCustomAd;
+    private static WXCustomAd wXCustomAd;
 
     private Action<WXRewardedVideoAdOnCloseResponse> onCloseRewardedVideoAd;
     private Action onCloseInterstitialVideo;
-    
+
+    private Action OnError = () =>
+    {
+        if (MainSceneCenter.Instance != null)
+        {
+            MainSceneCenter.Instance.ShowTips("内容制作中。。。");
+        }
+    };
+
     public void Init()
     {
         var width = (int)(Screen.height / 1560f * 720);
@@ -34,34 +42,41 @@ public class WXSDKManager : Singleton<WXSDKManager>
                     multiton = true
                 });
             
+            wxRewardedVideoAd.Load();
+            
             wxInterstitialAd = WX.CreateInterstitialAd(
                 new WXCreateInterstitialAdParam()
                 {
                     adUnitId = "adunit-dc63d74f56278361"
                 });
+            
+            wxInterstitialAd.Load();
 
-            // wXCustomAd = new WXCustomAd("adunit-e45f98074d27985a",
-            //     new CustomStyle()
-            //     {
-            //         left = 0,
-            //         top = 1392,
-            //         width = width,
-            //     });
+            wXCustomAd = new WXCustomAd("adunit-e45f98074d27985a",
+                new CustomStyle()
+                {
+                    left = 0,
+                    top = 1392,
+                    width = width,
+                });
 
             wxInterstitialAd.OnError((WXADErrorResponse result) =>
             {
+                OnError?.Invoke();
                 Debug.LogError("被动广告错误" + result.ToString());
             });
             
             wxRewardedVideoAd.OnError((WXADErrorResponse result) =>
             {
+                OnError?.Invoke();
                 Debug.LogError("主动广告错误" + result.ToString());
             });
             
-            // wXCustomAd.OnError((WXADErrorResponse result) =>
-            // {
-            //     Debug.LogError("自定义广告错误" + result.ToString());
-            // });
+            wXCustomAd.OnError((WXADErrorResponse result) =>
+            {
+                OnError?.Invoke();
+                Debug.LogError("自定义广告错误" + result.ToString());
+            });
         });
             
         #endif
@@ -97,6 +112,7 @@ public class WXSDKManager : Singleton<WXSDKManager>
             wxRewardedVideoAd.OnClose(onCloseRewardedVideoAd);
         }, val =>
         {
+            wxRewardedVideoAd.Load();
             onClose?.Invoke(false);
         });
     }
@@ -119,8 +135,18 @@ public class WXSDKManager : Singleton<WXSDKManager>
         wxInterstitialAd.Show(val =>
         {
             wxInterstitialAd.OnClose(onCloseInterstitialVideo);
+        }, val =>
+        {
+            onCloseInterstitialVideo?.Invoke();
+            wxInterstitialAd.OnLoad(OnLoad);
+            wxInterstitialAd.Load();
         });
     }
+
+    private static Action<WXADLoadResponse> OnLoad = val =>
+    {
+        wxInterstitialAd.OffLoad(OnLoad);
+    };
 
     public bool IsShowBanner { get; private set; } = false;
 

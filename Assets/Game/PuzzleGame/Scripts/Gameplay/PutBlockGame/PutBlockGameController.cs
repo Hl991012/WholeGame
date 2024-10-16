@@ -78,7 +78,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
 
             gameState.Score = 0;
             gameState.IsGameOver = false;
-            SpawnNewFigures();
+            SpawnNewFigures(false);
             // SpawnStartingBricks();
             SetStartBoosters();
             SaveGame();
@@ -238,12 +238,34 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             return brick;
         }
 
-        private void SpawnNewFigures()
+        // 是否运用算法
+        private bool isEnableAlgorithm = false;
+
+        private void SpawnNewFigures(bool enableAlgorithm)
         {
             figures = new int[figureControllers.Length];
             figureRotations = new float[figureControllers.Length];
+
+            // 计算第几个位置应用算法
+            var algorithmIndex = -1;
+            // if (enableAlgorithm && !isEnableAlgorithm)
+            {
+                algorithmIndex = Random.Range(0, figureRotations.Length);
+            }
+            // isEnableAlgorithm = !isEnableAlgorithm;
+            
             for (var i = 0; i < figureControllers.Length; i++)
             {
+                if (algorithmIndex == i)
+                {
+                    // 应用算法
+                    Debug.LogError(i);
+                    if (SpawnFigureByAlgorithm(figureControllers[i]))
+                    {
+                        continue;   
+                    }
+                }
+                
                 var randomNum = Random.Range(0, 107);
                 for (var j = 0; j < PutBlockConfig.FiguresProbability.Length; j++)
                 {
@@ -262,6 +284,164 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                     randomNum -= PutBlockConfig.FiguresProbability[j];
                 }
             }
+        }
+
+        private bool SpawnFigureByAlgorithm(FigureController figureController)
+        {
+            // 算法：
+            // 第一步：计算只有一个断隔的横排和竖排的元素
+            // 第二步：在两个横排和竖排的元素中选择一个
+            // 第三步：计算断隔的长度，根据长度去生成对应的元素
+            
+            // 计算横排只有一个断隔的
+            var tempXs = new List<int>();
+            for (var i = 0; i < field.GetLength(0); i++)
+            {
+                var lastNullIndex = -1;
+                var isConform = true;
+                for (var j = 0; j < field.GetLength(1); j++)
+                {
+                    if (field[i, j] == null)
+                    {
+                        if (lastNullIndex == -1 || j - lastNullIndex <= 1)
+                        {
+                            lastNullIndex = j;
+                        }
+                        else
+                        {
+                            isConform = false;
+                            break;
+                        }
+                    }
+                }
+
+                if (isConform)
+                {
+                    tempXs.Add(i);
+                }
+            }
+            
+            // 计算竖排只有一个断隔的
+            var tempYs = new List<int>();
+            for (var i = 0; i < field.GetLength(0); i++)
+            {
+                var lastNullIndex = -1;
+                var isConform = true;
+                for (var j = 0; j < field.GetLength(1); j++)
+                {
+                    if (field[j, i] == null)
+                    {
+                        if (lastNullIndex == -1 || j - lastNullIndex <= 1)
+                        {
+                            lastNullIndex = j;
+                        }
+                        else
+                        {
+                            isConform = false;
+                            break;
+                        }
+                    }
+                }
+
+                if (isConform)
+                {
+                    tempYs.Add(i);
+                }
+            }
+
+            // foreach (var item in tempXs)
+            // {
+            //     Debug.LogError($"x{item}");
+            // }
+            //
+            // foreach (var item in tempYs)
+            // {
+            //     Debug.LogError($"y{item}");
+            // }
+            
+            //得到其中一个
+            if (Random.Range(0, 1f) > 0.5f)
+            {
+                if (tempXs.Count <= 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    var tempX = tempXs[Random.Range(0, tempXs.Count)];
+                    var nullStartIndex = -1;
+                    var nullEndIndex = 8;
+                    for (var i = 0; i < field.GetLength(1); i++)
+                    {
+                        if (field[tempX, i] == null && nullStartIndex == -1)
+                        {
+                            nullStartIndex = i;
+                        }
+
+                        if (nullStartIndex != -1 && field[tempX, i] != null)
+                        {
+                            nullEndIndex = i;
+                            break;
+                        }
+                    }
+
+                    var nullCount = nullEndIndex - nullStartIndex;
+                    switch (nullCount)
+                    {
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                            Debug.LogError($"x{nullCount}+{tempX}");
+                            SpawnFigure(figureController, nullCount - 1, 90, GetRandomBrickNumber());
+                            return true;
+                        default:
+                            return false;
+                    }
+                }
+            }
+            else
+            {
+                if (tempYs.Count <= 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    var tempY = tempYs[Random.Range(0, tempYs.Count)];
+                    var nullStartIndex = -1;
+                    var nullEndIndex = 8;
+                    for (var i = 0; i < field.GetLength(0); i++)
+                    {
+                        if (field[i, tempY] == null && nullStartIndex == -1)
+                        {
+                            nullStartIndex = i;
+                        }
+
+                        if (nullStartIndex != -1 && field[i, tempY] != null)
+                        {
+                            nullEndIndex = i;
+                            break;
+                        }
+                    }
+
+                    var nullCount = nullEndIndex - nullStartIndex;
+                    switch (nullCount)
+                    {
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                            Debug.LogError($"y{nullCount}+{tempY}");
+                            SpawnFigure(figureController, nullCount - 1, 0, GetRandomBrickNumber());
+                            return true;
+                        default:
+                            return false;
+                    }
+                }
+            }
+
+            return false;
         }
 
         private void SpawnFigure(FigureController figureController, int figureIndex, float rotation, int brickNumber)
@@ -345,7 +525,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             CheckLines();
 
             if (figureControllers.All(c => c.bricks.Count == 0))
-                SpawnNewFigures();
+                SpawnNewFigures(true);
 
             CheckFigures();
 
@@ -611,7 +791,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             figures[index] = -1;
 
             if (figureControllers.All(c => c.bricks.Count == 0))
-                SpawnNewFigures();
+                SpawnNewFigures(true);
             
             CheckFigures();
             CheckGameOver();

@@ -1,11 +1,13 @@
 using System;
+using GameFrame;
 using UnityEngine;
 
-public class MainSceneCenter : MonoBehaviour
+public class MainSceneCenter : MonoSingleton<MainSceneCenter>
 {
     [SerializeField] private UIPresenter uiPresenter;
     [SerializeField] private PlayRoomPresenter playRoomPresenter;
-
+    [SerializeField] private PopUpsUI popUpsUI;
+    
     private void Awake()
     {
         GameCenter.Instance.OnGameStateChanged += OnGameStateChanged;
@@ -36,5 +38,10 @@ public class MainSceneCenter : MonoBehaviour
                 playRoomPresenter.RefreshView();
                 break;
         }
+    }
+
+    public void ShowTips(string tips)
+    {
+        popUpsUI.Show(tips);
     }
 }
