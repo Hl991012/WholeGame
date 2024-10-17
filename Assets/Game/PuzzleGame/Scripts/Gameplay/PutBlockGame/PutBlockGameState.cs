@@ -11,8 +11,26 @@ namespace PuzzleGame.Gameplay.Puzzle1010
         [SerializeField] private int[] figures = Array.Empty<int>();
         [SerializeField] private float[] figureRotations = Array.Empty<float>();
         [SerializeField] private int[] figureIndexes = Array.Empty<int>();
+        [SerializeField] private int extraFigureIndex;
+        [SerializeField] private float extraFigureRotation;
+        [SerializeField] private bool hasRevive;
+        
+        public int ExtraFigureIndex
+        {
+            get => extraFigureIndex;
+            set => extraFigureIndex = value;
+        }
 
-        public bool HasRevive { get; set; }
+        public float ExtraFigureRotation
+        {
+            get => extraFigureRotation;
+            set => extraFigureRotation = value;
+        }
+
+        public bool HasRevive {
+            get => hasRevive;
+            set => hasRevive = value;
+        }
 
         public void SetFigures(int[] value, int[] indexes, float[] rotations)
         {
@@ -45,7 +63,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 figures = GetFigures(),
                 figureRotations = GetFigureRotations(),
                 figureIndexes = GetFigureIndexes(),
-                HasRevive = HasRevive
+                extraFigureIndex = ExtraFigureIndex,
             };
 
             saves.Add(save);
@@ -62,6 +80,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             figures = save.figures;
             figureRotations = save.figureRotations;
             figureIndexes = save.figureIndexes;
+            ExtraFigureIndex = save.extraFigureIndex;
 
             return true;
         }
@@ -76,12 +95,14 @@ namespace PuzzleGame.Gameplay.Puzzle1010
     [Serializable]
     public class PutBlockGameStateSaveInfo
     {
-        [SerializeField] public bool HasRevive { get; set; }
-
         [SerializeField] public int[] figures = Array.Empty<int>();
     
         [SerializeField] public float[] figureRotations = Array.Empty<float>();
     
         [SerializeField] public int[] figureIndexes = Array.Empty<int>();
+
+        [SerializeField] public int extraFigureIndex;
+
+        [SerializeField] public int extraFigureRotation;
     }
 }

@@ -14,15 +14,18 @@ namespace PuzzleGame.Gameplay.Puzzle1010
     {
         [Header("PutBlockGame模式字段")] 
         [SerializeField] private Button backHomeBtn;
+        [SerializeField] private Button refreshAllFigureBtn;
         [SerializeField] private PutBlockGameOverPanel putBlockGameOverPanel;
         [SerializeField] private PutBlockGameRevivePanel putBlockGameRevivePanel;
         [SerializeField] private Brick emptyBrickPrefab;
         [SerializeField] private FigureController[] figureControllers;
+        [SerializeField] private FigureController extraFigureController;
 
         private Brick[,] backgroundBricks;
         private int[] figures = Array.Empty<int>();
         private float[] figureRotations = Array.Empty<float>();
-
+        private int extraFigureIndex;
+        private float extraFigureRotation;
         private readonly BricksHighlighter bricksHighlighter = new();
 
         private const int MaxBrickNumber = 7;
@@ -36,6 +39,12 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 BaseUtilities.PlayCommonClick();
                 SaveGame();
                 GameCenter.Instance.ChangeState(GameCenter.GameState.Home);
+            });
+            
+            refreshAllFigureBtn.onClick.AddListener(() =>
+            {
+                BaseUtilities.PlayCommonClick();
+                OnRefreshAllFigure();
             });
             
             field = new NumberedBrick[bricksCount.x, bricksCount.y];
@@ -63,6 +72,9 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 figureController.PointerDrag += FigureOnPointerDrag;
             }
 
+            extraFigureController.PointerUp += FigureOnPointerUp;
+            extraFigureController.PointerClick += OnHighlightedTargetClick;
+            extraFigureController.PointerDrag += FigureOnPointerDrag;
         }
         
         private void Start()
@@ -111,7 +123,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 
                 item.bricks.Clear();
                 item.ResetPosition();
-                item.Interactable = true;
+                // item.Interactable = true;
             }
             
             ClearGameState();
@@ -168,6 +180,14 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 if (figures[i] >= 0)
                     SpawnFigure(figureControllers[i], figures[i], figureRotations[i], figureIndexes[i]);
             }
+            
+            // 生成额外的figure内容
+            extraFigureIndex = gameState.ExtraFigureIndex;
+            extraFigureRotation = gameState.ExtraFigureRotation;
+            if (extraFigureIndex > 0)
+            {
+                SpawnFigure(extraFigureController, extraFigureIndex, extraFigureRotation, 0);
+            }
 
             CheckFigures();
             return true;
@@ -192,7 +212,8 @@ namespace PuzzleGame.Gameplay.Puzzle1010
 
             gameState.SetField(numbers);
             gameState.SetFigures(figures, indexes, figureRotations);
-        
+            gameState.ExtraFigureIndex = extraFigureIndex;
+            gameState.ExtraFigureRotation = extraFigureRotation;
             UserProgress.Current.SaveGameState(name);
         }
 
@@ -259,10 +280,9 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 if (algorithmIndex == i)
                 {
                     // 应用算法
-                    Debug.LogError(i);
                     if (SpawnFigureByAlgorithm(figureControllers[i]))
                     {
-                        continue;   
+                        continue;
                     }
                 }
                 
@@ -483,6 +503,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             figureController.Rotate(rotation);
         }
 
+        RaycastHit2D[] rayCastHits = new RaycastHit2D[1];
         private void FigureOnPointerUp(FigureController figureController)
         {
             bricksHighlighter.UnhighlightBricks();
@@ -490,6 +511,45 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             if (!TryGetCoords(figureController.bricks, out var coords))
             {
                 bricksHighlighter.UnhighlightNumberedBricks();
+                
+                // 判断是否能放置在额外容器中
+                var screenPos = Camera.main.WorldToScreenPoint(figureController.transform.position);
+                var ray = Camera.main.ScreenPointToRay(screenPos);
+                int size = Physics2D.RaycastNonAlloc(ray.origin, ray.direction, rayCastHits, 10);
+                if (size > 0)
+                {
+                    foreach (var item in rayCastHits)
+                    {
+                        if (item.transform != null && item.transform.name == "ExtraPutArea")
+                        {
+                            if (extraFigureController.bricks.Count <= 0)
+                            {
+                                // extraFigureController.Interactable = true;
+                                for (var i = 0; i < figureController.bricks.Count; i++)
+                                {
+                                    extraFigureController.transform.rotation = figureController.transform.rotation;
+                                    var brick = figureController.bricks[i];
+                                    var rectTransform = brick.RectTransform;
+                                    var localPos = brick.transform.localPosition;
+                                    rectTransform.SetParent(extraFigureController.transform, false);
+                                    rectTransform.localPosition = localPos;
+                                    extraFigureController.bricks.Add(brick);
+                                }
+                
+                                var index = Array.IndexOf(figureControllers, figureController);
+                                extraFigureIndex = figures[index];
+                                extraFigureRotation = figureRotations[index];
+                                figures[index] = -1;
+                                figureController.bricks.Clear();
+                                figureController.ResetPosition();
+                                if (figureControllers.All(c => c.bricks.Count == 0))
+                                    SpawnNewFigures(true);
+                                SaveGame();
+                            }
+                            break;
+                        }
+                    }   
+                }
                 return;
             }
 
@@ -516,8 +576,11 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.Stab);
             VibrateHelper.VibrateLight();
 
-            var index = Array.IndexOf(figureControllers, figureController);
-            figures[index] = -1;
+            if (figureController != extraFigureController)
+            {
+                var index = Array.IndexOf(figureControllers, figureController);
+                figures[index] = -1;
+            }
 
             figureController.bricks.Clear();
             figureController.ResetPosition();
@@ -640,7 +703,8 @@ namespace PuzzleGame.Gameplay.Puzzle1010
 
         private void CheckGameOver()
         {
-            if (figureControllers.Any(figure => figure.bricks.Count > 0 && IsCanPlaceFigure(figure)))
+            if (figureControllers.Any(figure => figure.bricks.Count > 0 && IsCanPlaceFigure(figure)) 
+                || (extraFigureController.bricks.Count > 0 && IsCanPlaceFigure(extraFigureController)))
                 return;
 
             // 判断是否复活过
@@ -673,7 +737,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                     continue;
 
                 var canPlaceFigure = IsCanPlaceFigure(figureController);
-                figureController.Interactable = canPlaceFigure;
+                // figureController.Interactable = canPlaceFigure;
                 foreach (var brick in figureController.bricks.Cast<NumberedBrick>())
                 {
                     brick.SetOverrideColorType(canPlaceFigure ? null : ColorType.Inactive);
@@ -694,7 +758,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 
                 item.bricks.Clear();
                 item.ResetPosition();
-                item.Interactable = true;
+                // item.Interactable = true;
             }
             
             figures = new int[figureControllers.Length];
@@ -703,8 +767,37 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             {
                 var figureIndex = i == 0 ? 0 : (Random.Range(0, 1) > 0.5f ? 0 : 1);
                 SpawnFigure(figureControllers[i], figureIndex, 0, GetRandomBrickNumber());
-                figures[i] = 0;
+                figures[i] = figureIndex;
                 figureRotations[i] = 0;
+            }
+            SaveGame();
+        }
+
+        private void OnRefreshAllFigure()
+        {
+            // 生成小单位的格子
+            foreach (var item in figureControllers)
+            {
+                foreach (var brick in item.bricks)
+                {
+                    Destroy(brick.gameObject);
+                }
+                
+                item.bricks.Clear();
+                item.ResetPosition();
+                // item.Interactable = true;
+            }
+            
+            figures = new int[figureControllers.Length];
+            figureRotations = new float[figureControllers.Length];
+            var tempIndex = Random.Range(0, figureControllers.Length);
+            for (var i = 0; i < figureControllers.Length; i++)
+            {
+                var figureIndex = i == tempIndex ? 0 : Random.Range(1, 5);
+                var tempRotation = Random.Range(0, 4) * 90;
+                SpawnFigure(figureControllers[i], figureIndex, tempRotation, GetRandomBrickNumber());
+                figures[i] = figureIndex;
+                figureRotations[i] = tempRotation;
             }
             SaveGame();
         }
@@ -776,7 +869,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
         {
             foreach (var figure in figureControllers)
             {
-                figure.Interactable = !active;
+                // figure.Interactable = !active;
 
                 foreach (var brick in figure.bricks)
                     brick.GetComponentInChildren<Image>().raycastTarget = !active;
