@@ -325,7 +325,7 @@ namespace PuzzleGame.Gameplay.Bricks2048
             return true;
         }
 
-        protected override void SaveGame()
+        public override void SaveGame()
         {
             var numbers = new int[bricksCount.x * bricksCount.y];
             for (var x = 0; x < bricksCount.x; x++)

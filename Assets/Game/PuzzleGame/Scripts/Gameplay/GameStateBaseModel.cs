@@ -7,7 +7,7 @@ namespace PuzzleGame.Gameplay
     [Serializable]
     public class GameStateBaseModel
     {
-        public event Action StateUpdate;
+        public Action StateUpdate;
 
         [SerializeField] private int score;
         [SerializeField] private int topScore;
@@ -16,8 +16,7 @@ namespace PuzzleGame.Gameplay
 
         [SerializeField] private int[] nextBricks = Array.Empty<int>();
 
-        [SerializeField]
-        public List<GameSave> fieldSaves = new List<GameSave>();
+        [SerializeField] public List<GameSave> fieldSaves = new List<GameSave>();
     
         [SerializeField] private bool isGameOver;
 
@@ -98,7 +97,7 @@ namespace PuzzleGame.Gameplay
             return true;
         }
     
-        public void Reset()
+        public virtual void Reset()
         {
             isGameOver = true;
             score = 0;

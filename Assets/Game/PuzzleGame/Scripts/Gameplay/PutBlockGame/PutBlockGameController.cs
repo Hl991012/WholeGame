@@ -12,9 +12,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
 {
     public class PutBlockGameController : BaseGameController<PutBlockGameState>
     {
-        [Header("PutBlockGame模式字段")] 
-        [SerializeField] private Button backHomeBtn;
-        [SerializeField] private Button refreshAllFigureBtn;
+        [Header("PutBlockGame模式字段")]
         [SerializeField] private PutBlockGameOverPanel putBlockGameOverPanel;
         [SerializeField] private PutBlockGameRevivePanel putBlockGameRevivePanel;
         [SerializeField] private Brick emptyBrickPrefab;
@@ -34,19 +32,6 @@ namespace PuzzleGame.Gameplay.Puzzle1010
         
         private void Awake()
         {
-            backHomeBtn.onClick.AddListener(() =>
-            {
-                BaseUtilities.PlayCommonClick();
-                SaveGame();
-                GameCenter.Instance.ChangeState(GameCenter.GameState.Home);
-            });
-            
-            refreshAllFigureBtn.onClick.AddListener(() =>
-            {
-                BaseUtilities.PlayCommonClick();
-                OnRefreshAllFigure();
-            });
-            
             field = new NumberedBrick[bricksCount.x, bricksCount.y];
             backgroundBricks = new Brick[bricksCount.x, bricksCount.y];
 
@@ -193,7 +178,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             return true;
         }
 
-        protected override void SaveGame()
+        public override void SaveGame()
         {
             var numbers = new int[bricksCount.x * bricksCount.y];
             for (var x = 0; x < bricksCount.x; x++)
@@ -511,43 +496,46 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             if (!TryGetCoords(figureController.bricks, out var coords))
             {
                 bricksHighlighter.UnhighlightNumberedBricks();
-                
-                // 判断是否能放置在额外容器中
-                var screenPos = Camera.main.WorldToScreenPoint(figureController.transform.position);
-                var ray = Camera.main.ScreenPointToRay(screenPos);
-                int size = Physics2D.RaycastNonAlloc(ray.origin, ray.direction, rayCastHits, 10);
-                if (size > 0)
+
+                if (gameState.UnlockedPutArea)
                 {
-                    foreach (var item in rayCastHits)
+                    // 判断是否能放置在额外容器中
+                    var screenPos = Camera.main.WorldToScreenPoint(figureController.transform.position);
+                    var ray = Camera.main.ScreenPointToRay(screenPos);
+                    var size = Physics2D.RaycastNonAlloc(ray.origin, ray.direction, rayCastHits, 10);
+                    if (size > 0)
                     {
-                        if (item.transform != null && item.transform.name == "ExtraPutArea")
+                        foreach (var item in rayCastHits)
                         {
-                            if (extraFigureController.bricks.Count <= 0)
+                            if (item.transform != null && item.transform.name == "ExtraPutArea")
                             {
-                                // extraFigureController.Interactable = true;
-                                for (var i = 0; i < figureController.bricks.Count; i++)
+                                if (extraFigureController.bricks.Count <= 0)
                                 {
-                                    extraFigureController.transform.rotation = figureController.transform.rotation;
-                                    var brick = figureController.bricks[i];
-                                    var rectTransform = brick.RectTransform;
-                                    var localPos = brick.transform.localPosition;
-                                    rectTransform.SetParent(extraFigureController.transform, false);
-                                    rectTransform.localPosition = localPos;
-                                    extraFigureController.bricks.Add(brick);
+                                    // extraFigureController.Interactable = true;
+                                    for (var i = 0; i < figureController.bricks.Count; i++)
+                                    {
+                                        extraFigureController.transform.rotation = figureController.transform.rotation;
+                                        var brick = figureController.bricks[i];
+                                        var rectTransform = brick.RectTransform;
+                                        var localPos = brick.transform.localPosition;
+                                        rectTransform.SetParent(extraFigureController.transform, false);
+                                        rectTransform.localPosition = localPos;
+                                        extraFigureController.bricks.Add(brick);
+                                    }
+                    
+                                    var index = Array.IndexOf(figureControllers, figureController);
+                                    extraFigureIndex = figures[index];
+                                    extraFigureRotation = figureRotations[index];
+                                    figures[index] = -1;
+                                    figureController.bricks.Clear();
+                                    figureController.ResetPosition();
+                                    if (figureControllers.All(c => c.bricks.Count == 0))
+                                        SpawnNewFigures(true);
+                                    SaveGame();
                                 }
-                
-                                var index = Array.IndexOf(figureControllers, figureController);
-                                extraFigureIndex = figures[index];
-                                extraFigureRotation = figureRotations[index];
-                                figures[index] = -1;
-                                figureController.bricks.Clear();
-                                figureController.ResetPosition();
-                                if (figureControllers.All(c => c.bricks.Count == 0))
-                                    SpawnNewFigures(true);
-                                SaveGame();
+                                break;
                             }
-                            break;
-                        }
+                        }   
                     }   
                 }
                 return;
@@ -743,6 +731,16 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                     brick.SetOverrideColorType(canPlaceFigure ? null : ColorType.Inactive);
                 }
             }
+
+            if (extraFigureController.bricks.Count > 0)
+            {
+                var canPlaceFigure = IsCanPlaceFigure(extraFigureController);
+                // figureController.Interactable = canPlaceFigure;
+                foreach (var brick in extraFigureController.bricks.Cast<NumberedBrick>())
+                {
+                    brick.SetOverrideColorType(canPlaceFigure ? null : ColorType.Inactive);
+                }
+            }
         }
 
         private void OnRevive()
@@ -773,7 +771,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             SaveGame();
         }
 
-        private void OnRefreshAllFigure()
+        public void RefreshAllFigure()
         {
             // 生成小单位的格子
             foreach (var item in figureControllers)

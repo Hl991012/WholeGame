@@ -15,7 +15,6 @@ namespace PuzzleGame.Gameplay
             gameState.SaveGameState();
         }
         
-        
         protected override void BoosterExecute<T>(T target)
         {
             if (boosterType != BoosterType.Undo)
@@ -77,8 +76,10 @@ namespace PuzzleGame.Gameplay
         protected abstract void StartGame();
 
         public virtual void ReplayGame() { }
+        
+        public string ID => name;
 
-        protected abstract void SaveGame();
+        public abstract void SaveGame();
 
         protected void OnGameOver()
         {

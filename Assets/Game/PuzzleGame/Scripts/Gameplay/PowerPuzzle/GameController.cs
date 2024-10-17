@@ -125,7 +125,7 @@ namespace PuzzleGame.Gameplay.PowerPuzzle
             return true;
         }
 
-        protected override void SaveGame()
+        public override void SaveGame()
         {
             int[] numbers = new int[bricksCount.x * bricksCount.y];
             for (int x = 0; x < bricksCount.x; x++)

@@ -14,6 +14,8 @@ namespace PuzzleGame.Gameplay.Puzzle1010
         [SerializeField] private int extraFigureIndex;
         [SerializeField] private float extraFigureRotation;
         [SerializeField] private bool hasRevive;
+        [SerializeField] private int useRefreshBoosterCount;
+        [SerializeField] private bool unlockedPutArea;
         
         public int ExtraFigureIndex
         {
@@ -29,7 +31,31 @@ namespace PuzzleGame.Gameplay.Puzzle1010
 
         public bool HasRevive {
             get => hasRevive;
-            set => hasRevive = value;
+            set
+            {
+                hasRevive = value;
+                StateUpdate?.Invoke();
+            }
+        }
+
+        public int UseRefreshBoosterCount
+        {
+            get => useRefreshBoosterCount;
+            set
+            {
+                useRefreshBoosterCount = value;
+                StateUpdate?.Invoke();
+            }
+        }
+
+        public bool UnlockedPutArea
+        {
+            get => unlockedPutArea;
+            set
+            {
+                unlockedPutArea = value;
+                StateUpdate?.Invoke();
+            }
         }
 
         public void SetFigures(int[] value, int[] indexes, float[] rotations)
@@ -64,8 +90,9 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 figureRotations = GetFigureRotations(),
                 figureIndexes = GetFigureIndexes(),
                 extraFigureIndex = ExtraFigureIndex,
+                extraFigureRotation = extraFigureRotation,
             };
-
+    
             saves.Add(save);
         }
 
@@ -81,8 +108,17 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             figureRotations = save.figureRotations;
             figureIndexes = save.figureIndexes;
             ExtraFigureIndex = save.extraFigureIndex;
+            ExtraFigureRotation = save.extraFigureRotation;
 
             return true;
+        }
+
+        public override void Reset()
+        {
+            base.Reset();
+            HasRevive = false;
+            UseRefreshBoosterCount = 0;
+            UnlockedPutArea = false;
         }
 
         public override void ClearSave()
@@ -103,6 +139,6 @@ namespace PuzzleGame.Gameplay.Puzzle1010
 
         [SerializeField] public int extraFigureIndex;
 
-        [SerializeField] public int extraFigureRotation;
+        [SerializeField] public float extraFigureRotation;
     }
 }

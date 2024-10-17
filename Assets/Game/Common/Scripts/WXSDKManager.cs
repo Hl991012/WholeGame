@@ -84,6 +84,11 @@ public class WXSDKManager : Singleton<WXSDKManager>
 
     public void ShowRewardVideo(Action<bool> onClose)
     {
+#if UNITY_EDITOR
+        onClose?.Invoke(true);
+        return;
+#endif
+        
         if (!hasInit || wxRewardedVideoAd == null)
         {
             onClose?.Invoke(false);
