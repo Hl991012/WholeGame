@@ -1453,7 +1453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4566714878684794135}
   - component: {fileID: 4566714878684794137}
-  - component: {fileID: 4566714878684794136}
+  - component: {fileID: 8228084192118371297}
   - component: {fileID: 4566714878684794134}
   m_Layer: 5
   m_Name: StageListUI
@@ -1492,7 +1492,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4566714878684794132}
   m_CullTransparentMesh: 1
---- !u!114 &4566714878684794136
+--- !u!114 &8228084192118371297
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1501,7 +1501,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4566714878684794132}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 368ad5e839772294e871145f5181a025, type: 3}
+  m_Script: {fileID: 11500000, guid: c7266702f1aa3d74e8937a623fb76a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   coinCountTmp: {fileID: 4566714879106408328}
@@ -3084,7 +3084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a32ef372e8898344b4272b38c7bfb0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textAdventureStageListUI: {fileID: 4566714878684794136}
+  textAdventureStageListUI: {fileID: 8228084192118371297}
   gameUI: {fileID: 4566714879402199756}
   resultUI: {fileID: 4566714878821910350}
   reviveUI: {fileID: 4566714878656346810}

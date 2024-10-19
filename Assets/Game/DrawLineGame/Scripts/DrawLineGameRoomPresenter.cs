@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class DrawLineGameRoomPresenter : MonoBehaviour
 {
-    [SerializeField] private Button backBtn;
     [SerializeField] private TextMeshProUGUI levelTmp;
     [SerializeField] private GameObject playerObj;
     [SerializeField] private GridLayoutGroup mapGridLayoutGroup;
@@ -26,12 +25,6 @@ public class DrawLineGameRoomPresenter : MonoBehaviour
     private void Awake()
     {
         DrawLineGameConctrol.Instance.Register(this);
-        
-        backBtn.onClick.AddListener(() =>
-        {
-            BaseUtilities.PlayCommonClick();
-            GameCenter.Instance.ChangeState(GameCenter.GameState.Home);
-        });
     }
 
     public void StartGame()
@@ -76,22 +69,22 @@ public class DrawLineGameRoomPresenter : MonoBehaviour
         {
             for (var j = 0; j < mapWidth; j++)
             {
-                var pos = new Vector2(j, i);
+                var pos = new Vector2Int(j, i);
 
-                var isUseable = IsContain(pos, mapData.L);
+                var canUse = IsContain(pos, mapData.L);
                 
                 var item = Instantiate(cellPrefab, mapGridLayoutGroup.transform);
                 
                 if (pos.x == firstData.x && pos.y == firstData.y)
                 {
-                    item.OnShow(index.ToString(), pos, isUseable, true, curColor);
+                    item.OnShow(index.ToString(), pos, canUse, true, curColor);
                 }
                 else
                 {
-                    item.OnShow(index.ToString(), pos, isUseable, false, curColor);
+                    item.OnShow(index.ToString(), pos, canUse, false, curColor);
                 }
                 
-                item.RegisterEvent(OnBeginDrag, OnDrag, OnEndDrag);
+                item.RegisterEvent(OnBeginDrag, OnDrag, OnEndDrag, OnPointDown);
 
                 mapCellData.Add(item);
 
@@ -108,7 +101,7 @@ public class DrawLineGameRoomPresenter : MonoBehaviour
         }
     }
     
-    private bool IsContain(Vector2 pos, MapPosData[] lists)
+    private bool IsContain(Vector2Int pos, MapPosData[] lists)
     {
         foreach (var item in lists)
         {
@@ -148,6 +141,7 @@ public class DrawLineGameRoomPresenter : MonoBehaviour
         item.ShowDraw(false);
         item.SetPlayer(false);
     }
+    
     private void UpdatePlayerPosition(CellItem cell)
     {
         if (!playerObj.activeSelf)
@@ -199,8 +193,8 @@ public class DrawLineGameRoomPresenter : MonoBehaviour
             }
         }
     }
-    
-    void CheckGameStatus()
+
+    private bool CheckGameStatus()
     {
         var isWin = true;
         foreach (var item in mapCellData)
@@ -216,6 +210,59 @@ public class DrawLineGameRoomPresenter : MonoBehaviour
             drawLineGameOverPanel.gameObject.SetActive(true);
             drawLineGameOverPanel.Show();
         }
+
+        return isWin;
+    }
+
+    /// <summary>
+    /// 使用提示道具
+    /// </summary>
+    public void UseHelpBooster()
+    {
+        // 先计算当前玩家选择的正确的最后一个元素
+        var tempData = DrawLineGameConctrol.Instance.CurMapData;
+        if (tempData is {L: {Length: > 0} })
+        {
+            for (var i = 0; i < mapCells.Count && i < tempData.L.Length; i++)
+            {
+                if (mapCells[i].CellPos.x != tempData.L[i].x || mapCells[i].CellPos.y != tempData.L[i].y)
+                {
+                    var tempCount = mapCells.Count - i;
+                    for (var j = 0; j < tempCount; j++)
+                    {
+                        var deleteTarget = mapCells[^1];
+                        mapCells.RemoveAt(mapCells.Count - 1);
+                        UndoMove(deleteTarget);
+                    }
+                    break;
+                }
+            }
+            
+            // lastTarget = mapCells[i - 1];
+            ToMove(mapCells[^1]);
+            
+            for (var j = 0; j < 3; j++)
+            {
+                var tempIndex = mapCells.Count;
+                if (tempIndex < tempData.L.Length)
+                {
+                    foreach (var item in mapCellData)
+                    {
+                        if (item.CellPos.x == tempData.L[tempIndex].x &&
+                            item.CellPos.y == tempData.L[tempIndex].y)
+                        {
+                            // lastTarget = item;
+                            ToMove(item);
+                            if (CheckGameStatus())
+                            {
+                                return;
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private void Update()
@@ -224,6 +271,11 @@ public class DrawLineGameRoomPresenter : MonoBehaviour
         {
             DrawLineGameConctrol.Instance.GameLevel++;
             StartGame();
+        }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            UseHelpBooster();
         }
     }
 
@@ -252,7 +304,7 @@ public class DrawLineGameRoomPresenter : MonoBehaviour
 
         var target = exchangeObj.GetComponent<CellItem>();
 
-        if (target == null || !target.IsUseable) return;
+        if (target == null || !target.IsCanUse) return;
 
         if (lastTarget == target) return;
         
@@ -291,9 +343,26 @@ public class DrawLineGameRoomPresenter : MonoBehaviour
         isBeginDrag = false;
     }
 
+    private void OnPointDown(PointerEventData pointerEventData, CellItem cellItem)
+    {
+        if (mapCells.Contains(cellItem))
+        {
+            var tempIndex = mapCells.IndexOf(cellItem);
+            var tempCount = mapCells.Count - tempIndex;
+            for (var i = 0; i < tempCount; i++)
+            {
+                var deleteTarget = mapCells[^1];
+                mapCells.RemoveAt(mapCells.Count - 1);
+                UndoMove(deleteTarget);
+            }
+            lastTarget = cellItem;
+            ToMove(cellItem);
+        }
+    }
+
     #endregion
 
-    public float GetLineAngle(Vector2 from, Vector2 to)
+    private float GetLineAngle(Vector2 from, Vector2 to)
     {
         if (Mathf.Abs(from.x - to.x) <= 0.1f)
         {

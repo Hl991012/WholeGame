@@ -4,6 +4,7 @@ using PuzzleGame.Gameplay;
 using PuzzleGame.Gameplay.Puzzle1010;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Game2048ResultPanel : MonoBehaviour
@@ -11,7 +12,7 @@ public class Game2048ResultPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI curScoreTmp;
     [SerializeField] private Button onceAgainBtn;
     [SerializeField] private CanvasGroup canvasGroup;
-    [SerializeField] private TileManager tileManager;
+    [FormerlySerializedAs("tileManager")] [SerializeField] private Game2048Conctrol game2048Conctrol;
     
     private Sequence showAnimSeq;
     
@@ -20,7 +21,7 @@ public class Game2048ResultPanel : MonoBehaviour
         onceAgainBtn.onClick.AddListener(() =>
         {
             BaseUtilities.PlayCommonClick();
-            tileManager.RestartGame();
+            game2048Conctrol.RestartGame();
             canvasGroup.alpha = 1;
             showAnimSeq?.Kill();
             showAnimSeq = DOTween.Sequence()

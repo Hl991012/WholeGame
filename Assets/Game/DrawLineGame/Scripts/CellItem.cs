@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
-using TMPro;
 using UnityEngine.EventSystems;
 using System;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class CellItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class CellItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerDownHandler
 {
     public enum LineType
     {
@@ -21,38 +19,34 @@ public class CellItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     [SerializeField] private Image line1Image;
     [SerializeField] private Image line2Image;
     [SerializeField] private Image curLineImage;
-    [FormerlySerializedAs("curCirileImage")] [SerializeField] private Image curCircleImage;
+    [SerializeField] private Image curCircleImage;
     [SerializeField] private Image circleImage;
     
     public Vector2 Position => transform.position;
-    public Vector2 CellPos { get; private set; }
+    public Vector2Int CellPos { get; private set; }
     public bool IsPlayer { get; private set; }
-    public bool IsUseable { get; private set; }
+    public bool IsCanUse { get; private set; }
 
     private bool isDrawing;
     public bool IsDrawing
     {
-        get
-        {
-            if (IsUseable)
-                return isDrawing;
-            else return true;
-        }
-        set => isDrawing = value;
+        get => !IsCanUse || isDrawing;
+        private set => isDrawing = value;
     }
     
     private Action<PointerEventData, CellItem> OnBeginDragAction;
     private Action<PointerEventData, CellItem> OnDragAction;
     private Action<PointerEventData, CellItem> OnEndDragAction;
+    private Action<PointerEventData, CellItem> OnPointDownAction;
 
-    public void OnShow(string name, Vector2 pos, bool isDrawing, bool isFirstItem, Color color)
+    public void OnShow(string name, Vector2Int pos, bool isDrawing, bool isFirstItem, Color color)
     {
         CellPos = pos;
-        IsUseable = isDrawing;
+        IsCanUse = isDrawing;
         IsPlayer = false;
         gameObject.name = "Cell " + name;
         gameObject.SetActive(true);
-        defaultBg.gameObject.SetActive(IsUseable);
+        defaultBg.gameObject.SetActive(IsCanUse);
         firstItem.gameObject.SetActive(isFirstItem);
         defaultBg.color = color;
 
@@ -68,13 +62,15 @@ public class CellItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
 
     public void RegisterEvent(Action<PointerEventData, CellItem> onBeginDrag,
         Action<PointerEventData, CellItem> onDrag,
-        Action<PointerEventData, CellItem> onEdDrag)
+        Action<PointerEventData, CellItem> onEdDrag,
+        Action<PointerEventData, CellItem> onPointDown)
     {
-        if (IsUseable)
+        if (IsCanUse)
         {
             OnBeginDragAction = onBeginDrag;
             OnDragAction = onDrag;
             OnEndDragAction = onEdDrag;
+            OnPointDownAction = onPointDown;
         }
     }
 
@@ -137,5 +133,10 @@ public class CellItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     public void OnDrag(PointerEventData eventData)
     {
         OnDragAction?.Invoke(eventData, this);
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        OnPointDownAction?.Invoke(eventData, this);
     }
 }

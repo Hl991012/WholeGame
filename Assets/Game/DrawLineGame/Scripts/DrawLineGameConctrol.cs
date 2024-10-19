@@ -3,16 +3,24 @@ using GameFrame;
 using UnityEngine;
 
 public class DrawLineGameConctrol : MonoSingleton<DrawLineGameConctrol>
-{
-    private int totalPassLevelCount = 0;
+{ 
     public DrawLineGameRoomPresenter DrawLineGameRoomPresenter { get; private set; }
+
+    public DrawLineGameRoomUIPresenter DrawLineGameRoomUIPresenter { get; private set; }
 
     public void Register(DrawLineGameRoomPresenter drawLineGameRoomPresenter)
     {
         DrawLineGameRoomPresenter = drawLineGameRoomPresenter;
     }
 
+    public void Register(DrawLineGameRoomUIPresenter drawLineGameRoomUIPresenter)
+    {
+        DrawLineGameRoomUIPresenter = drawLineGameRoomUIPresenter;
+    }
+
     private MapData curMapData;
+
+    public MapData CurMapData => curMapData;
 
     public int GameLevel
     {
@@ -24,7 +32,6 @@ public class DrawLineGameConctrol : MonoSingleton<DrawLineGameConctrol>
     {
         GameLevel++;
         GameLevel = Mathf.Clamp(GameLevel, 0, 800);
-        totalPassLevelCount++;
     }
 
     public MapData LoadConfig()

@@ -110,6 +110,13 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 item.ResetPosition();
                 // item.Interactable = true;
             }
+
+            foreach (var item in extraFigureController.bricks)
+            {
+                Destroy(item.gameObject);
+            }
+            extraFigureController.bricks.Clear();
+            extraFigureController.ResetPosition();
             
             ClearGameState();
             StartGame();

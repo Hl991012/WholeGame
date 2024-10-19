@@ -16,7 +16,7 @@ public class Tile : MonoBehaviour
     private float _count;//跟踪动画的播放时间
     private Tile _mergeTile;//所有合并样式
     private Animator _animator;//合并时播放动画
-    private TileManager _tileManager;//静态访问每当创建
+    private Game2048Conctrol game2048Conctrol;//静态访问每当创建
     private Image _tileImage;//图像脚本引用
 
     //仅在Update调用之前检查Start
@@ -24,7 +24,7 @@ public class Tile : MonoBehaviour
     {
         //获取游戏对象上存在的动画
         _animator = GetComponent<Animator>();
-        _tileManager = FindObjectOfType<TileManager>();//函数类型查找对象：搜索当前场景并返回第一个包含脚本的对象
+        game2048Conctrol = FindObjectOfType<Game2048Conctrol>();//函数类型查找对象：搜索当前场景并返回第一个包含脚本的对象
         _tileImage = GetComponent<Image>();//开始时获取对实际图像引用
     }
 
@@ -67,7 +67,7 @@ public class Tile : MonoBehaviour
             if(_mergeTile != null)
             {
                 int newValue = _value + _mergeTile._value;
-                _tileManager.AddScore(newValue);
+                game2048Conctrol.AddScore(newValue);
                 SetValue(newValue);//值相加//_value + _mergeTile._value重构转化为自己的变量
                 Destroy(_mergeTile.gameObject);//销毁另一块磁贴
                 _animator.SetTrigger("Merge");//设置触发器函数，只用传递动画名称
