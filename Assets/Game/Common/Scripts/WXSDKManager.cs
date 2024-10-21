@@ -26,11 +26,11 @@ public class WXSDKManager : Singleton<WXSDKManager>
 
     public void Init()
     {
-        var width = (int)(Screen.height / 1560f * 720);
         
-        #if UNITY_EDITOR
         
-        #else
+#if UNITY_EDITOR
+
+ #else
             WX.InitSDK(val =>
         {
             hasInit = true;
@@ -51,14 +51,9 @@ public class WXSDKManager : Singleton<WXSDKManager>
                 });
             
             wxInterstitialAd.Load();
-
-            wXCustomAd = new WXCustomAd("adunit-e45f98074d27985a",
-                new CustomStyle()
-                {
-                    left = 0,
-                    top = 1392,
-                    width = width,
-                });
+            
+            
+            Debug.LogError("创建" + wXCustomAd.ToString());
 
             wxInterstitialAd.OnError((WXADErrorResponse result) =>
             {
@@ -79,7 +74,46 @@ public class WXSDKManager : Singleton<WXSDKManager>
             });
         });
             
-        #endif
+        
+        
+        GetSystemInfoAsyncOption tempGetSystemInfoAsyncOption = new GetSystemInfoAsyncOption()
+        {
+            success = val =>
+            {
+                var width = Mathf.Max(300, (int)val.windowWidth);
+                
+                wXCustomAd = WX.CreateCustomAd(new WXCreateCustomAdParam()
+                {
+                    adIntervals = 30,
+                    adUnitId = "adunit-e45f98074d27985a",
+                    style = new CustomStyle()
+                    {
+                        left = 0,
+                        top = (int)val.windowHeight - width,
+                        width = width,
+                    },
+                });
+                
+                wXCustomAd.OnLoad(val =>
+                {
+                    Debug.LogError("自定义广告加载成功" + val.rewardValue + "  " + val.shareValue + "  " + wXCustomAd.style.ToString());
+                    ShowCustomAd();
+                });
+            },
+            fail = val =>
+            {
+                Debug.LogError("获取系统信息失败");
+            },
+            complete = val =>
+            {
+                // 展示自定义广告
+                
+            }
+        };
+        
+        WX.GetSystemInfoAsync(tempGetSystemInfoAsyncOption);
+
+#endif
     }
 
     public void ShowRewardVideo(Action<bool> onClose)
@@ -159,8 +193,12 @@ public class WXSDKManager : Singleton<WXSDKManager>
     {
         if (!hasInit || wXCustomAd == null)
         {
+            Debug.Log("展示自定义广告失败" + hasInit + "  " + (wXCustomAd == null));
             return;
         }
+        
+        if(GameCenter.Instance.CurGameState == GameCenter.GameState.Home)
+            return;
 
         Debug.Log("展示自定义广告");
         IsShowBanner = true;

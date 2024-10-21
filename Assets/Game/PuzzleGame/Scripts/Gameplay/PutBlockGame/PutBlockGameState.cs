@@ -14,7 +14,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
         [SerializeField] private int extraFigureIndex;
         [SerializeField] private float extraFigureRotation;
         [SerializeField] private bool hasRevive;
-        [SerializeField] private int useRefreshBoosterCount;
+        [SerializeField] private SerializableDictionary<BoosterType, int> useBoosters = new();
         [SerializeField] private bool unlockedPutArea;
         
         public int ExtraFigureIndex
@@ -38,14 +38,25 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             }
         }
 
-        public int UseRefreshBoosterCount
+        public bool CanUndo => saves.Count > 0;
+
+        public void AddUseBoosterCount(BoosterType boosterType)
         {
-            get => useRefreshBoosterCount;
-            set
+            if (!useBoosters.TryAdd(boosterType, 1))
             {
-                useRefreshBoosterCount = value;
-                StateUpdate?.Invoke();
+                useBoosters[boosterType]++;
             }
+
+            StateUpdate?.Invoke();
+        }
+
+        public int GetBoosterUseCount(BoosterType boosterType)
+        {
+            if (useBoosters.TryGetValue(boosterType, out var temp))
+            {
+                return temp;
+            }
+            return 0;
         }
 
         public bool UnlockedPutArea
@@ -115,16 +126,21 @@ namespace PuzzleGame.Gameplay.Puzzle1010
 
         public override void Reset()
         {
+            // 重置当前游戏的游玩进度
             base.Reset();
             HasRevive = false;
-            UseRefreshBoosterCount = 0;
+            useBoosters.Clear();
             UnlockedPutArea = false;
+            ExtraFigureIndex = -1;
         }
 
         public override void ClearSave()
         {
+            // 清除玩家的操作数据
             base.ClearSave();
             saves.Clear();
+            
+            StateUpdate?.Invoke();
         }
     }
 
@@ -137,7 +153,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
     
         [SerializeField] public int[] figureIndexes = Array.Empty<int>();
 
-        [SerializeField] public int extraFigureIndex;
+        [SerializeField] public int extraFigureIndex = -1;
 
         [SerializeField] public float extraFigureRotation;
     }

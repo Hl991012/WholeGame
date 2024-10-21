@@ -293,8 +293,6 @@ namespace PuzzleGame.Gameplay.PowerPuzzle
 
             gameState.IsGameOver = true;
             UserProgress.Current.SaveGameState(name);
-
-            OnGameOver();
         }
 
         void SpawnNewBricks(Action onComplete)

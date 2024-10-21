@@ -8,6 +8,7 @@ public class DrawLineGameRoomUIPresenter : MonoBehaviour
     [SerializeField] private Button backBtn;
     [SerializeField] private Button helpBtn;
     [SerializeField] private TextMeshProUGUI helpBtnRemainCount;
+    [SerializeField] private TextMeshProUGUI adBuyBoosterCountTmp;
     [SerializeField] private GameObject watchAdObj;
     [SerializeField] private GameObject countShowObj;
 
@@ -24,12 +25,52 @@ public class DrawLineGameRoomUIPresenter : MonoBehaviour
         helpBtn.onClick.AddListener(() =>
         {
             BaseUtilities.PlayCommonClick();
-            DrawLineGameConctrol.Instance.DrawLineGameRoomPresenter.UseHelpBooster();
+            if(BoosterManager.Instance.UseBooster(GameType.DrawLineGame, BoosterType.Help))
+            {
+                DrawLineGameConctrol.Instance.DrawLineGameRoomPresenter.UseHelpBooster();    
+            }
+            else
+            {
+                WXSDKManager.Instance.ShowRewardVideo(isSuccess =>
+                {
+                    if (isSuccess)
+                    {
+                        BoosterManager.Instance.BuyBooster(GameType.DrawLineGame, BoosterType.Help);
+                    }
+                });
+            }
         });
+
+        BoosterManager.Instance.OnBoosterChanged += OnBoosterChanged;
     }
 
-    public void RefreshView()
+    private void Start()
     {
-        
+        RefreshView();
+    }
+
+    private void RefreshView()
+    {
+        var helpBoosterCount = BoosterManager.Instance.GetBoosterCount(GameType.DrawLineGame, BoosterType.Help);
+        watchAdObj.SetActive(helpBoosterCount <= 0);
+        countShowObj.SetActive(helpBoosterCount > 0);
+        if (helpBoosterCount > 0)
+        {
+            helpBtnRemainCount.text = $"{helpBoosterCount}";
+        }
+        else
+        {
+            var tempBoosterConfig = AllBoosterConfigManager.Instance.GetBoosterConfig(BoosterType.Help);
+            var tempAddCount = tempBoosterConfig != null ? tempBoosterConfig.CountToBuy : 1;
+            adBuyBoosterCountTmp.text = $"+{tempAddCount}";
+        }
+    }
+
+    private void OnBoosterChanged(GameType gameType, BoosterType boosterType, int count)
+    {
+        if (gameType == GameType.DrawLineGame)
+        {
+            RefreshView();   
+        }
     }
 }

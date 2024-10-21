@@ -24,11 +24,11 @@ namespace PuzzleGame.Gameplay
 
             switch (boosterType)
             {
-                case BoosterType.Undo:
-                    Undo.ClearGame(field);
-                    OnClearGame();
-                    boosterProceeded = Undo.Execute(gameState, StartGame);
-                    break;
+                // case BoosterType.Undo:
+                //     Undo.ClearGame(field);
+                //     OnClearGame();
+                //     boosterProceeded = Undo.Execute(gameState, StartGame);
+                //     break;
                 case BoosterType.ClearNumber when target is NumberedBrick brick:
                     Vector2Int coords = GetCoords(brick);
                     ClearNumber.Execute(field, field[coords.x, coords.y].Number, OnBoostersComplete);
@@ -51,15 +51,11 @@ namespace PuzzleGame.Gameplay
                     ClearVerticalLines.Execute(field, GetCoords(brick).x, 1, OnBoostersComplete);
                     break;
             }
-
-            BoostersController.Instance.OnBoosterProceeded(boosterProceeded);
         }
     }
 
     public abstract class BaseGameController : MonoSingleton<BaseGameController>
     {
-        public event Action GameOver = delegate { };
-
         [Header("Base fields")] 
         public Vector2Int bricksCount;
         public RectTransform fieldTransform;
@@ -80,11 +76,6 @@ namespace PuzzleGame.Gameplay
         public string ID => name;
 
         public abstract void SaveGame();
-
-        protected void OnGameOver()
-        {
-            GameOver.Invoke();
-        }
 
         protected void SetStartBoosters()
         {

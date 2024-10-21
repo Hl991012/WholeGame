@@ -16,5 +16,8 @@ public enum BoosterType
     RemoveFigure = 4,
     ClearHorizontalLine = 5,
     ClearVerticalLine = 6,
+    
+    Refresh = 10,
+    Help,
 }
 

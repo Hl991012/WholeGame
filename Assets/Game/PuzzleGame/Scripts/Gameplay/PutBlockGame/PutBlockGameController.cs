@@ -43,11 +43,11 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 }
             }
         
-            gameState = UserProgress.Current.GetGameState<PutBlockGameState>(name);
+            gameState = UserProgress.Current.GetGameState<PutBlockGameState>(ID);
             if (gameState == null)
             {
                 gameState = new PutBlockGameState();
-                UserProgress.Current.SetGameState(name, gameState);
+                UserProgress.Current.SetGameState(ID, gameState);
             }
 
             foreach (var figureController in figureControllers)
@@ -185,6 +185,13 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             return true;
         }
 
+        public void UnDo()
+        {
+            Undo.ClearGame(field);
+            OnClearGame();
+            Undo.Execute(gameState, StartGame);
+        }
+
         public override void SaveGame()
         {
             var numbers = new int[bricksCount.x * bricksCount.y];
@@ -212,6 +219,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
         protected override void ClearGameState()
         {
             base.ClearGameState();
+            extraFigureIndex = -1;
             UserProgress.Current.ClearGameState(name);
         }
 
@@ -538,6 +546,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                                     figureController.ResetPosition();
                                     if (figureControllers.All(c => c.bricks.Count == 0))
                                         SpawnNewFigures(true);
+                                    SaveGameState();
                                     SaveGame();
                                 }
                                 break;
@@ -575,6 +584,10 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             {
                 var index = Array.IndexOf(figureControllers, figureController);
                 figures[index] = -1;
+            }
+            else
+            {
+                gameState.ExtraFigureIndex = -1;
             }
 
             figureController.bricks.Clear();
@@ -708,8 +721,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 gameState.IsGameOver = true;
                 putBlockGameOverPanel.gameObject.SetActive(true);
                 putBlockGameOverPanel.Show();
-                UserProgress.Current.ClearGameState(name);
-                OnGameOver();
+                UserProgress.Current.ClearGameState(ID);
             }
             else
             {
@@ -718,8 +730,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                     gameState.IsGameOver = true;
                     putBlockGameOverPanel.gameObject.SetActive(true);
                     putBlockGameOverPanel.Show();
-                    UserProgress.Current.ClearGameState(name);
-                    OnGameOver();
+                    UserProgress.Current.ClearGameState(ID);
                 });
             }
         }
@@ -775,6 +786,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 figures[i] = figureIndex;
                 figureRotations[i] = 0;
             }
+            gameState.ClearSave();
             SaveGame();
         }
 
@@ -804,6 +816,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 figures[i] = figureIndex;
                 figureRotations[i] = tempRotation;
             }
+            gameState.ClearSave();
             SaveGame();
         }
 
@@ -855,19 +868,20 @@ namespace PuzzleGame.Gameplay.Puzzle1010
 
         protected override void OnLastChanceCompleted()
         {
-            gameState.IsGameOver = false;
-            gameState.ClearSave();
-            
-            CheckFigures();
-
-            SaveGame();
-            CheckGameOver();
+            // gameState.IsGameOver = false;
+            // gameState.ClearSave();
+            //
+            // CheckFigures();
+            //
+            // SaveGame();
+            // CheckGameOver();
         }
 
         protected override void OnClearGame()
         {
             foreach (var figureController in figureControllers)
                 RemoveFigure.Execute(figureController);
+            RemoveFigure.Execute(extraFigureController);
         }
 
         protected override void HighlightFigures(bool active)

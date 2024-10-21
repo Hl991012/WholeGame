@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using PuzzleGame.Gameplay;
 using PuzzleGame.Gameplay.Boosters;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace PuzzleGame
 {
@@ -21,7 +22,7 @@ namespace PuzzleGame
     [Serializable]
     public class BoosterConfig
     {
-        public BoosterPreset booster;
+        [FormerlySerializedAs("booster")] public SingleBoosterConfig singleBooster;
         public int startCount;
     }
 

@@ -408,8 +408,6 @@ namespace PuzzleGame.Gameplay.Bricks2048
                                     
                                     // 展示失败弹窗
                                     x2BlockGameOverPanel.Show();
-                                    
-                                    OnGameOver();
                                     return;
                                 }
                             

@@ -185,8 +185,6 @@ namespace PuzzleGame.Gameplay.Get11
 
             gameState.IsGameOver = true;
             UserProgress.Current.SaveGameState(name);
-
-            OnGameOver();
         }
 
         void SpawnNewBricks(Action onComplete)

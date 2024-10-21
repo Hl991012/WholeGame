@@ -24,6 +24,7 @@ public class GameCenter : MonoSingleton<GameCenter>
             case GameState.Home:
                 CameraController.Instance.Reset();
                 GC.Collect();
+                WXSDKManager.Instance.CloseCustomAd();
                 break;
             case GameState.Game:
                 Time.timeScale = 1;
@@ -33,6 +34,7 @@ public class GameCenter : MonoSingleton<GameCenter>
                         TextAdventureGameController.Instance.ChangeState(TextAdventureGameController.GameState.Home);
                         break;
                 }
+                WXSDKManager.Instance.ShowCustomAd();
                 break;
         }
         OnGameStateChanged?.Invoke();

@@ -13,37 +13,29 @@ namespace PuzzleGame.Gameplay.Boosters
         [SerializeField] private Text countText;
         [SerializeField] private Text emptyText;
 
-        public event Action<BoosterPreset, bool> Select = delegate { };
+        public event Action<SingleBoosterConfig, bool> Select = delegate { };
 
-        private BoosterPreset preset;
+        private SingleBoosterConfig config;
         private int highlightSortingOrder;
         private bool canBuy;
-        private bool IsPurchased => BoostersController.Instance.IsBoosterPurchased(preset);
 
-        public BoosterPreset Preset => preset;
+        public SingleBoosterConfig Config => config;
     
         private void Awake()
         {
             button.onClick.AddListener(OnClick);
-
-            BoostersController.Instance.BoosterPurchased += OnButtonUpdate;
-            BoostersController.Instance.BoosterProceeded += OnButtonUpdate;
-            BoostersController.Instance.BoosterUpdated += OnButtonUpdate;
         }
 
         private void OnDestroy()
         {
-            BoostersController.Instance.BoosterPurchased -= OnButtonUpdate;
-            BoostersController.Instance.BoosterProceeded -= OnButtonUpdate;
-            BoostersController.Instance.BoosterUpdated -= OnButtonUpdate;
         }
 
-        public void Init(BoosterPreset preset, int highlightSortingOrder, bool canBuy)
+        public void Init(SingleBoosterConfig config, int highlightSortingOrder, bool canBuy)
         {
-            this.preset = preset;
+            this.config = config;
             this.highlightSortingOrder = highlightSortingOrder;
             this.canBuy = canBuy;
-            icon.sprite = preset.Icon;
+            icon.sprite = config.Icon;
         
             UpdateButton();
         }
@@ -69,32 +61,22 @@ namespace PuzzleGame.Gameplay.Boosters
 
         private void UpdateButton()
         {
-            counter.gameObject.SetActive(IsPurchased || !canBuy);
-            counterEmpty.gameObject.SetActive(!IsPurchased && canBuy);
 
-            if (!IsPurchased && canBuy) return;
-        
-            int count = BoostersController.Instance.GetBoosterPurchaseCount(preset);
-            countText.text = count.ToString();
-            SetRaycast(count > 0);
         }
 
         void OnClick()
         {
-            if(IsPurchased)
-                Highlight();
             
-            Select.Invoke(preset, IsPurchased);
         }
 
-        private void OnButtonUpdate(BoosterPreset preset)
+        private void OnButtonUpdate(SingleBoosterConfig config)
         {
-            if(this.preset != preset) return;
+            if(this.config != config) return;
         
             UpdateButton();
         }
     
-        private void OnButtonUpdate(BoosterPreset arg1, bool value)
+        private void OnButtonUpdate(SingleBoosterConfig arg1, bool value)
         {
             UpdateButton();
         }

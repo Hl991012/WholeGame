@@ -645,8 +645,6 @@ namespace PuzzleGame.Gameplay.Make10
 
             gameState.IsGameOver = true;
             UserProgress.Current.SaveGameState(name);
-
-            OnGameOver();
         }
 
         void GetCoin(Vector2 position)

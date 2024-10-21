@@ -477,8 +477,6 @@ namespace PuzzleGame.Gameplay.Merged
 
             gameState.IsGameOver = true;
             UserProgress.Current.SaveGameState(name);
-
-            OnGameOver();
         }
     
         bool IsCanPlaceBricks(int nextBricksCount)
@@ -535,7 +533,6 @@ namespace PuzzleGame.Gameplay.Merged
             RemoveFigureMerged.Execute(nextBrickController);
             OnFigureRemoved(null);
             OnBoostersComplete();
-            BoostersController.Instance.OnBoosterProceeded(true);
         }
 
         protected override void OnClearGame()
