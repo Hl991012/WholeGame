@@ -13,15 +13,21 @@ MonoBehaviour:
   m_Name: StageConfigSO
   m_EditorClassIdentifier: 
   AllStageConfigModels:
-    m_keys: 0100000002000000030000000400000005000000
+    m_keys: 0100000002000000030000000400000005000000060000000700000008000000
     m_values:
     - Level: 1
       StagePrefab: {fileID: 4983685752411763288, guid: 2ae7ec0874f6a234b9e9f90033d6f2e5, type: 3}
     - Level: 2
-      StagePrefab: {fileID: 3165099909768670777, guid: a7a85a43a7ae49a41a5ac8921a21085f, type: 3}
+      StagePrefab: {fileID: 3288405907299300469, guid: be6ee7847c20df941b034fa375869d65, type: 3}
     - Level: 3
-      StagePrefab: {fileID: 2575906253689339658, guid: 7bfb2b932d86e3c41b819eb3d35daac1, type: 3}
+      StagePrefab: {fileID: 5518195416419011593, guid: 45d2ba90622805a4d9441cd14f33f9bb, type: 3}
     - Level: 4
-      StagePrefab: {fileID: 2922141832398307680, guid: 6bb509345352bfa4e9e7f502a9d8093d, type: 3}
+      StagePrefab: {fileID: 9215944804222280558, guid: 048c8236f960f1647a1729050cdf69a5, type: 3}
     - Level: 5
+      StagePrefab: {fileID: 3165099909768670777, guid: a7a85a43a7ae49a41a5ac8921a21085f, type: 3}
+    - Level: 6
+      StagePrefab: {fileID: 2575906253689339658, guid: 7bfb2b932d86e3c41b819eb3d35daac1, type: 3}
+    - Level: 7
+      StagePrefab: {fileID: 2922141832398307680, guid: 6bb509345352bfa4e9e7f502a9d8093d, type: 3}
+    - Level: 8
       StagePrefab: {fileID: 5250022218616497544, guid: 25e68d3e674180a4294a5eb417cb3b40, type: 3}

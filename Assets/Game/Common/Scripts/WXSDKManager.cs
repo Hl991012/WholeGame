@@ -30,7 +30,7 @@ public class WXSDKManager : Singleton<WXSDKManager>
         
 #if UNITY_EDITOR
 
- #else
+// #else
             WX.InitSDK(val =>
         {
             hasInit = true;
@@ -51,9 +51,6 @@ public class WXSDKManager : Singleton<WXSDKManager>
                 });
             
             wxInterstitialAd.Load();
-            
-            
-            Debug.LogError("创建" + wXCustomAd.ToString());
 
             wxInterstitialAd.OnError((WXADErrorResponse result) =>
             {
@@ -74,8 +71,6 @@ public class WXSDKManager : Singleton<WXSDKManager>
             });
         });
             
-        
-        
         GetSystemInfoAsyncOption tempGetSystemInfoAsyncOption = new GetSystemInfoAsyncOption()
         {
             success = val =>
@@ -88,16 +83,15 @@ public class WXSDKManager : Singleton<WXSDKManager>
                     adUnitId = "adunit-e45f98074d27985a",
                     style = new CustomStyle()
                     {
-                        left = 0,
-                        top = (int)val.windowHeight - width,
-                        width = width,
+                        left = (int)val.windowWidth / 2 - 144,
+                        top = (int)val.windowHeight - 84,
+                        width = (int)val.windowWidth, 
                     },
                 });
                 
                 wXCustomAd.OnLoad(val =>
                 {
-                    Debug.LogError("自定义广告加载成功" + val.rewardValue + "  " + val.shareValue + "  " + wXCustomAd.style.ToString());
-                    ShowCustomAd();
+                    Debug.LogError("自定义广告加载成功");
                 });
             },
             fail = val =>
@@ -107,7 +101,6 @@ public class WXSDKManager : Singleton<WXSDKManager>
             complete = val =>
             {
                 // 展示自定义广告
-                
             }
         };
         
@@ -193,7 +186,6 @@ public class WXSDKManager : Singleton<WXSDKManager>
     {
         if (!hasInit || wXCustomAd == null)
         {
-            Debug.Log("展示自定义广告失败" + hasInit + "  " + (wXCustomAd == null));
             return;
         }
         
