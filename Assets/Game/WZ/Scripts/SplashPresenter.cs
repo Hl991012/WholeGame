@@ -24,7 +24,6 @@ public class SplashPresenter : MonoBehaviour
         {
             WXSDKManager.Instance.ShowSubscribeMessage();
             WX.OffTouchEnd();
-            Debug.LogError(val.touches.Length + "  " + val.changedTouches.Length + "  " + val.ToString());
         });
     }
 

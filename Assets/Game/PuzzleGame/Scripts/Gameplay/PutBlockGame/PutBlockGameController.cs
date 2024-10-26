@@ -737,11 +737,11 @@ namespace PuzzleGame.Gameplay.Puzzle1010
 
         private void OnGameOver()
         {
-            if (PlayerPrefs.GetInt("last_time_upload_score", 1999) < gameState.TopScore)
+            if (PlayerPrefs.GetInt("last_time_upload_score", 5999) < gameState.TopScore)
             {
                 WXCloudManager.Instance.UpdatePutBlockRankScore(gameState.TopScore, null);
                 PlayerPrefs.SetInt("last_time_upload_score", gameState.TopScore);
-                Debug.LogError("更新分数");
+                // Debug.LogError("更新分数");
             }
             gameState.IsGameOver = true;
             putBlockGameOverPanel.gameObject.SetActive(true);

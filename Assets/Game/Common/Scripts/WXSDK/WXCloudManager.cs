@@ -26,12 +26,12 @@ public class WXCloudManager : Singleton<WXCloudManager>
             data = "{}",
             fail = val =>
             {
-                Debug.LogError("调用失败" + val.errMsg + "" + val.result);
+                // Debug.LogError("调用失败" + val.errMsg + "" + val.result);
                 onComplete?.Invoke(false, null);
             },
             success = val =>
             {
-                Debug.LogError("调用成功" + val.result + " " + val.callbackId);
+                // Debug.LogError("调用成功" + val.result + " " + val.callbackId);
 
                 try
                 {
@@ -62,7 +62,7 @@ public class WXCloudManager : Singleton<WXCloudManager>
             },
             complete = val =>
             {
-                Debug.LogError("调用完成" + val.result);
+                // Debug.LogError("调用完成" + val.result);
             }
         };
         WX.cloud.CallFunction(callFunctionParam);
@@ -81,17 +81,17 @@ public class WXCloudManager : Singleton<WXCloudManager>
             data = JsonConvert.SerializeObject(singleRankInfo),
             fail = val =>
             {
-                Debug.LogError("调用失败" + val.errMsg + "" + val.result);
+                // Debug.LogError("调用失败" + val.errMsg + "" + val.result);
                 onComplete?.Invoke(false);
             },
             success = val =>
             {
-                Debug.LogError("调用成功" + val.result + " " + val.callbackId);
+                // Debug.LogError("调用成功" + val.result + " " + val.callbackId);
                 onComplete?.Invoke(true);
             },
             complete = val =>
             {
-                Debug.LogError("调用完成" + val.result);
+                // Debug.LogError("调用完成" + val.result);
             }
         };
         WX.cloud.CallFunction(callFunctionParam);

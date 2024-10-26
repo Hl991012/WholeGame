@@ -11,7 +11,7 @@ public class UIPresenter : MonoBehaviour
     [SerializeField] private Button game2048Btn;
     [SerializeField] private Button x2BlockGameBtn;
     [SerializeField] private SettingPanel settingPanel;
-    
+
     private void Awake()
     {
         settingBtn.onClick.AddListener(() =>

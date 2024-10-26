@@ -54,7 +54,7 @@ public class WXSDKManager : Singleton<WXSDKManager>
 
             wxInterstitialAd.OnError((WXADErrorResponse result) =>
             {
-                OnError?.Invoke();
+                // OnError?.Invoke();
                 Debug.LogError("被动广告错误" + result.ToString());
             });
             
@@ -66,7 +66,7 @@ public class WXSDKManager : Singleton<WXSDKManager>
             
             wXCustomAd.OnError((WXADErrorResponse result) =>
             {
-                OnError?.Invoke();
+                // OnError?.Invoke();
                 Debug.LogError("自定义广告错误" + result.ToString());
             });
         });
@@ -158,7 +158,7 @@ public class WXSDKManager : Singleton<WXSDKManager>
         onCloseInterstitialVideo = () =>
         {
             onClose?.Invoke();
-            Debug.Log("播放插屏广告");
+            // Debug.Log("播放插屏广告");
             wxInterstitialAd.OffClose(onCloseInterstitialVideo);
         };
         
@@ -190,7 +190,7 @@ public class WXSDKManager : Singleton<WXSDKManager>
         if(GameCenter.Instance.CurGameState == GameCenter.GameState.Home)
             return;
 
-        Debug.Log("展示自定义广告");
+        // Debug.Log("展示自定义广告");
         IsShowBanner = true;
         wXCustomAd.Show();
     }
@@ -242,16 +242,16 @@ public class WXSDKManager : Singleton<WXSDKManager>
         {
             fail = val =>
             {
-                Debug.LogError("获得Setting信息失败");
+                // Debug.LogError("获得Setting信息失败");
             },
             success = val =>
             {
-                Debug.LogError("获得Setting信息成功");
+                // Debug.LogError("获得Setting信息成功");
                 subscriptionsSetting = val.subscriptionsSetting;
             },
             complete = val =>
             {
-                Debug.LogError("获得Setting信息完成");
+                // Debug.LogError("获得Setting信息完成");
             },
             withSubscriptions = true,
         };
@@ -271,16 +271,16 @@ public class WXSDKManager : Singleton<WXSDKManager>
                     msgTypeList = new string[]{"SYS_MSG_TYPE_WHATS_NEW"},
                     complete = val =>
                     {
-                        Debug.LogError("订阅完成");
+                        // Debug.LogError("订阅完成");
                         WX.OffTouchEnd();
                     },
                     fail = val =>
                     {
-                        Debug.LogError("订阅失败" + val.errCode + "  " + val.errMsg);
+                        // Debug.LogError("订阅失败" + val.errCode + "  " + val.errMsg);
                     },
                     success = val =>
                     {
-                        Debug.LogError("订阅成功");
+                        // Debug.LogError("订阅成功");
                     },
                 };
         
@@ -288,7 +288,7 @@ public class WXSDKManager : Singleton<WXSDKManager>
             }
             else
             {
-                Debug.LogError("包含更新订阅消息");
+                // Debug.LogError("包含更新订阅消息");
             }
         }
     }

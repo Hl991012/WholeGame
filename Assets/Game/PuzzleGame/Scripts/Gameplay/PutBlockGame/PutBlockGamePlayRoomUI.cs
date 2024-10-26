@@ -105,7 +105,7 @@ public class PutBlockGamePlayRoomUI : MonoBehaviour
         {
             BaseUtilities.PlayCommonClick();
             // 打开排行榜
-            if (putBlockGameState?.TopScore >= 1000)
+            if (putBlockGameState?.TopScore >= 6000)
             {
                 if (PlayerPrefs.GetInt("last_open_max_score") >= putBlockGameState.TopScore)
                 {

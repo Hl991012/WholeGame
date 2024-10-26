@@ -1,12 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PutBlockRankPanel : MonoBehaviour
 {
+    [SerializeField] private Button closeBtn;
     [SerializeField] private SingleRankItem[] rankItems;
 
     private List<WXCloudManager.SingleRankInfo> curRankInfos;
+
+    private void Awake()
+    {
+        closeBtn.onClick.AddListener(() =>
+        {
+            BaseUtilities.PlayCommonClick();
+            gameObject.SetActive(false);
+        });
+    }
 
     public PutBlockRankPanel Init(List<WXCloudManager.SingleRankInfo> rankInfos)
     {
