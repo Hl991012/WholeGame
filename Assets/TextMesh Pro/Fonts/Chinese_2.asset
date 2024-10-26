@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: Chinese.subset SDF
+  m_Name: Chinese_2
   m_EditorClassIdentifier: 
-  hashCode: 1493426310
+  hashCode: 1102455986
   material: {fileID: 4083101078001639380}
-  materialHashCode: -528464794
+  materialHashCode: 1758517074
   m_Version: 1.1.0
   m_SourceFontFileGUID: 4eeb174848882f0428736876246734a9
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 4eeb174848882f0428736876246734a9, type: 3}
@@ -601,8 +601,7 @@ MonoBehaviour:
   m_FontFeatureTable:
     m_GlyphPairAdjustmentRecords: []
   fallbackFontAssets: []
-  m_FallbackFontAssetTable:
-  - {fileID: 11400000, guid: 1585ac4e67a108b4ca48741104dbd7ee, type: 2}
+  m_FallbackFontAssetTable: []
   m_CreationSettings:
     sourceFontFileName: 
     sourceFontFileGUID: 4eeb174848882f0428736876246734a9

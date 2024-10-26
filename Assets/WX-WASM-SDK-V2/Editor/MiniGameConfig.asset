@@ -44,7 +44,7 @@ MonoBehaviour:
     UseFriendRelation: 0
     UseCompressedTexture: 0
     UseMiniGameChat: 0
-    PreloadWXFont: 0
+    PreloadWXFont: 1
   CompileOptions:
     DevelopBuild: 0
     AutoProfile: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
     Il2CppOptimizeSize: 1
     profilingFuncs: 0
     Webgl2: 0
-    fbslim: 0
+    fbslim: 1
     DeleteStreamingAssets: 1
     ProfilingMemory: 0
     CleanBuild: 0
@@ -61,7 +61,7 @@ MonoBehaviour:
     enableProfileStats: 0
     enableRenderAnalysis: 0
     iOSAutoGCInterval: 10000
-    enableIOSPerformancePlus: 0
+    enableIOSPerformancePlus: 1
     brotliMT: 0
   CompressTexture:
     halfSize: 0

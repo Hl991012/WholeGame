@@ -1,30 +1,30 @@
 using System;
 using GameFrame;
+using TMPro;
 using UnityEngine;
+using WeChatWASM;
 
 public class MainSceneCenter : MonoSingleton<MainSceneCenter>
 {
     [SerializeField] private UIPresenter uiPresenter;
     [SerializeField] private PlayRoomPresenter playRoomPresenter;
     [SerializeField] private PopUpsUI popUpsUI;
+    [SerializeField] private TMP_FontAsset tmpFontAsset;
     
     private void Awake()
     {
-        GameCenter.Instance.OnGameStateChanged += OnGameStateChanged;
+        GameCenter.Instance.onGameStateChanged += OnGameStateChanged;
+        
+        WX.GetWXFont("", font =>
+        {
+            tmpFontAsset.fallbackFontAssetTable.Add(TMP_FontAsset.CreateFontAsset(font));
+        });
     }
 
     private void Start()
     {
-        OnGameStateChanged();
+        GameCenter.Instance.ChangeState(GameCenter.GameState.Game, GameType.PutBlockGame);
     }
-
-    // private void Update()
-    // {
-    //     if (!WXSDKManager.Instance.IsShowBanner)
-    //     {
-    //         WXSDKManager.Instance.ShowCustomAd();
-    //     }
-    // }
 
     private void OnGameStateChanged()
     {

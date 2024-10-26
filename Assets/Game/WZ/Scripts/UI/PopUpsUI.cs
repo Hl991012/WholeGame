@@ -16,7 +16,7 @@ public class PopUpsUI : MonoBehaviour
         canvasGroup.alpha = 0;
         anim = DOTween.Sequence()
             .Append(canvasGroup.DOFade(1, 0.2f))
-            .AppendInterval(0.4f)
+            .AppendInterval(1f)
             .Append(canvasGroup.DOFade(0, 0.2f))
             .SetLink(gameObject)
             .SetUpdate(true);

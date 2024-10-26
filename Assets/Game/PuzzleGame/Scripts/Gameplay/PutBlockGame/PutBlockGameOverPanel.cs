@@ -12,7 +12,8 @@ public class PutBlockGameOverPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bestScoreTmp;
     [SerializeField] private Button onceAgainBtn;
     [SerializeField] private CanvasGroup canvasGroup;
-
+    [SerializeField] private Button shareBtn;
+    
     private Sequence showAnimSeq;
     
     private void Awake()
@@ -32,6 +33,12 @@ public class PutBlockGameOverPanel : MonoBehaviour
                     gameObject.SetActive(false);
                 });
         });
+        
+        shareBtn.onClick.AddListener(() =>
+        {
+            BaseUtilities.PlayCommonClick();
+            WXSDKManager.Instance.Share();
+        });
     }
 
     public void Show()
@@ -40,7 +47,7 @@ public class PutBlockGameOverPanel : MonoBehaviour
         showAnimSeq?.Kill();
         onceAgainBtn.interactable = false;
         showAnimSeq = DOTween.Sequence()
-            .AppendInterval(0.3f)
+            .AppendInterval(0.5f)
             .Append(canvasGroup.DOFade(1, 0.7f))
             .SetLink(gameObject)
             .SetUpdate(true)

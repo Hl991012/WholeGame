@@ -1,6 +1,7 @@
 using System;
 using GameFrame;
 using UnityEngine;
+using WeChatWASM;
 
 public class GameCenter : MonoSingleton<GameCenter>
 {
@@ -11,9 +12,8 @@ public class GameCenter : MonoSingleton<GameCenter>
     }
 
     public GameType CurGameType { get; private set; }
-
-    public GameState CurGameState { get; private set; } = GameState.Home;
-    public Action OnGameStateChanged;
+    public GameState CurGameState { get; private set; } = GameState.Game;
+    public Action onGameStateChanged;
 
     public void ChangeState(GameState gameState, GameType gameType = GameType.None)
     {
@@ -37,6 +37,6 @@ public class GameCenter : MonoSingleton<GameCenter>
                 WXSDKManager.Instance.ShowCustomAd();
                 break;
         }
-        OnGameStateChanged?.Invoke();
+        onGameStateChanged?.Invoke();
     }
 }

@@ -1,6 +1,7 @@
 ﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using NMNH.Utility;
 using PuzzleGame.Gameplay.Boosters;
 using PuzzleGame.Themes;
@@ -12,13 +13,14 @@ namespace PuzzleGame.Gameplay.Puzzle1010
 {
     public class PutBlockGameController : BaseGameController<PutBlockGameState>
     {
-        [Header("PutBlockGame模式字段")]
+        [Header("PutBlockGame模式字段")] 
+        [SerializeField] private Transform fieldParent;
         [SerializeField] private PutBlockGameOverPanel putBlockGameOverPanel;
         [SerializeField] private PutBlockGameRevivePanel putBlockGameRevivePanel;
         [SerializeField] private Brick emptyBrickPrefab;
         [SerializeField] private FigureController[] figureControllers;
         [SerializeField] private FigureController extraFigureController;
-
+        
         private Brick[,] backgroundBricks;
         private int[] figures = Array.Empty<int>();
         private float[] figureRotations = Array.Empty<float>();
@@ -412,7 +414,6 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                         case 2:
                         case 3:
                         case 4:
-                            Debug.LogError($"x{nullCount}+{tempX}");
                             SpawnFigure(figureController, nullCount - 1, 90, GetRandomBrickNumber());
                             return true;
                         default:
@@ -452,7 +453,6 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                         case 2:
                         case 3:
                         case 4:
-                            Debug.LogError($"y{nullCount}+{tempY}");
                             SpawnFigure(figureController, nullCount - 1, 0, GetRandomBrickNumber());
                             return true;
                         default:
@@ -686,7 +686,16 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             if (bricksToDestroy.Length > 0)
             {
                 AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.Win);
+            }
+
+            if (bricksToDestroy.Length == 10)
+            {
                 VibrateHelper.VibrateMedium();
+            }
+            else if(bricksToDestroy.Length > 10)
+            {
+                VibrateHelper.VibrateHeavy();
+                fieldParent.DOShakePosition(0.3f, Vector3.one * 20, 40, 180);
             }
             
             var addScore = ComboManager.Instance.AddPlayerOperate(GameType.PutBlockGame, completeLineCount, Vector3.zero);
@@ -718,21 +727,26 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             // 判断是否复活过
             if (gameState.HasRevive)
             {
-                gameState.IsGameOver = true;
-                putBlockGameOverPanel.gameObject.SetActive(true);
-                putBlockGameOverPanel.Show();
-                UserProgress.Current.ClearGameState(ID);
+                OnGameOver();
             }
             else
             {
-                putBlockGameRevivePanel.Show(OnRevive, () =>
-                {
-                    gameState.IsGameOver = true;
-                    putBlockGameOverPanel.gameObject.SetActive(true);
-                    putBlockGameOverPanel.Show();
-                    UserProgress.Current.ClearGameState(ID);
-                });
+                putBlockGameRevivePanel.Show(OnRevive, OnGameOver);
             }
+        }
+
+        private void OnGameOver()
+        {
+            if (PlayerPrefs.GetInt("last_time_upload_score", 1999) < gameState.TopScore)
+            {
+                WXCloudManager.Instance.UpdatePutBlockRankScore(gameState.TopScore, null);
+                PlayerPrefs.SetInt("last_time_upload_score", gameState.TopScore);
+                Debug.LogError("更新分数");
+            }
+            gameState.IsGameOver = true;
+            putBlockGameOverPanel.gameObject.SetActive(true);
+            putBlockGameOverPanel.Show();
+            UserProgress.Current.ClearGameState(ID);
         }
 
         private void CheckFigures()

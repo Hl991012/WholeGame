@@ -3,6 +3,7 @@ using Game.Manager;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using WeChatWASM;
 
 public class SettingPanel : MonoBehaviour
 {
@@ -16,8 +17,8 @@ public class SettingPanel : MonoBehaviour
     [SerializeField] private GameObject musicOff;
     [SerializeField] private GameObject vibrationOn;
     [SerializeField] private GameObject vibrationOff;
-
     [SerializeField] private TextMeshProUGUI versionText;
+    [SerializeField] private Button feedbackBtn;
 
     protected  void Awake()
     {
@@ -48,7 +49,12 @@ public class SettingPanel : MonoBehaviour
             BaseUtilities.PlayCommonClick();
         });
         
-
+        // feedbackBtn.onClick.AddListener(() =>
+        // {
+        //     BaseUtilities.PlayCommonClick();
+        //     
+        // });
+        
         versionText.text = "v" + Application.version;
     }
 

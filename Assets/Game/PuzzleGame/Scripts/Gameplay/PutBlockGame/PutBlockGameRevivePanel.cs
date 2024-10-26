@@ -47,6 +47,7 @@ public class PutBlockGameRevivePanel : MonoBehaviour
         showAnimSeq?.Kill();
         reviveBtn.interactable = false;
         showAnimSeq = DOTween.Sequence()
+            .AppendInterval(0.6f)
             .Append(canvasGroup.DOFade(1, 0.2f))
             .AppendCallback(() =>
             {

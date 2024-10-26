@@ -91,6 +91,11 @@ public class ComboManager : MonoSingleton<ComboManager>
         }
     }
 
+    public ComboStateModel GetComboState(GameType gameType)
+    {
+        return allComboStates.GetValueOrDefault(gameType);
+    }
+
     private void Save()
     {
         if (allComboStates?.Count > 0)

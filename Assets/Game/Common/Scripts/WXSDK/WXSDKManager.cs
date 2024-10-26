@@ -26,15 +26,15 @@ public class WXSDKManager : Singleton<WXSDKManager>
 
     public void Init()
     {
-        
-        
 #if UNITY_EDITOR
 
-// #else
+#else
             WX.InitSDK(val =>
         {
             hasInit = true;
             
+            GetSetting();
+
             wxRewardedVideoAd = WX.CreateRewardedVideoAd(
                 new WXCreateRewardedVideoAdParam()
                 {
@@ -70,29 +70,15 @@ public class WXSDKManager : Singleton<WXSDKManager>
                 Debug.LogError("自定义广告错误" + result.ToString());
             });
         });
-            
+
+        var windowWidth = 0;
+        var windowHeight = 0;
         GetSystemInfoAsyncOption tempGetSystemInfoAsyncOption = new GetSystemInfoAsyncOption()
         {
             success = val =>
             {
-                var width = Mathf.Max(300, (int)val.windowWidth);
-                
-                wXCustomAd = WX.CreateCustomAd(new WXCreateCustomAdParam()
-                {
-                    adIntervals = 30,
-                    adUnitId = "adunit-e45f98074d27985a",
-                    style = new CustomStyle()
-                    {
-                        left = (int)val.windowWidth / 2 - 144,
-                        top = (int)val.windowHeight - 84,
-                        width = (int)val.windowWidth, 
-                    },
-                });
-                
-                wXCustomAd.OnLoad(val =>
-                {
-                    Debug.LogError("自定义广告加载成功");
-                });
+                windowWidth = (int)val.windowWidth;
+                windowHeight = (int)val.windowHeight;
             },
             fail = val =>
             {
@@ -101,12 +87,24 @@ public class WXSDKManager : Singleton<WXSDKManager>
             complete = val =>
             {
                 // 展示自定义广告
+                wXCustomAd = WX.CreateCustomAd(new WXCreateCustomAdParam()
+                {
+                    adIntervals = 30,
+                    adUnitId = "adunit-e45f98074d27985a",
+                    style = new CustomStyle()
+                    {
+                        left = windowWidth / 2 - 144,
+                        top = windowHeight - 84,
+                        width = windowWidth, 
+                    },
+                });
             }
         };
         
         WX.GetSystemInfoAsync(tempGetSystemInfoAsyncOption);
 
 #endif
+        
     }
 
     public void ShowRewardVideo(Action<bool> onClose)
@@ -207,4 +205,93 @@ public class WXSDKManager : Singleton<WXSDKManager>
         
         wXCustomAd.Hide();
     }
+
+    #region 分享相关内容
+
+    public void Share()
+    {
+        if(!hasInit)
+        {
+            if (MainSceneCenter.Instance != null)
+            {
+                MainSceneCenter.Instance.ShowTips("内容制作中。。。");
+            }    
+            return;
+        }
+
+        ShareAppMessageOption shareAppMessageOption = new ShareAppMessageOption()
+        {
+            imageUrl =
+                "https://mmocgame.qpic.cn/wechatgame/X4cGHmN8OVbp11yKfO0IgxCGJFJTCfibW74e82Z4vSUdHJN6NTkwfz3rnRX7OITIJ/0",
+            imageUrlId = "",
+            title = "这游戏太棒了，和我一起玩吧！！！"
+        };
+        
+        WX.ShareAppMessage(shareAppMessageOption);
+    }
+
+    #endregion
+
+    #region 订阅功能
+
+    SubscriptionsSetting subscriptionsSetting = null;   
+    
+    public void GetSetting()
+    {
+        var getSettingOption = new GetSettingOption()
+        {
+            fail = val =>
+            {
+                Debug.LogError("获得Setting信息失败");
+            },
+            success = val =>
+            {
+                Debug.LogError("获得Setting信息成功");
+                subscriptionsSetting = val.subscriptionsSetting;
+            },
+            complete = val =>
+            {
+                Debug.LogError("获得Setting信息完成");
+            },
+            withSubscriptions = true,
+        };
+        
+        WX.GetSetting(getSettingOption);
+    }
+
+    public void ShowSubscribeMessage()
+    {
+        // 如果用户打开了订阅消息的总开关
+        if (subscriptionsSetting is { mainSwitch: true })
+        {
+            if (!subscriptionsSetting.itemSettings.ContainsKey("SYS_MSG_TYPE_WHATS_NEW"))
+            {
+                RequestSubscribeSystemMessageOption requestSubscribeMessageOption = new RequestSubscribeSystemMessageOption()
+                {
+                    msgTypeList = new string[]{"SYS_MSG_TYPE_WHATS_NEW"},
+                    complete = val =>
+                    {
+                        Debug.LogError("订阅完成");
+                        WX.OffTouchEnd();
+                    },
+                    fail = val =>
+                    {
+                        Debug.LogError("订阅失败" + val.errCode + "  " + val.errMsg);
+                    },
+                    success = val =>
+                    {
+                        Debug.LogError("订阅成功");
+                    },
+                };
+        
+                WX.RequestSubscribeSystemMessage(requestSubscribeMessageOption);
+            }
+            else
+            {
+                Debug.LogError("包含更新订阅消息");
+            }
+        }
+    }
+
+    #endregion
 }

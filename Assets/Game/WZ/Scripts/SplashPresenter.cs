@@ -4,6 +4,7 @@ using NMNH.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using WeChatWASM;
 
 public class SplashPresenter : MonoBehaviour
 {
@@ -18,12 +19,20 @@ public class SplashPresenter : MonoBehaviour
     private async void Start()
     {
         await Load();
+        
+        WX.OnTouchEnd(val =>
+        {
+            WXSDKManager.Instance.ShowSubscribeMessage();
+            WX.OffTouchEnd();
+            Debug.LogError(val.touches.Length + "  " + val.changedTouches.Length + "  " + val.ToString());
+        });
     }
 
     private async UniTask Load()
     {
         progressSlider.fillAmount = 0;
         WXSDKManager.Instance.Init();
+        WXCloudManager.Instance.Init();
         TextAdventureGameController.Instance.LoadData();
         ComboManager.Instance.Init();
         progressSlider.fillAmount = 0.3f;
@@ -34,6 +43,6 @@ public class SplashPresenter : MonoBehaviour
         progressSlider.fillAmount = 1;
         await SceneManager.UnloadSceneAsync("Splash");
         AudioManager.Instance.PlayBGM();
-        GameCenter.Instance.ChangeState(GameCenter.GameState.Home);
+        // GameCenter.Instance.ChangeState(GameCenter.GameState.Home);
     }
 }

@@ -30,21 +30,21 @@ public class ComboUIPresenter : MonoBehaviour
 
     private void SetComboPos(Component singleCombo, Vector2 pos)
     {
-        singleCombo.transform.position = pos;
-        
-        // 如果超出边缘，则偏移一些
-        var halfScreenWidth = Screen.width / (Screen.height / 1560f) / 2f;
-        var temp = 310;
-        var tempRectTrans = singleCombo.transform.GetComponent<RectTransform>();
-        if (halfScreenWidth - temp < tempRectTrans.anchoredPosition.x)
-        {
-            tempRectTrans.anchoredPosition = new Vector3(halfScreenWidth - temp, tempRectTrans.anchoredPosition.y, 0);
-        }
-        
-        if (tempRectTrans.anchoredPosition.x < temp - halfScreenWidth)
-        {
-            tempRectTrans.anchoredPosition = new Vector3(temp - halfScreenWidth, tempRectTrans.anchoredPosition.y, 0);
-        }
+        // singleCombo.transform.position = pos;
+        //
+        // // 如果超出边缘，则偏移一些
+        // var halfScreenWidth = Screen.width / (Screen.height / 1560f) / 2f;
+        // var temp = 310;
+        // var tempRectTrans = singleCombo.transform.GetComponent<RectTransform>();
+        // if (halfScreenWidth - temp < tempRectTrans.anchoredPosition.x)
+        // {
+        //     tempRectTrans.anchoredPosition = new Vector3(halfScreenWidth - temp, tempRectTrans.anchoredPosition.y, 0);
+        // }
+        //
+        // if (tempRectTrans.anchoredPosition.x < temp - halfScreenWidth)
+        // {
+        //     tempRectTrans.anchoredPosition = new Vector3(temp - halfScreenWidth, tempRectTrans.anchoredPosition.y, 0);
+        // }
     }
     
     private void OnDestroy()

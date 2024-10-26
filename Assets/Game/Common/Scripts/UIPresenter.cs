@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using WeChatWASM;
 
 public class UIPresenter : MonoBehaviour
 {

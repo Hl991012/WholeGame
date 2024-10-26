@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 using PuzzleGame;
 using PuzzleGame.Gameplay.Puzzle1010;
 using TMPro;
@@ -26,6 +27,12 @@ public class PutBlockGamePlayRoomUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI adAddUndoBoosterCountTmp;
     [SerializeField] private TextMeshProUGUI undoBoosterUserCountTmp;
 
+    [SerializeField] private Button rankBtn;
+    
+    [SerializeField] private GameObject comboStateObj;
+
+    [SerializeField] private PutBlockRankPanel putBlockRankPanel;
+    
     private PutBlockGameState putBlockGameState;
     
     private void Awake()
@@ -93,8 +100,42 @@ public class PutBlockGamePlayRoomUI : MonoBehaviour
                 });
             }
         });
+        
+        rankBtn.onClick.AddListener(() =>
+        {
+            BaseUtilities.PlayCommonClick();
+            // 打开排行榜
+            if (putBlockGameState?.TopScore >= 1000)
+            {
+                if (PlayerPrefs.GetInt("last_open_max_score") >= putBlockGameState.TopScore)
+                {
+                    putBlockRankPanel.RefreshView();
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("last_open_max_score", putBlockGameState.TopScore);
+                    WXCloudManager.Instance.GetPutBlockRankInfo((result, data) =>
+                    {
+                        Debug.LogError("拉去最新的数据");
+                        if (result)
+                        {
+                            putBlockRankPanel.Init(data).RefreshView();
+                        }
+                        else
+                        {
+                            putBlockRankPanel.RefreshView();
+                        }
+                    });
+                }
+            }
+            else
+            {
+                MainSceneCenter.Instance.ShowTips("到达6000分后开启排行榜，加油哦!");
+            }
+        });
 
         BoosterManager.Instance.OnBoosterChanged += OnBoosterChanged;
+        ComboManager.Instance.OnComboStateChanged += OnComboStateChanged;
     }
 
     private void Start()
@@ -110,6 +151,10 @@ public class PutBlockGamePlayRoomUI : MonoBehaviour
         addPutAreaAdIcon.SetActive(!putBlockGameState.UnlockedPutArea);
         RefreshRefreshBooster();
         RefreshUndoBooster();
+        
+        // 刷新comboState
+        var comboStateModel = ComboManager.Instance.GetComboState(GameType.PutBlockGame);
+        comboStateObj.SetActive(comboStateModel.ComboCount > 0);
     }
 
     private void RefreshRefreshBooster()
@@ -169,5 +214,10 @@ public class PutBlockGamePlayRoomUI : MonoBehaviour
                 RefreshUndoBooster();
                 break;
         }
+    }
+
+    private void OnComboStateChanged(GameType gameType, ComboStateModel comboStateModel, Vector3 pos, int count)
+    {
+        comboStateObj.SetActive(gameType == GameType.PutBlockGame && comboStateModel.ComboCount > 0);
     }
 }
