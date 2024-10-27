@@ -1,7 +1,6 @@
 using System;
 using GameFrame;
 using UnityEngine;
-using WeChatWASM;
 
 public class GameCenter : MonoSingleton<GameCenter>
 {

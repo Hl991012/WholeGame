@@ -11,7 +11,6 @@ namespace PuzzleGame
     public class GameConfigSo : ScriptableObject
     {
         public BaseGameController gamePrefab;
-        public LastChance lastChance;
         public bool canBuyBoosters = true;
 
         [SerializeField] BoosterConfigList boosterConfigList;

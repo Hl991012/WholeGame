@@ -38,7 +38,7 @@ public class SplashPresenter : MonoBehaviour
         await SceneManager.LoadSceneAsync("MainScene", LoadSceneMode.Additive);
         progressSlider.fillAmount = 0.9f;
         AudioManager.Instance.LoadAllAudioClip();
-        await UniTask.Delay(TimeSpan.FromSeconds(1));
+        // await UniTask.Delay(TimeSpan.FromSeconds(1));
         progressSlider.fillAmount = 1;
         await SceneManager.UnloadSceneAsync("Splash");
         AudioManager.Instance.PlayBGM();
