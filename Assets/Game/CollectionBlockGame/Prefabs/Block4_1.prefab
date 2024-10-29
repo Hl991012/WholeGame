@@ -206,4 +206,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ee5109cccce9e49944e155a658355a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colliderObj: {fileID: 75850747892386147}
   icon: {fileID: 75850747918247112}

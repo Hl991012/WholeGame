@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ee5109cccce9e49944e155a658355a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colliderObj: {fileID: 9087272896962189887}
   icon: {fileID: 9087272896987461524}
 --- !u!1 &9087272896962189887
 GameObject:
