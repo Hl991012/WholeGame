@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 16995157, guid: 5c9645c6ef312ed47bbd24d08f8bf8ae, type: 3}
   m_Name: DOTweenSettings
   m_EditorClassIdentifier: 
-  useSafeMode: 1
+  useSafeMode: 0
   safeModeOptions:
     logBehaviour: 2
     nestedTweenFailureBehaviour: 0
