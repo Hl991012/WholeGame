@@ -63,13 +63,6 @@ namespace NumDrawLine
                 SaveGameState();
             }
         }
-    
-        // 生成随机的数字
-        private int GetRandomNum()
-        {
-            var temp = Random.Range(1, 7);
-            return (int)Mathf.Pow(2, temp);
-        }
 
         #region CellItem的操作
 
@@ -493,6 +486,31 @@ namespace NumDrawLine
         }
 
         #endregion
+
+        #region 生成数字相关
+
+        private int curMaxNum;
+
+        // 生成随机的数字
+        private int GetRandomNum()
+        {
+            var temp = Random.Range(1, 7);
+            var tempNum = (int)Mathf.Pow(2, temp);
+            if (tempNum > curMaxNum)
+            {
+                curMaxNum = tempNum;
+            }
+            return tempNum;
+        }
+
+        // 当本局最大的数字有变化时，判断是否有需要移动的小数字，因为就不在随机生成小数字了
+        private void CheckNeedRemoveNum()
+        {
+            
+        }
+
+        #endregion
+        
 
         #region 数据保存相关
         

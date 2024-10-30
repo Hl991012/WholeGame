@@ -7,7 +7,6 @@ namespace NumDrawLine
     public class NumDrawLineGameManager : Singleton<NumDrawLineGameManager>
     {
         public Action OnScoreUpdate;
-        public Action OnTopScoreUpdate;
         
         private SaveModel saveModel;
         public SaveModel Data
@@ -26,13 +25,11 @@ namespace NumDrawLine
         public void AddScore(int score)
         {
             Data.CurScore += score;
-            OnScoreUpdate?.Invoke();
             if (Data.CurScore > Data.TopScore)
             {
                 Data.TopScore = Data.CurScore;
-                OnTopScoreUpdate?.Invoke();
             }
-
+            OnScoreUpdate?.Invoke();
             SaveToLocal();
         }
 
@@ -41,6 +38,7 @@ namespace NumDrawLine
             Data.MapData = null;
             Data.CurScore = 0;
             SaveToLocal();
+            OnScoreUpdate?.Invoke();
         }
         
         public void UpdateGameMapData(int[,] mapData)
