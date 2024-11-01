@@ -18,4 +18,14 @@ public class SingleBasketItem : MonoBehaviour
         
         BlockItem = block;
     }
+
+    public void Clear()
+    {
+        BlockItem = null;
+        // 清除生成的游戏物体
+        for (var i = blockParent.childCount - 1; i >= 0 ; i--)
+        {
+            DestroyImmediate(blockParent.GetChild(i).gameObject);
+        }
+    }
 }

@@ -194,30 +194,20 @@ namespace NumDrawLine
             OnBoosterStateChanged?.Invoke(curUseBoosterType);
         }
 
-        // 计算合成后的数字，计算规则：所有的数字加起来,最后向上得到最接近的2的n次方
+        // 计算合成后的数字，计算规则：所有的数字加起来,最后向上得到最接近的2的n次方；
+        // 计算分数：计算规则：一个数字是2的几次幂，分数就增加几
         private int CalculateNum(List<SingleCellItem> cellItems)
         {
             var tempNum = 0;
-            foreach (var item in cellItems)
-            {
-                tempNum += item.CellDataModel.Num;
-            }
-        
-            return Mathf.NextPowerOfTwo(tempNum);
-        }
-    
-        // 计算合成后增加的分数，计算规则：所有的数字加起来
-        private int CalculateScore(List<SingleCellItem> cellItems)
-        {
             var tempScore = 0;
             foreach (var item in cellItems)
             {
-                tempScore += item.CellDataModel.Num;
+                tempNum += item.CellDataModel.Num;
+                tempScore += (int)Mathf.Log(item.CellDataModel.Num, 2);
             }
-        
-            return tempScore;
+            NumDrawLineGameManager.Instance.AddScore(tempScore);
+            return Mathf.NextPowerOfTwo(tempNum);
         }
-    
 
         // 更新最新的所有的cellItem状态
         private void UpdateCellItems()

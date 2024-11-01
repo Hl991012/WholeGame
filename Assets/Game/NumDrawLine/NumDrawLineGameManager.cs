@@ -13,7 +13,7 @@ namespace NumDrawLine
         {
             get
             {
-                saveModel = JsonConvert.DeserializeObject<SaveModel>(
+                saveModel ??= JsonConvert.DeserializeObject<SaveModel>(
                     PlayerPrefs.GetString(nameof(NumDrawLineGameManager)));
                 saveModel ??= new SaveModel();
                 return saveModel;

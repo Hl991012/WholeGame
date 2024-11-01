@@ -22,5 +22,20 @@ public class RemoveBlockGameConfig : ScriptableObject
     public List<SingleBlockItem> BlockItems;
     // 配置游戏中能生成游戏物体的颜色
     public List<Color> ColorConfigs;
+    
+    public List<SingleLevelConfig> LevelConfigs;
+
+    public SingleLevelConfig GetConfigByLevel(int level)
+    {
+        level = Mathf.Clamp(level, 1, LevelConfigs.Count - 1);
+        return LevelConfigs[level];
+    }
+    
+    public class SingleLevelConfig
+    {
+        public int level;
+        public int loadBlockGroupCount;
+        public int countDown;
+    }
 }
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using NumDrawLine;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -22,10 +23,25 @@ public class RemoveBlockGamePlayRoom : MonoBehaviour
 
     private int totalBlockCount; // 当前关卡生成的所有方块的数量
 
-    private void Start()
+    public void StartGame()
     {
-        LoadGame(2);
+        // 清除生成的游戏物体
+        for (var i = blockItemParent.childCount - 1; i >= 0 ; i--)
+        {
+            DestroyImmediate(blockItemParent.GetChild(i).gameObject);
+        }
+        foreach (var item in basketItems)
+        {
+            item.Clear();
+        }
+        
+        var curLevel = RemoveBlockGameManager.Instance.Data.CurLevel;
+        var tempConfig = RemoveBlockGameConfig.Instance.GetConfigByLevel(curLevel);
+        LoadGame(tempConfig.loadBlockGroupCount);
+        StartTimer(tempConfig.countDown);
     }
+    
+    private readonly RaycastHit2D[] results = new RaycastHit2D[10];
 
     private void Update()
     {
@@ -35,10 +51,22 @@ public class RemoveBlockGamePlayRoom : MonoBehaviour
             isDragging = false;
             downPos = Input.mousePosition;
             var ray = mainCamera.ScreenPointToRay(downPos);
-            var rayCastHit2D = Physics2D.Raycast(ray.origin, ray.direction);
-            if (rayCastHit2D.transform != null)
+            var size = Physics2D.RaycastNonAlloc(ray.origin, ray.direction, results);
+            if (size > 0)
             {
-                rayCastHit2D.transform.parent.TryGetComponent(out chooseBlockItem);
+                var maxIndex = -1;
+                var tempIndex = 0;
+                for (var i = 0; i < size; i++)
+                {
+                    var compIndex = results[i].transform.GetSiblingIndex();
+                    if (compIndex > maxIndex)
+                    {
+                        maxIndex = compIndex;
+                        tempIndex = i;
+                    }
+                }
+                
+                chooseBlockItem = results[tempIndex].transform.GetComponent<SingleBlockItem>();
             }
         }
 
@@ -102,8 +130,6 @@ public class RemoveBlockGamePlayRoom : MonoBehaviour
         {
             blockItemParent.GetChild(i).transform.SetSiblingIndex(Random.Range(0, blockItemParent.childCount - 1));
         }
-
-        StartTimer();
     }
 
     #region 收集Block相关内容
@@ -226,9 +252,8 @@ public class RemoveBlockGamePlayRoom : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI timerTmp;
     private IDisposable gameTimer;
-    private void StartTimer()
+    private void StartTimer(int totalTime)
     {
-        var totalTime = 20;
         timerTmp.text = totalTime.ToString();
         gameTimer?.Dispose();
         gameTimer = Observable.Interval(TimeSpan.FromSeconds(1))
