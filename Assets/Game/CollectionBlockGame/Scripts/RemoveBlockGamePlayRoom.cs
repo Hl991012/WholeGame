@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
-using NumDrawLine;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -11,7 +9,10 @@ using Random = UnityEngine.Random;
 
 public class RemoveBlockGamePlayRoom : MonoBehaviour
 {
+    [SerializeField] private GameObject timerObj;
+    [SerializeField] private TextMeshProUGUI curLevelTmp;
     [SerializeField] private Transform blockItemParent;
+    [SerializeField] private RemoveBlockGameResultPanel removeBlockGameResultPanel;
     
     public Camera mainCamera;
 
@@ -22,6 +23,11 @@ public class RemoveBlockGamePlayRoom : MonoBehaviour
     private SingleBlockItem chooseBlockItem;
 
     private int totalBlockCount; // 当前关卡生成的所有方块的数量
+
+    private void Awake()
+    {
+        RemoveBlockGameManager.Instance.Register(this);
+    }
 
     public void StartGame()
     {
@@ -34,11 +40,13 @@ public class RemoveBlockGamePlayRoom : MonoBehaviour
         {
             item.Clear();
         }
-        
-        var curLevel = RemoveBlockGameManager.Instance.Data.CurLevel;
+
+        var curLevel = 20;//RemoveBlockGameManager.Instance.Data.CurLevel;
         var tempConfig = RemoveBlockGameConfig.Instance.GetConfigByLevel(curLevel);
         LoadGame(tempConfig.loadBlockGroupCount);
         StartTimer(tempConfig.countDown);
+
+        curLevelTmp.text = $"第{curLevel}关";
     }
     
     private readonly RaycastHit2D[] results = new RaycastHit2D[10];
@@ -58,7 +66,7 @@ public class RemoveBlockGamePlayRoom : MonoBehaviour
                 var tempIndex = 0;
                 for (var i = 0; i < size; i++)
                 {
-                    var compIndex = results[i].transform.GetSiblingIndex();
+                    var compIndex = results[i].transform.parent.GetSiblingIndex();
                     if (compIndex > maxIndex)
                     {
                         maxIndex = compIndex;
@@ -66,7 +74,7 @@ public class RemoveBlockGamePlayRoom : MonoBehaviour
                     }
                 }
                 
-                chooseBlockItem = results[tempIndex].transform.GetComponent<SingleBlockItem>();
+                chooseBlockItem = results[tempIndex].transform.GetComponentInParent<SingleBlockItem>();
             }
         }
 
@@ -82,8 +90,8 @@ public class RemoveBlockGamePlayRoom : MonoBehaviour
                     var tempPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
                     // 现在游戏物体只能在父物体范围内移动
                     tempPos.z = 0;
-                    tempPos.x = Mathf.Clamp(tempPos.x, -1.78f, 1.78f);
-                    tempPos.y = Mathf.Clamp(tempPos.y, -1.78f, 3.12f);
+                    tempPos.x = Mathf.Clamp(tempPos.x, -4.3f, 4.3f);
+                    tempPos.y = Mathf.Clamp(tempPos.y, -3.81f, 7.38f);
                     chooseBlockItem.SetPos(tempPos);
                 }
             }
@@ -116,7 +124,7 @@ public class RemoveBlockGamePlayRoom : MonoBehaviour
             {
                 var blockItem = Instantiate(randomShape, blockItemParent);
                 // 随机游戏物体的位置,限制在父物体的范围内
-                var randomPos = new Vector3(Random.Range(-1.78f, 1.78f), Random.Range(-1.78f, 3.12f), 0);
+                var randomPos = new Vector3(Random.Range(-4.3f, 4.3f), Random.Range(-3.81f, 7.38f), 0);
                 blockItem.SetPos(randomPos);
                 // 随机设置旋转和颜色
                 blockItem.SetRotation(new Vector3(0, 0, Random.Range(0, 360f)));
@@ -149,12 +157,13 @@ public class RemoveBlockGamePlayRoom : MonoBehaviour
             
             // 判断插入的位置的index,将相同的元素放置在一起
             var insertIndex = -1;
-            for (var i = basketItems.Length - 1; i >= 0 ; i--)
+            for (var i = basketParent.childCount - 1; i >= 0 ; i--)
             {
-                if (tempBasket != basketItems[i] && basketItems[i].HasPutBlock && basketItems[i].BlockItem.ShapeIndex == blockItem.ShapeIndex &&
-                    basketItems[i].BlockItem.ColorIndex == blockItem.ColorIndex)
+                var item = basketParent.GetChild(i).GetComponent<SingleBasketItem>();
+                if (item.HasUnlocked && tempBasket != item && item.HasPutBlock && item.BlockItem.ShapeIndex == blockItem.ShapeIndex &&
+                    item.BlockItem.ColorIndex == blockItem.ColorIndex)
                 {
-                    insertIndex = basketItems[i].transform.GetSiblingIndex();
+                    insertIndex = item.transform.GetSiblingIndex();
                     break;
                 }
             }
@@ -227,7 +236,7 @@ public class RemoveBlockGamePlayRoom : MonoBehaviour
                         tempEmptyList.Add(item.transform.GetSiblingIndex());
 
                         var tempBlock = item.BlockItem.gameObject;
-                        tempSeq.Insert(0, item.BlockItem.transform.DOMove(new Vector3(0, -2.3f, 0), 0.45f))
+                        tempSeq.Insert(0, item.BlockItem.transform.DOMove(new Vector3(0, -4.91f, 0), 0.45f))
                             .InsertCallback(0.45f, () =>
                             {
                                 DestroyImmediate(tempBlock);
@@ -254,19 +263,23 @@ public class RemoveBlockGamePlayRoom : MonoBehaviour
     private IDisposable gameTimer;
     private void StartTimer(int totalTime)
     {
-        timerTmp.text = totalTime.ToString();
-        gameTimer?.Dispose();
-        gameTimer = Observable.Interval(TimeSpan.FromSeconds(1))
-            .Subscribe(_ =>
-            {
-                totalTime--;
-                timerTmp.text = totalTime.ToString();
-                if (totalTime <= 0)
+        timerObj.SetActive(totalTime <= 1000);
+        if (totalTime <= 1000)
+        {
+            timerTmp.text = TimeSpan.FromSeconds(totalTime).ToString("mm':'ss");
+            gameTimer?.Dispose();
+            gameTimer = Observable.Interval(TimeSpan.FromSeconds(1))
+                .Subscribe(_ =>
                 {
-                    GameOver(totalBlockCount <= 0);
-                    gameTimer?.Dispose();
-                }
-            }).AddTo(this);
+                    totalTime--;
+                    timerTmp.text = TimeSpan.FromSeconds(totalTime).ToString("mm':'ss");
+                    if (totalTime <= 0)
+                    {
+                        GameOver(totalBlockCount <= 0);
+                        gameTimer?.Dispose();
+                    }
+                }).AddTo(this);   
+        }
     }
 
     private void CheckIsGameOver()
@@ -280,7 +293,7 @@ public class RemoveBlockGamePlayRoom : MonoBehaviour
         var hasEmptyBasket = false;
         foreach (var item in basketItems)
         {
-            if (!item.HasPutBlock)
+            if (!item.HasPutBlock && item.HasUnlocked)
             {
                 hasEmptyBasket = true;
                 break;
@@ -295,18 +308,22 @@ public class RemoveBlockGamePlayRoom : MonoBehaviour
 
     private void GameOver(bool isWin)
     {
-        Debug.LogError("gameOver");
         // 分别处理胜利和失败的逻辑
         gameTimer?.Dispose();
-        
+        removeBlockGameResultPanel.Show(isWin);
+        if (isWin)
+        {
+            RemoveBlockGameManager.Instance.ChallengeSuccess();
+        }
     }
     
     // 得到空的篮子
     private SingleBasketItem GetEmptyBasket()
     {
-        foreach (var item in basketItems)
+        for (var i = 0; i < basketParent.childCount; i++)
         {
-            if (!item.HasPutBlock)
+            var item = basketParent.GetChild(i).GetComponent<SingleBasketItem>();
+            if (!item.HasPutBlock && item.HasUnlocked)
                 return item;
         }
 

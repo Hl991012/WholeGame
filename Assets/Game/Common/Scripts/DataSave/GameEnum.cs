@@ -12,6 +12,7 @@ public enum GameType
     Game2048, // 2048
     Minesweeper, // 扫雷
     X2BlockGame, // 2048下落
+    RemoveBlock,// 方块移除
 }
 
 public static class GameTypeExtension

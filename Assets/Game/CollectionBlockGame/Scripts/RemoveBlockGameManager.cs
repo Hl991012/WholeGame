@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class RemoveBlockGameManager : Singleton<RemoveBlockGameManager>
 {
+    #region 注册内容相关
+
+    public RemoveBlockGamePlayRoom RemoveBlockGamePlayRoom { get; private set; }
+
+    public void Register(RemoveBlockGamePlayRoom removeBlockGamePlayRoom) => RemoveBlockGamePlayRoom = removeBlockGamePlayRoom;
+
+    #endregion
+    
+    
     private SaveModel saveModel;
     public SaveModel Data
     {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -27,10 +28,11 @@ public class RemoveBlockGameConfig : ScriptableObject
 
     public SingleLevelConfig GetConfigByLevel(int level)
     {
-        level = Mathf.Clamp(level, 1, LevelConfigs.Count - 1);
-        return LevelConfigs[level];
+        level = Mathf.Clamp(level, 1, LevelConfigs.Count);
+        return LevelConfigs[level - 1];
     }
     
+    [Serializable]
     public class SingleLevelConfig
     {
         public int level;
