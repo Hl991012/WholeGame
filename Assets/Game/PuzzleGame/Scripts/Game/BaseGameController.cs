@@ -70,29 +70,6 @@ public abstract class BaseGameController<TGameState> : BaseGameController where 
             return adjacent;
         }
 
-        protected IEnumerable<Vector2Int> GetAdjacentAreaCoords(Vector2Int coords)
-        {
-            var adjacent = GetAdjacentCoords(coords);
-
-            var upLeft = new Vector2Int(coords.x - 1, coords.y + 1);
-            if (upLeft.x >= 0 && upLeft.y < field.GetLength(1))
-                adjacent.Add(upLeft);
-
-            var upRight = new Vector2Int(coords.x + 1, coords.y + 1);
-            if (upRight.x < field.GetLength(0) && upRight.y < field.GetLength(1))
-                adjacent.Add(upRight);
-
-            var downLeft = new Vector2Int(coords.x - 1, coords.y - 1);
-            if (downLeft.x >= 0 && downLeft.y >= 0)
-                adjacent.Add(downLeft);
-
-            var downRight = new Vector2Int(coords.x + 1, coords.y - 1);
-            if (downRight.x < field.GetLength(0) && downRight.y >= 0)
-                adjacent.Add(downRight);
-
-            return adjacent;
-        }
-
         protected virtual Vector2 GetBrickPosition(Vector2 coords)
         {
             var brickSize = GetBrickSize();
@@ -100,7 +77,7 @@ public abstract class BaseGameController<TGameState> : BaseGameController where 
 
             var brickPosition = Vector2.Scale(coords, brickSize);
             brickPosition += Vector2.Scale(brickSize, brickTransform.pivot);
-
+            
             return brickPosition;
         }
 
@@ -116,7 +93,7 @@ public abstract class BaseGameController<TGameState> : BaseGameController where 
             return brickSize;
         }
 
-        protected Vector2 GetWorldBrickSize()
+        private Vector2 GetWorldBrickSize()
         {
             var worldCorners = new Vector3[4];
             fieldTransform.GetWorldCorners(worldCorners);
@@ -129,7 +106,7 @@ public abstract class BaseGameController<TGameState> : BaseGameController where 
             return brickSize;
         }
 
-        protected Vector2Int BrickPositionToCoords(Vector3 position, Vector2 pivot)
+        private Vector2Int BrickPositionToCoords(Vector3 position, Vector2 pivot)
         {
             var worldCorners = new Vector3[4];
             fieldTransform.GetWorldCorners(worldCorners);

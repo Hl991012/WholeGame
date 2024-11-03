@@ -6,14 +6,18 @@ using UnityEngine.UI;
 
 public class PutBlockGameRevivePanel : MonoBehaviour
 {
+    [SerializeField] private GameObject countDownObj;
     [SerializeField] private TextMeshProUGUI cutDownTmp;
     [SerializeField] private Button reviveBtn;
+    [SerializeField] private Button abandonBtn;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private Image cutDownProgress;
 
     private Sequence showAnimSeq;
 
     private Action OnRevive;
+    
+    private Action OnGiveUp;
     
     private void Awake()
     {
@@ -35,17 +39,28 @@ public class PutBlockGameRevivePanel : MonoBehaviour
                 }
             });
         });
+        
+        abandonBtn.onClick.AddListener(() =>
+        {
+            BaseUtilities.PlayCommonClick();
+            gameObject.SetActive(false);
+            OnGiveUp?.Invoke();
+            WXSDKManager.Instance.ShowInterstitialVideo(null);
+        });
     }
 
     public void Show(Action onRevive, Action onGiveUp)
     {
+        countDownObj.SetActive(true);
         gameObject.SetActive(true);
         cutDownTmp.text = "5";
         cutDownProgress.fillAmount = 1;
         OnRevive = onRevive;
+        OnGiveUp = onGiveUp;
         canvasGroup.alpha = 0;
         showAnimSeq?.Kill();
         reviveBtn.interactable = false;
+        abandonBtn.gameObject.SetActive(false);
         showAnimSeq = DOTween.Sequence()
             .AppendInterval(0.6f)
             .Append(canvasGroup.DOFade(1, 0.2f))
@@ -83,9 +98,8 @@ public class PutBlockGameRevivePanel : MonoBehaviour
             .SetUpdate(true)
             .OnComplete(() =>
             {
-                gameObject.SetActive(false);
-                onGiveUp?.Invoke();
-                WXSDKManager.Instance.ShowInterstitialVideo(null);
+                abandonBtn.gameObject.SetActive(true);
+                countDownObj.SetActive(false);
             });
 
         showAnimSeq.Insert(0, DOTween.To(val =>

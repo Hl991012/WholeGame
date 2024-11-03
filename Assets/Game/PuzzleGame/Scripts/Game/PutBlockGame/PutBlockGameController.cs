@@ -6,7 +6,6 @@ using NMNH.Utility;
 using PuzzleGame.Gameplay.Boosters;
 using PuzzleGame.Themes;
 using UnityEngine;
-using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 namespace PuzzleGame.Gameplay.Puzzle1010
@@ -15,6 +14,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
     {
         [Header("PutBlockGame模式字段")] 
         [SerializeField] private Transform fieldParent;
+        [SerializeField] private Transform emptyFieldParent;
         [SerializeField] private PutBlockGameOverPanel putBlockGameOverPanel;
         [SerializeField] private PutBlockGameRevivePanel putBlockGameRevivePanel;
         [SerializeField] private Brick emptyBrickPrefab;
@@ -124,26 +124,6 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             StartGame();
         }
 
-        // 创建游戏开始的随机目标
-        // private void SpawnStartingBricks()
-        // {
-        //     var positions = new List<Vector2Int>();
-        //     for (var i = 0; i < bricksCount.x; i++)
-        //     {
-        //         for (var j = 0; j < bricksCount.y; j++)
-        //         {
-        //             positions.Add(new Vector2Int(i, j));
-        //         }
-        //     }
-        //
-        //     for (int i = 1; i <= 9; i++)
-        //     {
-        //         int rand = Random.Range(0, positions.Count);
-        //         SpawnBrick(positions[rand], GetRandomBrickNumber());
-        //         positions.RemoveAt(rand);
-        //     }
-        // }
-
         private bool LoadGame()
         {
             if (gameState == null || gameState.IsGameOver)
@@ -248,9 +228,9 @@ namespace PuzzleGame.Gameplay.Puzzle1010
 
         protected virtual Brick SpawnEmptyBrick(Vector2Int coords)
         {
-            var brick = Instantiate(emptyBrickPrefab, fieldTransform);
+            var brick = Instantiate(emptyBrickPrefab, emptyFieldParent);
 
-            brick.transform.SetParent(fieldTransform, false);
+            brick.transform.SetParent(emptyFieldParent, false);
             brick.RectTransform.anchorMin = Vector2.zero;
             brick.RectTransform.anchorMax = Vector2.zero;
             brick.RectTransform.anchoredPosition = GetBrickPosition(new Vector2(coords.x, coords.y));
@@ -507,6 +487,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
         private void FigureOnPointerUp(FigureController figureController)
         {
             bricksHighlighter.UnhighlightBricks();
+            HideAllHighLightEffect();
 
             if (!TryGetCoords(figureController.bricks, out var coords))
             {
@@ -576,6 +557,8 @@ namespace PuzzleGame.Gameplay.Puzzle1010
 
                 gameState.Score++;
             }
+            
+            ShowDestroyEffect(figureController.bricks[0].ColorIndex);
 
             AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.Stab);
             VibrateHelper.VibrateLight();
@@ -610,6 +593,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             {
                 bricksHighlighter.UnhighlightBricks();
                 bricksHighlighter.UnhighlightNumberedBricks();
+                HideAllHighLightEffect();
                 return;
             }
 
@@ -624,6 +608,8 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             var colorIndex = field[coords[0].x, coords[0].y].ColorIndex;
             bricksHighlighter.SetHighlight(linesBricks.Select(c => field[c.x, c.y]).ToArray(), colorIndex);
             bricksHighlighter.SetHighlight(coords.Select(c => backgroundBricks[c.x, c.y]).ToArray());
+            
+            ShowHighLightEffect(figureController.bricks[0].ColorIndex);
 
             foreach (var c in coords)
                 field[c.x, c.y] = null;
@@ -633,6 +619,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
 
         protected virtual Vector2Int[] GetCompleteLines()
         {
+            ResetEffectState();
             completeLineCount = 0;
             var linesBricks = new List<Vector2Int>();
 
@@ -650,10 +637,15 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 }
 
                 if (!line)
+                {
+                    completeX[x] = 0;
                     continue;
+                }
+                    
                 completeLineCount++;
                 for (var y = 0; y < bricksCount.y; y++)
                     linesBricks.Add(new Vector2Int(x, y));
+                completeX[x] = 1;
             }
 
             for (var y = 0; y < bricksCount.y; y++)
@@ -670,10 +662,15 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 }
 
                 if (!line)
+                {
+                    completeY[y] = 0;
                     continue;
+                }
+                    
                 completeLineCount++;
                 for (var x = 0; x < bricksCount.x; x++)
                     linesBricks.Add(new Vector2Int(x, y));
+                completeY[y] = 1;
             }
 
             return linesBricks.Distinct().ToArray();
@@ -898,5 +895,87 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             CheckFigures();
             CheckGameOver();
         }
+
+        #region 特效相关
+
+        [SerializeField] public DestroyEffect[] destroyEffectsX;
+        [SerializeField] public DestroyEffect[] destroyEffectsY;
+        
+        private int[] completeX = new int[8];
+        private int[] completeY = new int[8];
+
+        private void ResetEffectState()
+        {
+            for (var i = 0; i < completeX.Length; i++)
+            {
+                completeX[i] = 0;
+            }
+            
+            for (var i = 0; i < completeY.Length; i++)
+            {
+                completeY[i] = 0;
+            }
+        }
+        
+        private void HideAllHighLightEffect()
+        {
+            foreach (var t in destroyEffectsX)
+            {
+                t.SetHighLightEffectVisible(false);
+            }
+            
+            foreach (var t in destroyEffectsY)
+            {
+                t.SetHighLightEffectVisible(false);
+            }
+        }
+
+        private void ShowHighLightEffect(int colorIndex)
+        {
+            for (var i = 0; i < completeX.Length; i++)
+            {
+                if (completeX[i] == 1)
+                {
+                    destroyEffectsY[i].SetHighLightEffectVisible(true, colorIndex);
+                }
+                else
+                {
+                    destroyEffectsY[i].SetHighLightEffectVisible(false);
+                }
+            }
+            
+            for (var i = 0; i < completeY.Length; i++)
+            {
+                if (completeY[i] == 1)
+                {
+                    destroyEffectsX[i].SetHighLightEffectVisible(true, colorIndex);
+                }
+                else
+                {
+                    destroyEffectsX[i].SetHighLightEffectVisible(false);
+                }
+            }
+        }
+        
+        private void ShowDestroyEffect(int colorIndex)
+        {
+            for (var i = 0; i < completeX.Length; i++)
+            {
+                if (completeX[i] == 1)
+                {
+                    destroyEffectsY[i].ShowDestroyEffect(colorIndex);   
+                }
+            }
+            
+            for (var i = 0; i < completeY.Length; i++)
+            {
+                if (completeY[i] == 1)
+                {
+                    destroyEffectsX[i].ShowDestroyEffect(colorIndex);
+                }
+            }
+        }
+    
+        #endregion
     }
 }

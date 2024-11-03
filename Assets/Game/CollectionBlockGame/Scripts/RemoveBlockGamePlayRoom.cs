@@ -331,4 +331,22 @@ public class RemoveBlockGamePlayRoom : MonoBehaviour
     }
 
     #endregion
+
+
+
+    // private Transform startPos;
+    // private Transform endPos;
+    // private void ShowWithShape()
+    // {
+    //     var groupCount = 1;
+    //     var singleGroupCount = blockItemParent.childCount / (float)groupCount;
+    //
+    //     var singleDistance = Vector3.Distance(startPos.position, endPos.position) / 10;
+    //     var addDis = Vector3.Normalize(endPos.position - startPos.position);
+    //     
+    //     for (var i = 0; i < blockItemParent.childCount; i++)
+    //     {
+    //         
+    //     }
+    // }
 }
