@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using NMNH.Utility;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -9,6 +10,7 @@ using Random = UnityEngine.Random;
 
 public class RemoveBlockGamePlayRoom : MonoBehaviour
 {
+    [SerializeField] private Button backBtn;
     [SerializeField] private GameObject timerObj;
     [SerializeField] private TextMeshProUGUI curLevelTmp;
     [SerializeField] private Transform blockItemParent;
@@ -26,6 +28,12 @@ public class RemoveBlockGamePlayRoom : MonoBehaviour
 
     private void Awake()
     {
+        backBtn.onClick.AddListener(() =>
+        {
+            BaseUtilities.PlayCommonClick();
+            GameCenter.Instance.ChangeState(GameCenter.GameState.Home);
+        });
+        
         RemoveBlockGameManager.Instance.Register(this);
     }
 
@@ -41,7 +49,7 @@ public class RemoveBlockGamePlayRoom : MonoBehaviour
             item.Clear();
         }
 
-        var curLevel = 20;//RemoveBlockGameManager.Instance.Data.CurLevel;
+        var curLevel = RemoveBlockGameManager.Instance.Data.CurLevel;
         var tempConfig = RemoveBlockGameConfig.Instance.GetConfigByLevel(curLevel);
         LoadGame(tempConfig.loadBlockGroupCount);
         StartTimer(tempConfig.countDown);
@@ -102,6 +110,8 @@ public class RemoveBlockGamePlayRoom : MonoBehaviour
             if (chooseBlockItem != null && !isDragging)
             {
                 ChooseBlockItem(chooseBlockItem);
+                VibrateHelper.VibrateMedium();
+                AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.PutUpBlock);
             }
             
             chooseBlockItem = null;
@@ -222,6 +232,8 @@ public class RemoveBlockGamePlayRoom : MonoBehaviour
                 .OnComplete(() =>
                 {
                     destroyEffect.Play();
+                    VibrateHelper.VibrateHeavy();
+                    AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.Win);
                 });
             // 重新进行排序
             for (var i = 0; i < basketParent.childCount; i++)

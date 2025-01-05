@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: AllBoosterConfig
   m_EditorClassIdentifier: 
   BoosterConfigs:
-    m_keys: 0a0000000b00000000000000
+    m_keys: 0a0000000b000000000000000c000000
     m_values:
     - {fileID: 11400000, guid: 6c2a843e9bcee0547b69ad734ee67e66, type: 2}
     - {fileID: 11400000, guid: 2955ebb5c1ee61c49838872174f3a67d, type: 2}
+    - {fileID: 11400000, guid: 37ed67ec2aadc904b987db04823537ee, type: 2}
     - {fileID: 11400000, guid: 37ed67ec2aadc904b987db04823537ee, type: 2}

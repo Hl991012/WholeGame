@@ -734,7 +734,7 @@ namespace PuzzleGame.Gameplay.Puzzle1010
 
         private void OnGameOver()
         {
-            if (PlayerPrefs.GetInt("last_time_upload_score", 5999) < gameState.TopScore)
+            if (PlayerPrefs.GetInt("last_time_upload_score", 6709) < gameState.TopScore)
             {
                 WXCloudManager.Instance.UpdatePutBlockRankScore(gameState.TopScore, null);
                 PlayerPrefs.SetInt("last_time_upload_score", gameState.TopScore);

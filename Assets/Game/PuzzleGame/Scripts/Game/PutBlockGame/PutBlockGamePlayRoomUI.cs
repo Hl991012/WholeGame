@@ -105,32 +105,24 @@ public class PutBlockGamePlayRoomUI : MonoBehaviour
         {
             BaseUtilities.PlayCommonClick();
             // 打开排行榜
-            if (putBlockGameState?.TopScore >= 6000)
+            if (putBlockGameState?.TopScore >= 2000)
             {
-                if (PlayerPrefs.GetInt("last_open_max_score") >= putBlockGameState.TopScore)
+                WXCloudManager.Instance.GetPutBlockRankInfo((result, data) =>
                 {
-                    putBlockRankPanel.RefreshView();
-                }
-                else
-                {
-                    PlayerPrefs.SetInt("last_open_max_score", putBlockGameState.TopScore);
-                    WXCloudManager.Instance.GetPutBlockRankInfo((result, data) =>
+                    // Debug.LogError("拉去最新的数据");
+                    if (result)
                     {
-                        Debug.LogError("拉去最新的数据");
-                        if (result)
-                        {
-                            putBlockRankPanel.Init(data).RefreshView();
-                        }
-                        else
-                        {
-                            putBlockRankPanel.RefreshView();
-                        }
-                    });
-                }
+                        putBlockRankPanel.Init(data).RefreshView();
+                    }
+                    else
+                    {
+                        MainSceneCenter.Instance.ShowTips("功能维护中");
+                    }
+                });
             }
             else
             {
-                MainSceneCenter.Instance.ShowTips("到达6000分后开启排行榜，加油哦!");
+                MainSceneCenter.Instance.ShowTips("到达2000分后开启排行榜，加油哦!");
             }
         });
 
@@ -154,7 +146,7 @@ public class PutBlockGamePlayRoomUI : MonoBehaviour
         
         // 刷新comboState
         var comboStateModel = ComboManager.Instance.GetComboState(GameType.PutBlockGame);
-        comboStateObj.SetActive(comboStateModel.ComboCount > 0);
+        comboStateObj.SetActive(comboStateModel?.ComboCount > 0);
     }
 
     private void RefreshRefreshBooster()

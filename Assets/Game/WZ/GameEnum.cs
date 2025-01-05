@@ -9,6 +9,7 @@ public enum Direction
 
 public enum BoosterType
 {
+    None = -1,
     Undo = 0,
     ClearBrick = 1,
     ClearNumber = 2,
@@ -19,5 +20,6 @@ public enum BoosterType
     
     Refresh = 10,
     Help,
+    Destroy = 12,
 }
 

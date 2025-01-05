@@ -11,6 +11,7 @@ public class UIPresenter : MonoBehaviour
     [SerializeField] private Button game2048Btn;
     [SerializeField] private Button x2BlockGameBtn;
     [SerializeField] private Button removeBlockBtn;
+    [SerializeField] private Button numDrawLineBtn;
     [SerializeField] private SettingPanel settingPanel;
 
     private void Awake()
@@ -55,6 +56,12 @@ public class UIPresenter : MonoBehaviour
         {
             BaseUtilities.PlayCommonClick();
             GameCenter.Instance.ChangeState(GameCenter.GameState.Game, GameType.RemoveBlock);
+        });
+        
+        numDrawLineBtn.onClick.AddListener(() =>
+        {
+            BaseUtilities.PlayCommonClick();
+            GameCenter.Instance.ChangeState(GameCenter.GameState.Game, GameType.NumDrawLine);
         });
     }
 }

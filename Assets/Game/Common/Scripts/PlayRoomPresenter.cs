@@ -1,4 +1,5 @@
 using GameFrame;
+using NumDrawLine;
 using PuzzleGame;
 using PuzzleGame.Gameplay.Puzzle1010;
 using UnityEngine;
@@ -14,6 +15,7 @@ namespace PutBlockGame
         [SerializeField] private GameObject game2048Prefab;
         [SerializeField] private X2BlocksGameController x2BlocksGameController;
         [SerializeField] private RemoveBlockGamePlayRoom removeBlockGamePlayRoom;
+        [SerializeField] private NumDrawLinePlayRoom numDrawLinePlayRoom;
     
         public void RefreshView()
         {
@@ -23,6 +25,8 @@ namespace PutBlockGame
             game2048Prefab.gameObject.SetActive(GameCenter.Instance.CurGameType == GameType.Game2048);
             x2BlocksGameController.gameObject.SetActive(GameCenter.Instance.CurGameType == GameType.X2BlockGame);
             removeBlockGamePlayRoom.gameObject.SetActive(GameCenter.Instance.CurGameType == GameType.RemoveBlock);
+            numDrawLinePlayRoom.gameObject.SetActive(GameCenter.Instance.CurGameType == GameType.NumDrawLine);
+            
             switch (GameCenter.Instance.CurGameType)
             {
                 case GameType.PutBlockGame:
@@ -43,6 +47,9 @@ namespace PutBlockGame
                     break;
                 case GameType.RemoveBlock:
                     removeBlockGamePlayRoom.StartGame();
+                    break;
+                case GameType.NumDrawLine:
+                    numDrawLinePlayRoom.StartGame();
                     break;
             }
         }

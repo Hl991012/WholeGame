@@ -1,6 +1,6 @@
 ﻿<wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:7870</timestamp>
+  <timestamp>23:29:56:3718</timestamp>
   <msgtype>MsgWXLogLaunch</msgtype>
   <content>[The WXLogger is launched!]</content>
   <stackFrames>
@@ -11,7 +11,7 @@
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:7997</timestamp>
+  <timestamp>23:29:56:3853</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|String[]
 OptionsConfig,-option=fb
@@ -29,7 +29,7 @@ OptionsConfig,-option=fb
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:8007</timestamp>
+  <timestamp>23:29:56:3868</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 UnityBridgeHandler - SetDataDir,D:/Softs/Fork/WholeGame/TextToolDatas\temp</content>
@@ -39,7 +39,7 @@ UnityBridgeHandler - SetDataDir,D:/Softs/Fork/WholeGame/TextToolDatas\temp</cont
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:8338</timestamp>
+  <timestamp>23:29:56:4227</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleDel,D:/Softs/Fork/WholeGame/TextToolDatas\fbslimConfig.txt</content>
@@ -51,7 +51,7 @@ FirstBundleDel,D:/Softs/Fork/WholeGame/TextToolDatas\fbslimConfig.txt</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:8348</timestamp>
+  <timestamp>23:29:56:4237</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|String[]
 delFiles,</content>
@@ -63,7 +63,7 @@ delFiles,</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9142</timestamp>
+  <timestamp>23:29:56:5055</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,Soft.c1d63e75,false</content>
@@ -75,7 +75,7 @@ FirstBundleText slim - pngName,Soft.c1d63e75,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9172</timestamp>
+  <timestamp>23:29:56:5100</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,Soft</content>
@@ -87,7 +87,7 @@ FirstBundleText slim - 1,Soft</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9172</timestamp>
+  <timestamp>23:29:56:5100</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,Font Texture.8f00b204,false</content>
@@ -99,7 +99,7 @@ FirstBundleText slim - pngName,Font Texture.8f00b204,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9187</timestamp>
+  <timestamp>23:29:56:5110</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,UnityWatermark-small.d7411008,false</content>
@@ -111,7 +111,7 @@ FirstBundleText slim - pngName,UnityWatermark-small.d7411008,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9187</timestamp>
+  <timestamp>23:29:56:5110</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,UnityWatermark-small</content>
@@ -123,7 +123,7 @@ FirstBundleText slim - 1,UnityWatermark-small</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9187</timestamp>
+  <timestamp>23:29:56:5110</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,EscToExit_back.21b1540e,false</content>
@@ -135,7 +135,7 @@ FirstBundleText slim - pngName,EscToExit_back.21b1540e,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9187</timestamp>
+  <timestamp>23:29:56:5110</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,EscToExit_back</content>
@@ -147,7 +147,7 @@ FirstBundleText slim - 1,EscToExit_back</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9187</timestamp>
+  <timestamp>23:29:56:5110</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,EscToExit_Text.2e1ee8b4,false</content>
@@ -159,7 +159,7 @@ FirstBundleText slim - pngName,EscToExit_Text.2e1ee8b4,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9187</timestamp>
+  <timestamp>23:29:56:5110</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,EscToExit_Text</content>
@@ -171,7 +171,7 @@ FirstBundleText slim - 1,EscToExit_Text</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9438</timestamp>
+  <timestamp>23:29:56:5350</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,UnitySplash-cube.84543fde,false</content>
@@ -183,7 +183,7 @@ FirstBundleText slim - pngName,UnitySplash-cube.84543fde,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9448</timestamp>
+  <timestamp>23:29:56:5365</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,UnityWatermark-trial-big.66f46ac8,false</content>
@@ -195,7 +195,7 @@ FirstBundleText slim - pngName,UnityWatermark-trial-big.66f46ac8,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9448</timestamp>
+  <timestamp>23:29:56:5375</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,UnityWatermark-trial-big</content>
@@ -207,7 +207,7 @@ FirstBundleText slim - 1,UnityWatermark-trial-big</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9448</timestamp>
+  <timestamp>23:29:56:5375</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,UnityWatermark-trial.60b4e34e,false</content>
@@ -219,7 +219,7 @@ FirstBundleText slim - pngName,UnityWatermark-trial.60b4e34e,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9448</timestamp>
+  <timestamp>23:29:56:5375</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,UnityWatermark-trial</content>
@@ -231,7 +231,7 @@ FirstBundleText slim - 1,UnityWatermark-trial</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5375</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,UnityWatermark-beta.dd37c61b,false</content>
@@ -243,7 +243,7 @@ FirstBundleText slim - pngName,UnityWatermark-beta.dd37c61b,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5375</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,UnityWatermark-beta</content>
@@ -255,7 +255,7 @@ FirstBundleText slim - 1,UnityWatermark-beta</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5375</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,UnityWatermark-edu.a8c472ae,false</content>
@@ -267,7 +267,7 @@ FirstBundleText slim - pngName,UnityWatermark-edu.a8c472ae,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5375</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,UnityWatermark-edu</content>
@@ -279,7 +279,7 @@ FirstBundleText slim - 1,UnityWatermark-edu</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5375</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,UnityWatermark-dev.ae1fc174,false</content>
@@ -291,7 +291,7 @@ FirstBundleText slim - pngName,UnityWatermark-dev.ae1fc174,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,UnityWatermark-dev</content>
@@ -303,7 +303,7 @@ FirstBundleText slim - 1,UnityWatermark-dev</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,WarningSign.59b8d955,false</content>
@@ -315,7 +315,7 @@ FirstBundleText slim - pngName,WarningSign.59b8d955,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,WarningSign</content>
@@ -327,7 +327,7 @@ FirstBundleText slim - 1,WarningSign</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,UnityWatermark-proto.5084375a,false</content>
@@ -339,7 +339,7 @@ FirstBundleText slim - pngName,UnityWatermark-proto.5084375a,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,UnityWatermark-proto</content>
@@ -351,7 +351,7 @@ FirstBundleText slim - 1,UnityWatermark-proto</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,UnityWatermarkPlugin-beta.52403834,false</content>
@@ -363,7 +363,7 @@ FirstBundleText slim - pngName,UnityWatermarkPlugin-beta.52403834,false</content
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,UnityWatermarkPlugin-beta</content>
@@ -375,7 +375,7 @@ FirstBundleText slim - 1,UnityWatermarkPlugin-beta</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,box.643f5df8,false</content>
@@ -387,7 +387,7 @@ FirstBundleText slim - pngName,box.643f5df8,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,box</content>
@@ -399,7 +399,7 @@ FirstBundleText slim - 1,box</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,button active.c15aedb7,false</content>
@@ -411,7 +411,7 @@ FirstBundleText slim - pngName,button active.c15aedb7,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,button active</content>
@@ -423,7 +423,7 @@ FirstBundleText slim - 1,button active</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,button hover.42efb15e,false</content>
@@ -435,7 +435,7 @@ FirstBundleText slim - pngName,button hover.42efb15e,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,button hover</content>
@@ -447,7 +447,7 @@ FirstBundleText slim - 1,button hover</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,button on hover.2c40c4b8,false</content>
@@ -459,7 +459,7 @@ FirstBundleText slim - pngName,button on hover.2c40c4b8,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,button on hover</content>
@@ -471,7 +471,7 @@ FirstBundleText slim - 1,button on hover</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,button on.7ff0e5a1,false</content>
@@ -483,7 +483,7 @@ FirstBundleText slim - pngName,button on.7ff0e5a1,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,button on</content>
@@ -495,7 +495,7 @@ FirstBundleText slim - 1,button on</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,button.bdec6b82,false</content>
@@ -507,7 +507,7 @@ FirstBundleText slim - pngName,button.bdec6b82,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,button</content>
@@ -519,7 +519,7 @@ FirstBundleText slim - 1,button</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,horizontal scrollbar thumb.4137b46d,false</content>
@@ -531,7 +531,7 @@ FirstBundleText slim - pngName,horizontal scrollbar thumb.4137b46d,false</conten
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,horizontal scrollbar thumb</content>
@@ -543,7 +543,7 @@ FirstBundleText slim - 1,horizontal scrollbar thumb</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,horizontal scrollbar.0ac38291,false</content>
@@ -555,7 +555,7 @@ FirstBundleText slim - pngName,horizontal scrollbar.0ac38291,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9458</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,horizontal scrollbar</content>
@@ -567,7 +567,7 @@ FirstBundleText slim - 1,horizontal scrollbar</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,horizontalslider.722f02b2,false</content>
@@ -579,7 +579,7 @@ FirstBundleText slim - pngName,horizontalslider.722f02b2,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,horizontalslider</content>
@@ -591,7 +591,7 @@ FirstBundleText slim - 1,horizontalslider</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,slider thumb active.168a62a9,false</content>
@@ -603,7 +603,7 @@ FirstBundleText slim - pngName,slider thumb active.168a62a9,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5385</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,slider thumb active</content>
@@ -615,7 +615,7 @@ FirstBundleText slim - 1,slider thumb active</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,slider thumb.a7acef71,false</content>
@@ -627,7 +627,7 @@ FirstBundleText slim - pngName,slider thumb.a7acef71,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,slider thumb</content>
@@ -639,7 +639,7 @@ FirstBundleText slim - 1,slider thumb</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,slidert humb hover.0c248117,false</content>
@@ -651,7 +651,7 @@ FirstBundleText slim - pngName,slidert humb hover.0c248117,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,slidert humb hover</content>
@@ -663,7 +663,7 @@ FirstBundleText slim - 1,slidert humb hover</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,toggle active.e32a2ca9,false</content>
@@ -675,7 +675,7 @@ FirstBundleText slim - pngName,toggle active.e32a2ca9,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,toggle active</content>
@@ -687,7 +687,7 @@ FirstBundleText slim - 1,toggle active</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,toggle hover.614620f6,false</content>
@@ -699,7 +699,7 @@ FirstBundleText slim - pngName,toggle hover.614620f6,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,toggle hover</content>
@@ -711,7 +711,7 @@ FirstBundleText slim - 1,toggle hover</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,toggle on hover.528d6b34,false</content>
@@ -723,7 +723,7 @@ FirstBundleText slim - pngName,toggle on hover.528d6b34,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,toggle on hover</content>
@@ -735,7 +735,7 @@ FirstBundleText slim - 1,toggle on hover</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,toggle on.1f99750a,false</content>
@@ -747,7 +747,7 @@ FirstBundleText slim - pngName,toggle on.1f99750a,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,toggle on</content>
@@ -759,7 +759,7 @@ FirstBundleText slim - 1,toggle on</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,toggle on active.9d52caeb,false</content>
@@ -771,7 +771,7 @@ FirstBundleText slim - pngName,toggle on active.9d52caeb,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,toggle on active</content>
@@ -783,7 +783,7 @@ FirstBundleText slim - 1,toggle on active</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,toggle.6eafbcb0,false</content>
@@ -795,7 +795,7 @@ FirstBundleText slim - pngName,toggle.6eafbcb0,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,toggle</content>
@@ -807,7 +807,7 @@ FirstBundleText slim - 1,toggle</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,vertical scrollbar thumb.7ba97313,false</content>
@@ -819,7 +819,7 @@ FirstBundleText slim - pngName,vertical scrollbar thumb.7ba97313,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,vertical scrollbar thumb</content>
@@ -831,7 +831,7 @@ FirstBundleText slim - 1,vertical scrollbar thumb</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,vertical scrollbar.d38290f1,false</content>
@@ -843,7 +843,7 @@ FirstBundleText slim - pngName,vertical scrollbar.d38290f1,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,vertical scrollbar</content>
@@ -855,7 +855,7 @@ FirstBundleText slim - 1,vertical scrollbar</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9468</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,verticalslider.58266f5f,false</content>
@@ -867,7 +867,7 @@ FirstBundleText slim - pngName,verticalslider.58266f5f,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9478</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,verticalslider</content>
@@ -879,7 +879,7 @@ FirstBundleText slim - 1,verticalslider</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9478</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,window on.38a76040,false</content>
@@ -891,7 +891,7 @@ FirstBundleText slim - pngName,window on.38a76040,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9478</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,window on</content>
@@ -903,7 +903,7 @@ FirstBundleText slim - 1,window on</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9478</timestamp>
+  <timestamp>23:29:56:5395</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,window.a62d1258,false</content>
@@ -915,7 +915,7 @@ FirstBundleText slim - pngName,window.a62d1258,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9478</timestamp>
+  <timestamp>23:29:56:5426</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,window</content>
@@ -927,7 +927,7 @@ FirstBundleText slim - 1,window</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9478</timestamp>
+  <timestamp>23:29:56:5435</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,textfield.a75d69ec,false</content>
@@ -939,7 +939,7 @@ FirstBundleText slim - pngName,textfield.a75d69ec,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9503</timestamp>
+  <timestamp>23:29:56:5435</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,textfield</content>
@@ -951,7 +951,7 @@ FirstBundleText slim - 1,textfield</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9503</timestamp>
+  <timestamp>23:29:56:5435</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,textfield on.f2c2fb5c,false</content>
@@ -963,7 +963,7 @@ FirstBundleText slim - pngName,textfield on.f2c2fb5c,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9503</timestamp>
+  <timestamp>23:29:56:5435</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,textfield on</content>
@@ -975,7 +975,7 @@ FirstBundleText slim - 1,textfield on</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9503</timestamp>
+  <timestamp>23:29:56:5435</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,textfield hover.8c7ae9d8,false</content>
@@ -987,7 +987,7 @@ FirstBundleText slim - pngName,textfield hover.8c7ae9d8,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9503</timestamp>
+  <timestamp>23:29:56:5435</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,textfield hover</content>
@@ -999,7 +999,7 @@ FirstBundleText slim - 1,textfield hover</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9513</timestamp>
+  <timestamp>23:29:56:5445</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 FirstBundleText slim - pngName,UnitySplash-HolographicTrackingLoss.cbf38e69,false</content>
@@ -1011,7 +1011,7 @@ FirstBundleText slim - pngName,UnitySplash-HolographicTrackingLoss.cbf38e69,fals
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9513</timestamp>
+  <timestamp>23:29:56:5445</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 FirstBundleText slim - 1,UnitySplash-HolographicTrackingLoss</content>
@@ -1023,7 +1023,7 @@ FirstBundleText slim - 1,UnitySplash-HolographicTrackingLoss</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9998</timestamp>
+  <timestamp>23:29:56:5925</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Font Texture.8f00b204,false</content>
@@ -1035,7 +1035,7 @@ AssetBundleText slim - pngName,Font Texture.8f00b204,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:02:9998</timestamp>
+  <timestamp>23:29:56:5935</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Font Texture.8f00b204,false</content>
@@ -1047,7 +1047,7 @@ AssetBundleText slim - pngName,Font Texture.8f00b204,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0008</timestamp>
+  <timestamp>23:29:56:5955</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,GameIcon.94d033fd,false</content>
@@ -1059,7 +1059,7 @@ AssetBundleText slim - pngName,GameIcon.94d033fd,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0018</timestamp>
+  <timestamp>23:29:56:5955</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,jindudi.e57e0d24,false</content>
@@ -1071,7 +1071,7 @@ AssetBundleText slim - pngName,jindudi.e57e0d24,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0018</timestamp>
+  <timestamp>23:29:56:5955</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Font Texture.8f00b204,false</content>
@@ -1083,7 +1083,7 @@ AssetBundleText slim - pngName,Font Texture.8f00b204,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0018</timestamp>
+  <timestamp>23:29:56:5955</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,jindu.77f56b7b,false</content>
@@ -1095,7 +1095,7 @@ AssetBundleText slim - pngName,jindu.77f56b7b,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0028</timestamp>
+  <timestamp>23:29:56:5965</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,12.951df28b,false</content>
@@ -1107,7 +1107,7 @@ AssetBundleText slim - pngName,12.951df28b,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0117</timestamp>
+  <timestamp>23:29:56:6123</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Background.665e03a7,false</content>
@@ -1119,7 +1119,7 @@ AssetBundleText slim - pngName,Background.665e03a7,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0420</timestamp>
+  <timestamp>23:29:56:6354</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Bg.733f4a1b,false</content>
@@ -1131,7 +1131,7 @@ AssetBundleText slim - pngName,Bg.733f4a1b,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0430</timestamp>
+  <timestamp>23:29:56:6379</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Title.67f6ba37,false</content>
@@ -1143,7 +1143,7 @@ AssetBundleText slim - pngName,Title.67f6ba37,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0450</timestamp>
+  <timestamp>23:29:56:6389</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,2048经典Icon.63f7da46,false</content>
@@ -1155,7 +1155,7 @@ AssetBundleText slim - pngName,2048经典Icon.63f7da46,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0470</timestamp>
+  <timestamp>23:29:56:6409</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,TextAdventureIcon.2813faf3,false</content>
@@ -1167,7 +1167,7 @@ AssetBundleText slim - pngName,TextAdventureIcon.2813faf3,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0480</timestamp>
+  <timestamp>23:29:56:6429</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,HeartIcon.6702ded7,false</content>
@@ -1179,7 +1179,7 @@ AssetBundleText slim - pngName,HeartIcon.6702ded7,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0485</timestamp>
+  <timestamp>23:29:56:6429</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,jinbixinxidibai.cd214f14,false</content>
@@ -1191,7 +1191,7 @@ AssetBundleText slim - pngName,jinbixinxidibai.cd214f14,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0496</timestamp>
+  <timestamp>23:29:56:6449</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,PutBlockIcon.d6447cc8,false</content>
@@ -1203,7 +1203,7 @@ AssetBundleText slim - pngName,PutBlockIcon.d6447cc8,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0509</timestamp>
+  <timestamp>23:29:56:6459</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,VibrateIcon.f9533c4d,false</content>
@@ -1215,7 +1215,7 @@ AssetBundleText slim - pngName,VibrateIcon.f9533c4d,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0519</timestamp>
+  <timestamp>23:29:56:6469</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,kaiguandi.4cb92370,false</content>
@@ -1227,7 +1227,7 @@ AssetBundleText slim - pngName,kaiguandi.4cb92370,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0529</timestamp>
+  <timestamp>23:29:56:6490</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,ItemBG.39589f7e,false</content>
@@ -1239,7 +1239,7 @@ AssetBundleText slim - pngName,ItemBG.39589f7e,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0529</timestamp>
+  <timestamp>23:29:56:6490</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Repeat.8f00b204,false</content>
@@ -1251,7 +1251,7 @@ AssetBundleText slim - pngName,Repeat.8f00b204,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0539</timestamp>
+  <timestamp>23:29:56:6490</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Button1.f8f78102,false</content>
@@ -1263,7 +1263,7 @@ AssetBundleText slim - pngName,Button1.f8f78102,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0539</timestamp>
+  <timestamp>23:29:56:6490</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Line.0b9dc128,false</content>
@@ -1275,7 +1275,7 @@ AssetBundleText slim - pngName,Line.0b9dc128,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0539</timestamp>
+  <timestamp>23:29:56:6490</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Line.1c1a32be,false</content>
@@ -1287,7 +1287,19 @@ AssetBundleText slim - pngName,Line.1c1a32be,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0539</timestamp>
+  <timestamp>23:29:56:6530</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|string|bool
+AssetBundleText slim - pngName,glow1.4637c48e,false</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.FirstBundle.FirstBundleHandler.slim; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.AppCmdExec.WXSlimFirstBundleExec.todo; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Application.App.process; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>23:29:56:6540</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Stamina.2801c3fe,false</content>
@@ -1299,7 +1311,7 @@ AssetBundleText slim - pngName,Stamina.2801c3fe,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0539</timestamp>
+  <timestamp>23:29:56:6540</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,+.41ef3877,false</content>
@@ -1311,7 +1323,19 @@ AssetBundleText slim - pngName,+.41ef3877,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0549</timestamp>
+  <timestamp>23:29:56:6550</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|string|bool
+AssetBundleText slim - pngName,Heavy Smile - Cartoon.f8f0c0b0,false</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.FirstBundle.FirstBundleHandler.slim; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.AppCmdExec.WXSlimFirstBundleExec.todo; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Application.App.process; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>23:29:56:6550</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,HelpBtn.88ed7bb9,false</content>
@@ -1323,7 +1347,7 @@ AssetBundleText slim - pngName,HelpBtn.88ed7bb9,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0549</timestamp>
+  <timestamp>23:29:56:6550</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Circle.7b6961ac,false</content>
@@ -1335,7 +1359,7 @@ AssetBundleText slim - pngName,Circle.7b6961ac,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0559</timestamp>
+  <timestamp>23:29:56:6565</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,DrawLineIcon.98f490f2,false</content>
@@ -1347,7 +1371,7 @@ AssetBundleText slim - pngName,DrawLineIcon.98f490f2,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0579</timestamp>
+  <timestamp>23:29:56:6588</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,x2BlockIcon.e75f9797,false</content>
@@ -1359,7 +1383,7 @@ AssetBundleText slim - pngName,x2BlockIcon.e75f9797,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0579</timestamp>
+  <timestamp>23:29:56:6588</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Forward.8f00b204,false</content>
@@ -1371,7 +1395,7 @@ AssetBundleText slim - pngName,Forward.8f00b204,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0579</timestamp>
+  <timestamp>23:29:56:6588</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,kaioguananniu.9d4022a8,false</content>
@@ -1383,7 +1407,7 @@ AssetBundleText slim - pngName,kaioguananniu.9d4022a8,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0579</timestamp>
+  <timestamp>23:29:56:6588</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Home.8f00b204,false</content>
@@ -1395,7 +1419,7 @@ AssetBundleText slim - pngName,Home.8f00b204,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0579</timestamp>
+  <timestamp>23:29:56:6588</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Coin 1.8f00b204,false</content>
@@ -1407,7 +1431,7 @@ AssetBundleText slim - pngName,Coin 1.8f00b204,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0579</timestamp>
+  <timestamp>23:29:56:6588</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Arrow - Left.8f00b204,false</content>
@@ -1419,7 +1443,7 @@ AssetBundleText slim - pngName,Arrow - Left.8f00b204,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0579</timestamp>
+  <timestamp>23:29:56:6588</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,StageLevelBg.8f00b204,false</content>
@@ -1431,7 +1455,7 @@ AssetBundleText slim - pngName,StageLevelBg.8f00b204,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0579</timestamp>
+  <timestamp>23:29:56:6588</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Button.79662514,false</content>
@@ -1443,7 +1467,7 @@ AssetBundleText slim - pngName,Button.79662514,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0579</timestamp>
+  <timestamp>23:29:56:6598</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,jinbixinxidi.015b6ce4,false</content>
@@ -1455,7 +1479,7 @@ AssetBundleText slim - pngName,jinbixinxidi.015b6ce4,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0579</timestamp>
+  <timestamp>23:29:56:6598</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Settings.8f00b204,false</content>
@@ -1467,7 +1491,7 @@ AssetBundleText slim - pngName,Settings.8f00b204,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0590</timestamp>
+  <timestamp>23:29:56:6608</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Music.21a268ba,false</content>
@@ -1479,7 +1503,7 @@ AssetBundleText slim - pngName,Music.21a268ba,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0600</timestamp>
+  <timestamp>23:29:56:6608</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Circle200.d25148ce,false</content>
@@ -1491,7 +1515,7 @@ AssetBundleText slim - pngName,Circle200.d25148ce,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0610</timestamp>
+  <timestamp>23:29:56:6618</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Music - Note.3949fe52,false</content>
@@ -1503,7 +1527,7 @@ AssetBundleText slim - pngName,Music - Note.3949fe52,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0610</timestamp>
+  <timestamp>23:29:56:6628</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Lock.8d49f2ca,false</content>
@@ -1515,7 +1539,19 @@ AssetBundleText slim - pngName,Lock.8d49f2ca,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0610</timestamp>
+  <timestamp>23:29:56:6638</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|string|bool
+AssetBundleText slim - pngName,RemoveBlockIcon.3989631e,false</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.FirstBundle.FirstBundleHandler.slim; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.AppCmdExec.WXSlimFirstBundleExec.todo; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Application.App.process; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>23:29:56:6638</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Clock.8f00b204,false</content>
@@ -1527,7 +1563,7 @@ AssetBundleText slim - pngName,Clock.8f00b204,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0610</timestamp>
+  <timestamp>23:29:56:6648</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Circle.4cabf80f,false</content>
@@ -1539,7 +1575,7 @@ AssetBundleText slim - pngName,Circle.4cabf80f,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0650</timestamp>
+  <timestamp>23:29:56:6684</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,UIMask.09363183,false</content>
@@ -1551,7 +1587,7 @@ AssetBundleText slim - pngName,UIMask.09363183,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0650</timestamp>
+  <timestamp>23:29:56:6684</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 AssetBundleText slim - 1,UIMask</content>
@@ -1563,7 +1599,7 @@ AssetBundleText slim - 1,UIMask</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0650</timestamp>
+  <timestamp>23:29:56:6684</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,ShaerIcon.60d96dcf,false</content>
@@ -1575,7 +1611,7 @@ AssetBundleText slim - pngName,ShaerIcon.60d96dcf,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0650</timestamp>
+  <timestamp>23:29:56:6694</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Bow.063b3aff,false</content>
@@ -1587,7 +1623,7 @@ AssetBundleText slim - pngName,Bow.063b3aff,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0660</timestamp>
+  <timestamp>23:29:56:6694</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,White1px.f8d314fe,false</content>
@@ -1599,7 +1635,7 @@ AssetBundleText slim - pngName,White1px.f8d314fe,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0660</timestamp>
+  <timestamp>23:29:56:6694</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 AssetBundleText slim - 1,White1px</content>
@@ -1611,7 +1647,7 @@ AssetBundleText slim - 1,White1px</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0660</timestamp>
+  <timestamp>23:29:56:6694</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,xad.9cb5d0f7,false</content>
@@ -1623,7 +1659,7 @@ AssetBundleText slim - pngName,xad.9cb5d0f7,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0660</timestamp>
+  <timestamp>23:29:56:6694</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,SubStab.56dcbbad,false</content>
@@ -1635,7 +1671,7 @@ AssetBundleText slim - pngName,SubStab.56dcbbad,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0660</timestamp>
+  <timestamp>23:29:56:6694</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,unlit-bomb.3c987fe0,false</content>
@@ -1647,7 +1683,7 @@ AssetBundleText slim - pngName,unlit-bomb.3c987fe0,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0660</timestamp>
+  <timestamp>23:29:56:6694</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,bin.dfb14c52,false</content>
@@ -1659,7 +1695,7 @@ AssetBundleText slim - pngName,bin.dfb14c52,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0660</timestamp>
+  <timestamp>23:29:56:6694</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,height.07b488bc,false</content>
@@ -1671,7 +1707,7 @@ AssetBundleText slim - pngName,height.07b488bc,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0670</timestamp>
+  <timestamp>23:29:56:6704</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Star.add0c35d,false</content>
@@ -1683,7 +1719,7 @@ AssetBundleText slim - pngName,Star.add0c35d,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0670</timestamp>
+  <timestamp>23:29:56:6704</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,handles_aaline.d2f9c6f7,false</content>
@@ -1695,7 +1731,7 @@ AssetBundleText slim - pngName,handles_aaline.d2f9c6f7,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0670</timestamp>
+  <timestamp>23:29:56:6704</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Arrow.ca908064,false</content>
@@ -1707,19 +1743,7 @@ AssetBundleText slim - pngName,Arrow.ca908064,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0695</timestamp>
-  <msgtype>MsgMixture</msgtype>
-  <content>string|string|bool
-AssetBundleText slim - pngName,merged.81974ae5,false</content>
-  <stackFrames>
-[CALL STACK][0]: Method:WXTextureTools.Application.FirstBundle.FirstBundleHandler.slim; File:.0
-[CALL STACK][1]: Method:WXTextureTools.Application.AppCmdExec.WXSlimFirstBundleExec.todo; File:.0
-[CALL STACK][2]: Method:WXTextureTools.Application.App.process; File:.0
-</stackFrames>
-</wxlog>
-<wxlog>
-  <threadId>#main</threadId>
-  <timestamp>20:45:03:0705</timestamp>
+  <timestamp>23:29:56:6704</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Square.cf90f119,false</content>
@@ -1731,7 +1755,7 @@ AssetBundleText slim - pngName,Square.cf90f119,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0705</timestamp>
+  <timestamp>23:29:56:6714</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,X Icon.8f00b204,false</content>
@@ -1743,19 +1767,7 @@ AssetBundleText slim - pngName,X Icon.8f00b204,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0705</timestamp>
-  <msgtype>MsgMixture</msgtype>
-  <content>string|string|bool
-AssetBundleText slim - pngName,undo.8241b633,false</content>
-  <stackFrames>
-[CALL STACK][0]: Method:WXTextureTools.Application.FirstBundle.FirstBundleHandler.slim; File:.0
-[CALL STACK][1]: Method:WXTextureTools.Application.AppCmdExec.WXSlimFirstBundleExec.todo; File:.0
-[CALL STACK][2]: Method:WXTextureTools.Application.App.process; File:.0
-</stackFrames>
-</wxlog>
-<wxlog>
-  <threadId>#main</threadId>
-  <timestamp>20:45:03:0715</timestamp>
+  <timestamp>23:29:56:6714</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Best.6.7cb82db8,false</content>
@@ -1767,7 +1779,7 @@ AssetBundleText slim - pngName,Best.6.7cb82db8,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0715</timestamp>
+  <timestamp>23:29:56:6714</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Mine.7ed8b735,false</content>
@@ -1779,7 +1791,7 @@ AssetBundleText slim - pngName,Mine.7ed8b735,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0715</timestamp>
+  <timestamp>23:29:56:6714</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,number.80a272c3,false</content>
@@ -1791,7 +1803,7 @@ AssetBundleText slim - pngName,number.80a272c3,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0715</timestamp>
+  <timestamp>23:29:56:6714</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,WhiteIcon.3b03cc3e,false</content>
@@ -1803,7 +1815,7 @@ AssetBundleText slim - pngName,WhiteIcon.3b03cc3e,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0715</timestamp>
+  <timestamp>23:29:56:6714</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,RefreshIcon.f7d9fa12,false</content>
@@ -1815,7 +1827,7 @@ AssetBundleText slim - pngName,RefreshIcon.f7d9fa12,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0745</timestamp>
+  <timestamp>23:29:56:6734</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,NumBg.55f76012,false</content>
@@ -1827,7 +1839,7 @@ AssetBundleText slim - pngName,NumBg.55f76012,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0745</timestamp>
+  <timestamp>23:29:56:6744</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Electricity.96709e8f,false</content>
@@ -1839,7 +1851,7 @@ AssetBundleText slim - pngName,Electricity.96709e8f,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0745</timestamp>
+  <timestamp>23:29:56:6744</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Wall.66d95cb2,false</content>
@@ -1851,7 +1863,31 @@ AssetBundleText slim - pngName,Wall.66d95cb2,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0745</timestamp>
+  <timestamp>23:29:56:6744</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|string|bool
+AssetBundleText slim - pngName,Confetti.9aa399ff,false</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.FirstBundle.FirstBundleHandler.slim; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.AppCmdExec.WXSlimFirstBundleExec.todo; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Application.App.process; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>23:29:56:6789</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|string|bool
+AssetBundleText slim - pngName,titleBg.f7aef017,false</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.FirstBundle.FirstBundleHandler.slim; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.AppCmdExec.WXSlimFirstBundleExec.todo; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Application.App.process; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>23:29:56:6789</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Font Texture.8f00b204,false</content>
@@ -1863,7 +1899,19 @@ AssetBundleText slim - pngName,Font Texture.8f00b204,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0745</timestamp>
+  <timestamp>23:29:56:6789</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|string|bool
+AssetBundleText slim - pngName,4Star.8cdc329c,false</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.FirstBundle.FirstBundleHandler.slim; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.AppCmdExec.WXSlimFirstBundleExec.todo; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Application.App.process; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>23:29:56:6799</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,AD.ac2ff1ae,false</content>
@@ -1875,7 +1923,7 @@ AssetBundleText slim - pngName,AD.ac2ff1ae,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0755</timestamp>
+  <timestamp>23:29:56:6799</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,yuyananniu.a4642332,false</content>
@@ -1887,7 +1935,7 @@ AssetBundleText slim - pngName,yuyananniu.a4642332,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0755</timestamp>
+  <timestamp>23:29:56:6799</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,BlockGameBg.20835340,false</content>
@@ -1899,7 +1947,7 @@ AssetBundleText slim - pngName,BlockGameBg.20835340,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0755</timestamp>
+  <timestamp>23:29:56:6799</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,UIFoldoutClosed.89295238,false</content>
@@ -1911,7 +1959,7 @@ AssetBundleText slim - pngName,UIFoldoutClosed.89295238,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0755</timestamp>
+  <timestamp>23:29:56:6799</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 AssetBundleText slim - 1,UIFoldoutClosed</content>
@@ -1923,7 +1971,7 @@ AssetBundleText slim - 1,UIFoldoutClosed</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0765</timestamp>
+  <timestamp>23:29:56:6809</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Heart.7fff0bef,false</content>
@@ -1935,7 +1983,19 @@ AssetBundleText slim - pngName,Heart.7fff0bef,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0775</timestamp>
+  <timestamp>23:29:56:6839</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|string|bool
+AssetBundleText slim - pngName,Square2_White.08cd124e,false</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.FirstBundle.FirstBundleHandler.slim; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.AppCmdExec.WXSlimFirstBundleExec.todo; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Application.App.process; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>23:29:56:6839</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,UndoBtn.acdd1403,false</content>
@@ -1947,10 +2007,10 @@ AssetBundleText slim - pngName,UndoBtn.acdd1403,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0775</timestamp>
+  <timestamp>23:29:56:6849</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
-AssetBundleText slim - pngName,Brike.9d9d93ca,false</content>
+AssetBundleText slim - pngName,Bg.96f5579d,false</content>
   <stackFrames>
 [CALL STACK][0]: Method:WXTextureTools.Application.FirstBundle.FirstBundleHandler.slim; File:.0
 [CALL STACK][1]: Method:WXTextureTools.Application.AppCmdExec.WXSlimFirstBundleExec.todo; File:.0
@@ -1959,7 +2019,7 @@ AssetBundleText slim - pngName,Brike.9d9d93ca,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0775</timestamp>
+  <timestamp>23:29:56:6849</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Spring.08cd32ce,false</content>
@@ -1971,7 +2031,7 @@ AssetBundleText slim - pngName,Spring.08cd32ce,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0775</timestamp>
+  <timestamp>23:29:56:6849</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Door.1ee9fb61,false</content>
@@ -1983,7 +2043,7 @@ AssetBundleText slim - pngName,Door.1ee9fb61,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0775</timestamp>
+  <timestamp>23:29:56:6849</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Circle.df429c40,false</content>
@@ -1995,7 +2055,7 @@ AssetBundleText slim - pngName,Circle.df429c40,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0775</timestamp>
+  <timestamp>23:29:56:6849</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,RankBntIcon.92c0320c,false</content>
@@ -2007,7 +2067,7 @@ AssetBundleText slim - pngName,RankBntIcon.92c0320c,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0791</timestamp>
+  <timestamp>23:29:56:6859</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,UIFoldoutOpened.84255435,false</content>
@@ -2019,7 +2079,7 @@ AssetBundleText slim - pngName,UIFoldoutOpened.84255435,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0791</timestamp>
+  <timestamp>23:29:56:6859</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 AssetBundleText slim - 1,UIFoldoutOpened</content>
@@ -2031,7 +2091,7 @@ AssetBundleText slim - 1,UIFoldoutOpened</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0801</timestamp>
+  <timestamp>23:29:56:6859</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Circle.89da51d8,false</content>
@@ -2043,7 +2103,7 @@ AssetBundleText slim - pngName,Circle.89da51d8,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0801</timestamp>
+  <timestamp>23:29:56:6869</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,MiniBg.26969aa0,false</content>
@@ -2055,7 +2115,7 @@ AssetBundleText slim - pngName,MiniBg.26969aa0,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0801</timestamp>
+  <timestamp>23:29:56:6869</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,backBtn.c8828b40,false</content>
@@ -2067,7 +2127,7 @@ AssetBundleText slim - pngName,backBtn.c8828b40,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0801</timestamp>
+  <timestamp>23:29:56:6869</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,UICheckMark.d924f22b,false</content>
@@ -2079,7 +2139,7 @@ AssetBundleText slim - pngName,UICheckMark.d924f22b,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0801</timestamp>
+  <timestamp>23:29:56:6869</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 AssetBundleText slim - 1,UICheckMark</content>
@@ -2091,7 +2151,7 @@ AssetBundleText slim - 1,UICheckMark</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0822</timestamp>
+  <timestamp>23:29:56:6890</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,hq.958c2062,false</content>
@@ -2103,7 +2163,7 @@ AssetBundleText slim - pngName,hq.958c2062,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0822</timestamp>
+  <timestamp>23:29:56:6890</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,changdian.5301f38f,false</content>
@@ -2115,7 +2175,7 @@ AssetBundleText slim - pngName,changdian.5301f38f,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0822</timestamp>
+  <timestamp>23:29:56:6890</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,width.abde06bd,false</content>
@@ -2127,7 +2187,7 @@ AssetBundleText slim - pngName,width.abde06bd,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0822</timestamp>
+  <timestamp>23:29:56:6890</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Ghost.a40da92b,false</content>
@@ -2139,7 +2199,19 @@ AssetBundleText slim - pngName,Ghost.a40da92b,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0832</timestamp>
+  <timestamp>23:29:56:6900</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|string|bool
+AssetBundleText slim - pngName,Fear - Cartoon.ec4d77ea,false</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.FirstBundle.FirstBundleHandler.slim; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.AppCmdExec.WXSlimFirstBundleExec.todo; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Application.App.process; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>23:29:56:6900</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Posion.0426da22,false</content>
@@ -2151,7 +2223,7 @@ AssetBundleText slim - pngName,Posion.0426da22,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0832</timestamp>
+  <timestamp>23:29:56:6900</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,hummer.fc1c6af2,false</content>
@@ -2163,7 +2235,7 @@ AssetBundleText slim - pngName,hummer.fc1c6af2,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0832</timestamp>
+  <timestamp>23:29:56:6910</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Block.513acb5f,false</content>
@@ -2175,7 +2247,7 @@ AssetBundleText slim - pngName,Block.513acb5f,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0872</timestamp>
+  <timestamp>23:29:56:6950</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,smoke_01.1b516b19,false</content>
@@ -2187,7 +2259,7 @@ AssetBundleText slim - pngName,smoke_01.1b516b19,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0872</timestamp>
+  <timestamp>23:29:56:6950</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Pause.8f00b204,false</content>
@@ -2199,7 +2271,7 @@ AssetBundleText slim - pngName,Pause.8f00b204,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0872</timestamp>
+  <timestamp>23:29:56:6950</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,UIElement8px.f411169b,false</content>
@@ -2211,7 +2283,7 @@ AssetBundleText slim - pngName,UIElement8px.f411169b,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0872</timestamp>
+  <timestamp>23:29:56:6950</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string
 AssetBundleText slim - 1,UIElement8px</content>
@@ -2223,7 +2295,7 @@ AssetBundleText slim - 1,UIElement8px</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0887</timestamp>
+  <timestamp>23:29:56:6950</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Hexagon.4985c210,false</content>
@@ -2235,7 +2307,7 @@ AssetBundleText slim - pngName,Hexagon.4985c210,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0887</timestamp>
+  <timestamp>23:29:56:6965</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Quad.b6dd544b,false</content>
@@ -2247,7 +2319,7 @@ AssetBundleText slim - pngName,Quad.b6dd544b,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0887</timestamp>
+  <timestamp>23:29:56:6965</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,xiaodian.2d1f048c,false</content>
@@ -2259,7 +2331,19 @@ AssetBundleText slim - pngName,xiaodian.2d1f048c,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0887</timestamp>
+  <timestamp>23:29:56:6975</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|string|bool
+AssetBundleText slim - pngName,EffectBg.0f93b374,false</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.FirstBundle.FirstBundleHandler.slim; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.AppCmdExec.WXSlimFirstBundleExec.todo; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Application.App.process; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>23:29:56:6975</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,Stab.fa6ebe0e,false</content>
@@ -2271,7 +2355,7 @@ AssetBundleText slim - pngName,Stab.fa6ebe0e,false</content>
 </wxlog>
 <wxlog>
   <threadId>#main</threadId>
-  <timestamp>20:45:03:0912</timestamp>
+  <timestamp>23:29:56:6995</timestamp>
   <msgtype>MsgMixture</msgtype>
   <content>string|string|bool
 AssetBundleText slim - pngName,bq.8bd023fd,false</content>

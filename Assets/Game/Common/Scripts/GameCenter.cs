@@ -23,6 +23,7 @@ public class GameCenter : MonoSingleton<GameCenter>
             case GameState.Home:
                 CameraController.Instance.Reset();
                 GC.Collect();
+                Resources.UnloadUnusedAssets();
                 WXSDKManager.Instance.CloseCustomAd();
                 break;
             case GameState.Game:

@@ -13,6 +13,7 @@ public enum GameType
     Minesweeper, // 扫雷
     X2BlockGame, // 2048下落
     RemoveBlock,// 方块移除
+    NumDrawLine, // 数字连线
 }
 
 public static class GameTypeExtension

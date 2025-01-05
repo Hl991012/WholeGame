@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using NMNH.Utility;
 using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -16,15 +17,28 @@ namespace NumDrawLine
         [SerializeField] private SingleCellItem singleCellItemPrefab;
         [SerializeField] private LineRenderer lineRenderer;
         [SerializeField] private ParticleSystem mergeEffect;
+        [SerializeField] private NumDrawLineGameResultPanel numDrawLineGameResultPanel;
         
         private SingleCellItem[,] map;
 
         private int[,] mapSaveData;
 
-        private void Start()
+        public void StartGame()
         {
-            map = new SingleCellItem[mapSize.x,mapSize.y];
-            mapSaveData = new int[mapSize.x, mapSize.y];
+            map ??= new SingleCellItem[mapSize.x,mapSize.y];
+            mapSaveData ??= new int[mapSize.x, mapSize.y];
+            
+            if (CheckIsGameOver())
+            {
+                NumDrawLineGameManager.Instance.ResetGameSaveInfo();
+            }
+            
+            InitMap();
+        }
+
+        public void ReplayGame()
+        {
+            NumDrawLineGameManager.Instance.ResetGameSaveInfo();
             InitMap();
         }
 
@@ -34,7 +48,7 @@ namespace NumDrawLine
             // 创建格子,判断有没有存档，如果有存档，则加载存档，否则随机生成对应的元素
             var tempSaveMapData = NumDrawLineGameManager.Instance.Data.MapData;
             if (tempSaveMapData != null)
-            {
+            { 
                 for (var i = 0; i < mapSize.x; i++)
                 {
                     for (var j = 0; j < mapSize.y; j++) 
@@ -83,6 +97,9 @@ namespace NumDrawLine
             RefreshLine();
             needRefreshLine = true;
             singleCellItem.ShowChooseAnim();
+            
+            AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.PutUpBlock);
+            VibrateHelper.VibrateMedium();
         }
 
         private void OnPointerEnter(PointerEventData eventData, SingleCellItem singleCellItem)
@@ -112,6 +129,8 @@ namespace NumDrawLine
                         chooseItems.Add(singleCellItem);
                         RefreshLine();
                         singleCellItem.ShowChooseAnim();
+                        AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.PutUpBlock);
+                        VibrateHelper.VibrateMedium();
                     }
                     else if(chooseItems.Count > 1) // 如果只选择了多个，则判断当前数字是否相等或者是当期数字的二倍
                     {
@@ -122,6 +141,8 @@ namespace NumDrawLine
                             chooseItems.Add(singleCellItem);
                             RefreshLine();
                             singleCellItem.ShowChooseAnim();
+                            AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.PutUpBlock);
+                            VibrateHelper.VibrateMedium();
                         }
                     }
                 }
@@ -157,7 +178,8 @@ namespace NumDrawLine
                         map[item.CellDataModel.Coordinate.x, item.CellDataModel.Coordinate.y] = null;
                     }
                 }
-
+                AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.Win);
+                VibrateHelper.VibrateHeavy();
                 //播放粒子动画
                 mergeEffect.transform.position = lastChooseItem.transform.position;
                 mergeEffect.Play();
@@ -254,6 +276,7 @@ namespace NumDrawLine
             if (CheckIsGameOver())
             {
                 Debug.LogError("游戏失败");
+                numDrawLineGameResultPanel.Show();
             }
         }
 
@@ -460,7 +483,7 @@ namespace NumDrawLine
 
         #region 使用道具相关
     
-        private BoosterType curUseBoosterType;
+        private BoosterType curUseBoosterType = BoosterType.None;
 
         public Action<BoosterType> OnBoosterStateChanged;
 
@@ -518,11 +541,5 @@ namespace NumDrawLine
         }
 
         #endregion
-    }
-
-    public enum BoosterType
-    {
-        None,
-        Destroy,
     }
 }
