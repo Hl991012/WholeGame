@@ -12,6 +12,8 @@ public class WXSDKManager : Singleton<WXSDKManager>
     private static WXInterstitialAd wxInterstitialAd;
 
     private static WXCustomAd wXCustomAd;
+    
+    private static WXCustomAd wXCustomAd_1;
 
     private Action<WXRewardedVideoAdOnCloseResponse> onCloseRewardedVideoAd;
     private Action onCloseInterstitialVideo;
@@ -69,6 +71,12 @@ public class WXSDKManager : Singleton<WXSDKManager>
                 // OnError?.Invoke();
                 Debug.LogError("自定义广告错误" + result.ToString());
             });
+
+            wXCustomAd_1.OnError((WXADErrorResponse result) =>
+            {
+                // OnError?.Invoke();
+                Debug.LogError("自定义广告错误" + result.ToString());
+            });
         });
 
         var windowWidth = 0;
@@ -96,6 +104,19 @@ public class WXSDKManager : Singleton<WXSDKManager>
                         left = windowWidth / 2 - 144,
                         top = windowHeight - 84,
                         width = windowWidth, 
+                    },
+                });
+                
+                // 展示自定义广告
+                wXCustomAd_1 = WX.CreateCustomAd(new WXCreateCustomAdParam()
+                {
+                    adIntervals = 30,
+                    adUnitId = "adunit-8c7aa40c3efd332e",
+                    style = new CustomStyle()
+                    {
+                        left = windowWidth - 72,
+                        top = 190,
+                        width = 72, 
                     },
                 });
             }
@@ -182,17 +203,17 @@ public class WXSDKManager : Singleton<WXSDKManager>
 
     public void ShowCustomAd()
     {
-        if (!hasInit || wXCustomAd == null)
+        if (!hasInit || wXCustomAd == null || IsShowBanner)
         {
             return;
         }
-        
-        if(GameCenter.Instance.CurGameState == GameCenter.GameState.Home)
-            return;
 
         // Debug.Log("展示自定义广告");
         IsShowBanner = true;
-        wXCustomAd.Show();
+        wXCustomAd.Show(failed: response =>
+        {
+            IsShowBanner = false;
+        });
     }
 
     public void CloseCustomAd()
@@ -204,6 +225,34 @@ public class WXSDKManager : Singleton<WXSDKManager>
         }
         
         wXCustomAd.Hide();
+    }
+    
+    
+    public bool IsShowBanner1 { get; private set; } = false;
+
+    public void ShowCustomAd1()
+    {
+        if (!hasInit || wXCustomAd_1 == null || IsShowBanner1)
+        {
+            return;
+        }
+
+        IsShowBanner1 = true;
+        wXCustomAd_1.Show(failed: response =>
+        {
+            IsShowBanner1 = false;
+        });
+    }
+
+    public void CloseCustomAd1()
+    {
+        IsShowBanner1 = false;
+        if (!hasInit || wXCustomAd_1 == null)
+        {
+            return;
+        }
+        
+        wXCustomAd_1.Hide();
     }
 
     #region 分享相关内容

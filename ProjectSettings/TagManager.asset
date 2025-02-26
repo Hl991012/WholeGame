@@ -18,6 +18,9 @@ TagManager:
   - Star
   - Coin
   - RevivePoint
+  - Brick
+  - Circle
+  - DeadLine
   layers:
   - Default
   - TransparentFX

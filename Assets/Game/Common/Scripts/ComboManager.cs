@@ -93,7 +93,7 @@ public class ComboManager : MonoSingleton<ComboManager>
 
     public ComboStateModel GetComboState(GameType gameType)
     {
-        return allComboStates.GetValueOrDefault(gameType);
+        return allComboStates.TryGetValue(gameType, out var state) ? state : new ComboStateModel();
     }
 
     private void Save()

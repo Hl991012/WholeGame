@@ -1,3 +1,4 @@
+using BlockEliminateGame;
 using DG.Tweening;
 using PuzzleGame;
 using PuzzleGame.Gameplay;
@@ -9,12 +10,14 @@ using UnityEngine.UI;
 public class PutBlockGameOverPanel : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI curScoreTmp;
-    [SerializeField] private TextMeshProUGUI bestScoreTmp;
     [SerializeField] private Button onceAgainBtn;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private Button shareBtn;
+    [SerializeField] private SingleRewardItem[] rewardItems;
     
     private Sequence showAnimSeq;
+
+    private GameModel.RewardModel curRewardModel;
     
     private void Awake()
     {
@@ -32,6 +35,8 @@ public class PutBlockGameOverPanel : MonoBehaviour
                 {
                     gameObject.SetActive(false);
                 });
+            
+            MainSceneCenter.Instance.GetRewardUIPresenter.Init(curRewardModel).Show();
         });
         
         shareBtn.onClick.AddListener(() =>
@@ -41,8 +46,9 @@ public class PutBlockGameOverPanel : MonoBehaviour
         });
     }
 
-    public void Show()
+    public void Show(GameModel.RewardModel rewardModel)
     {
+        gameObject.SetActive(true);
         canvasGroup.alpha = 0;
         showAnimSeq?.Kill();
         onceAgainBtn.interactable = false;
@@ -58,7 +64,18 @@ public class PutBlockGameOverPanel : MonoBehaviour
         
         curScoreTmp.text = UserProgress.Current.GetGameState<GameStateBaseModel>(UserProgress.Current.CurrentGameId).Score
             .ToString();
-        bestScoreTmp.text = UserProgress.Current.GetGameState<GameStateBaseModel>(UserProgress.Current.CurrentGameId).TopScore
-            .ToString();
+
+        curRewardModel = rewardModel;
+        
+        // 刷新奖励
+        for (var i = 0; i < rewardItems.Length; i++)
+        {
+            rewardItems[i].gameObject.SetActive(i < 1);
+
+            if (i < 1)
+            {
+                rewardItems[i].RefreshView(rewardModel);
+            }
+        }
     }
 }

@@ -14,7 +14,9 @@ namespace PutBlockGame
         [SerializeField] private GameObject game2048Prefab;
         [SerializeField] private X2BlocksGameController x2BlocksGameController;
         [SerializeField] private RemoveBlockGamePlayRoom removeBlockGamePlayRoom;
-    
+        [SerializeField] private GameObject circleGame;
+        [field: SerializeField] public BlockEliminateGame.BlockEliminateGame BlockEliminateGame { get; set; }
+
         public void RefreshView()
         {
             putBlockGameController.gameObject.SetActive(GameCenter.Instance.CurGameType == GameType.PutBlockGame);
@@ -23,6 +25,9 @@ namespace PutBlockGame
             game2048Prefab.gameObject.SetActive(GameCenter.Instance.CurGameType == GameType.Game2048);
             x2BlocksGameController.gameObject.SetActive(GameCenter.Instance.CurGameType == GameType.X2BlockGame);
             removeBlockGamePlayRoom.gameObject.SetActive(GameCenter.Instance.CurGameType == GameType.RemoveBlock);
+            BlockEliminateGame.gameObject.SetActive(GameCenter.Instance.CurGameType == GameType.BlockEliminateGame);
+            circleGame.SetActive(GameCenter.Instance.CurGameType == GameType.CircleGame);
+            
             switch (GameCenter.Instance.CurGameType)
             {
                 case GameType.PutBlockGame:
@@ -43,6 +48,9 @@ namespace PutBlockGame
                     break;
                 case GameType.RemoveBlock:
                     removeBlockGamePlayRoom.StartGame();
+                    break;
+                case GameType.BlockEliminateGame:
+                    UserProgress.Current.CurrentGameId = BlockEliminateGame.gameObject.name;
                     break;
             }
         }

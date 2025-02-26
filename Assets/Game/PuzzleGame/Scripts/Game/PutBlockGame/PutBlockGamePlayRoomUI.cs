@@ -149,6 +149,7 @@ public class PutBlockGamePlayRoomUI : MonoBehaviour
     {
         addPutAreaBtn.gameObject.SetActive(!putBlockGameState.UnlockedPutArea);
         addPutAreaAdIcon.SetActive(!putBlockGameState.UnlockedPutArea);
+        putBlockGameController.SetExtraFigureEnable(putBlockGameState.UnlockedPutArea);
         RefreshRefreshBooster();
         RefreshUndoBooster();
         

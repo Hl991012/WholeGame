@@ -20,6 +20,7 @@ namespace NMNH.Utility
             Stab,
             PutUpBlock, // 拿起方块
             Drop,
+            CirclePz,
         }
 
         private Dictionary<string, AudioClip> seDict = new ();

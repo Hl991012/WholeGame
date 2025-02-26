@@ -6,13 +6,13 @@ public enum GameType
 {
     None,
     PutBlockGame, // 放置方块
-    PutBlockGameStage, // 放置方块关卡模式
+    BlockEliminateGame, // 放置方块关卡模式
     TextAdventure, // 文字冒险
     DrawLineGame, // 一笔画成
     Game2048, // 2048
-    Minesweeper, // 扫雷
     X2BlockGame, // 2048下落
     RemoveBlock,// 方块移除
+    CircleGame,
 }
 
 public static class GameTypeExtension

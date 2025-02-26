@@ -9,6 +9,7 @@ public enum Direction
 
 public enum BoosterType
 {
+    None = -1,
     Undo = 0,
     ClearBrick = 1,
     ClearNumber = 2,
@@ -18,6 +19,8 @@ public enum BoosterType
     ClearVerticalLine = 6,
     
     Refresh = 10,
-    Help,
+    Help = 11,
+    RemoveHorizontal = 12,
+    RemoveVertical = 13,
 }
 

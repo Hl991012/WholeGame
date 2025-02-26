@@ -1,6 +1,7 @@
 ﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
+using BlockEliminateGame;
 using DG.Tweening;
 using NMNH.Utility;
 using PuzzleGame.Gameplay.Boosters;
@@ -741,8 +742,14 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 // Debug.LogError("更新分数");
             }
             gameState.IsGameOver = true;
-            putBlockGameOverPanel.gameObject.SetActive(true);
-            putBlockGameOverPanel.Show();
+            // 根据当前分数计算得到的金币数量
+            GameModel.RewardModel tempRewardModel = new GameModel.RewardModel()
+            {
+                type = GameModel.RewardModel.RewardType.Coin,
+                quantity = gameState.Score / 500 + 10,
+            };
+            putBlockGameOverPanel.Show(tempRewardModel);
+            BaseUtilities.DealReward(tempRewardModel);
             UserProgress.Current.ClearGameState(ID);
         }
 
@@ -829,6 +836,11 @@ namespace PuzzleGame.Gameplay.Puzzle1010
             }
             gameState.ClearSave();
             SaveGame();
+        }
+
+        public void SetExtraFigureEnable(bool enable)
+        {
+            extraFigureController.gameObject.SetActive(enable);
         }
 
         private bool IsCanPlaceFigure(FigureController figureController)

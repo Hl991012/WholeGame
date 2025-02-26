@@ -1,4 +1,5 @@
 ﻿using System;
+using BlockEliminateGame;
 using PuzzleGame.Themes;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -68,5 +69,16 @@ namespace PuzzleGame.Gameplay
         {
             sprite.color = theme.GetColor(ColorType.Field, ColorIndex);
         }
+        
+        #region 关卡目标相关内容
+
+        public Barrier Barrier { get; private set; }
+
+        public void SetBarrier(Barrier barrier)
+        {
+            Barrier = barrier;
+        }
+
+        #endregion
     }
 }
