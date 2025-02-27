@@ -178,6 +178,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982f56bcdbfdce34989e95e8b388fdf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 1956351132100765795}
+  - {fileID: 1956351131209158708}
+  - {fileID: 1956351132289620616}
+  - {fileID: 1956351131693900645}
   colliders:
   - {fileID: 1956351132100765797}
   - {fileID: 1956351131209158710}

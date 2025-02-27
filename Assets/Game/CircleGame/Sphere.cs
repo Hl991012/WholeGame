@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using NMNH.Utility;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -22,8 +23,17 @@ public class Sphere : MonoBehaviour
                 moveDirection = Quaternion.Euler(0, 0, Random.Range(-35, 35)) * (new Vector3(0, 0.56f, 0) - transform.localPosition);
                 moveDirection.z = 0;
                 moveDirection = Vector3.Normalize(moveDirection);
-                Destroy(other.gameObject);
-                circleConctrol.OnCollisionEnter1();
+                if (other.gameObject.TryGetComponent<SpriteRenderer>(out var temp))
+                {
+                    DOTween.ToAlpha(() => temp.color, val => temp.color = val, 0, 0.5f)
+                        .SetUpdate(true)
+                        .SetLink(gameObject)
+                        .OnComplete(() =>
+                    {
+                        Destroy(other.gameObject);
+                        circleConctrol.OnCollisionEnter1();
+                    });
+                }
                 CircleGameManager.Instance.CurScore++;
                 AudioManager.Instance.PlayOneShot(AudioManager.SoundEffectType.CirclePz);
             }

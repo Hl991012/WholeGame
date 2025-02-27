@@ -297,6 +297,7 @@ public class WXSDKManager : Singleton<WXSDKManager>
             {
                 // Debug.LogError("获得Setting信息成功");
                 subscriptionsSetting = val.subscriptionsSetting;
+                authSetting = val.authSetting;
             },
             complete = val =>
             {
@@ -340,6 +341,38 @@ public class WXSDKManager : Singleton<WXSDKManager>
                 // Debug.LogError("包含更新订阅消息");
             }
         }
+    }
+
+    #endregion
+
+    #region 获取用户信息相关内容
+
+    private AuthSetting authSetting;
+
+    // 是否已经拿到用户信息
+    public bool IsLogin()
+    {
+#if UNITY_EDITOR
+        return true;
+#endif
+        
+        return authSetting != null && authSetting.ContainsKey("scope.userInfo") && authSetting["scope.userInfo"];
+    }
+    
+    public void RequestUserInfo(Action onSuccess)
+    {
+        // 请求用户授权
+        GetUserInfoOption callback = new GetUserInfoOption();
+        callback.complete += val =>
+        {
+            GetSetting();
+        };
+
+        callback.success = val =>
+        {
+            onSuccess?.Invoke();
+        };
+        WX.GetUserInfo(callback);
     }
 
     #endregion

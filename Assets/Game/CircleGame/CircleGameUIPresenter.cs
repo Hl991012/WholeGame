@@ -1,3 +1,4 @@
+using BlockEliminateGame;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +13,17 @@ public class CircleGameUIPresenter : MonoBehaviour
     [SerializeField] private Button closeReviveBtn;
     [SerializeField] private Button reviveBtn;
     [SerializeField] private Button leaderBoardBtn;
-    [SerializeField] private Button sureBtn;
+
+    #region 游戏结算相关内容
+
+    [SerializeField] private GameObject gameResultPanel;
+    [SerializeField] private TextMeshProUGUI gameScoreTmp;
+    [SerializeField] private SingleRewardItem rewardItem;
+    [SerializeField] private Button normalGetBtn;
+    [SerializeField] private Button adGetBtn;
+    [SerializeField] private MultipleRewardBarPresenter multipleRewardBarPresenter;
+
+    #endregion
 
     private void Awake()
     {
@@ -27,8 +38,17 @@ public class CircleGameUIPresenter : MonoBehaviour
         startGame.onClick.AddListener(() =>
         {
             BaseUtilities.PlayCommonClick();
-            CircleGameManager.Instance.StartGame();
-            startGame.gameObject.SetActive(false);
+            
+            // 判断金币是否足够，如果足够则开始游戏
+            if (PlayerPrefs.GetInt("circle_game_play_count") == 0 || CurrencyManager.Coin >= 50)
+            {
+                CircleGameManager.Instance.StartGame();
+                startGame.gameObject.SetActive(false);
+            }
+            else
+            {
+                MainSceneCenter.Instance.ShowTips("金币不足，请游玩关卡或者无尽模式获得金币！");
+            }
         });
         
         closeReviveBtn.onClick.AddListener(() =>
@@ -55,12 +75,37 @@ public class CircleGameUIPresenter : MonoBehaviour
             
         });
         
-        sureBtn.onClick.AddListener(() =>
+        normalGetBtn.onClick.AddListener(() =>
         {
             BaseUtilities.PlayCommonClick();
             CircleGameManager.Instance.EndGame();
-            revivePanel.gameObject.SetActive(false);
+            gameResultPanel.gameObject.SetActive(false);
             startGame.gameObject.SetActive(true);
+            // 增加金币
+            CurrencyManager.AddCoin(CircleGameManager.Instance.CalculateRewardCoinCount());
+        });
+        
+        adGetBtn.onClick.AddListener(() =>
+        {
+            BaseUtilities.PlayCommonClick();
+            multipleRewardBarPresenter.PauseAnimation();
+            WXSDKManager.Instance.ShowRewardVideo(isSuccess =>
+            {
+                if (isSuccess)
+                {
+                    CircleGameManager.Instance.EndGame();
+                    gameResultPanel.gameObject.SetActive(false);
+                    startGame.gameObject.SetActive(true);
+                    // 增加金币
+                    var canGetCoinCount = CircleGameManager.Instance.CalculateRewardCoinCount() *
+                                          multipleRewardBarPresenter.CurrentRewardMultiple.Value;
+                    CurrencyManager.AddCoin(canGetCoinCount);
+                }
+                else
+                {
+                    multipleRewardBarPresenter.PlayAnimation();
+                }
+            });
         });
 
         CircleGameManager.Instance.OnScoreChanged += OnScoreChanged;
@@ -79,17 +124,19 @@ public class CircleGameUIPresenter : MonoBehaviour
 
     public void ShowRevivePanel()
     {
-        reviveBtn.gameObject.SetActive(true);
         revivePanel.SetActive(true);
-        closeReviveBtn.gameObject.SetActive(true);
-        sureBtn.gameObject.SetActive(false);
     }
 
     public void ShowGameOverPanel()
     {
-        reviveBtn.gameObject.SetActive(false);
-        revivePanel.SetActive(true);
-        closeReviveBtn.gameObject.SetActive(false);
-        sureBtn.gameObject.SetActive(true);
+        revivePanel.SetActive(false);
+        gameResultPanel.SetActive(true);
+        gameScoreTmp.text = CircleGameManager.Instance.CurScore.ToString();
+        // 计算当前能获得的金币
+        GameModel.RewardModel rewardModel = new GameModel.RewardModel()
+        {
+            quantity = CircleGameManager.Instance.CalculateRewardCoinCount()
+        };
+        rewardItem.RefreshView(rewardModel);
     }
 }

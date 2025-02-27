@@ -43,5 +43,12 @@ public class SplashPresenter : MonoBehaviour
         await SceneManager.UnloadSceneAsync("Splash");
         AudioManager.Instance.PlayBGM();
         // GameCenter.Instance.ChangeState(GameCenter.GameState.Home);
+
+#if !UNITY_EDITOR
+        if (!WXSDKManager.Instance.IsLogin())
+        {
+            WXSDKManager.Instance.RequestUserInfo(null);
+        }  
+#endif
     }
 }

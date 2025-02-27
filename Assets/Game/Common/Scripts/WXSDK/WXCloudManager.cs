@@ -113,4 +113,12 @@ public class WXCloudManager : Singleton<WXCloudManager>
         [JsonProperty("state")] public int State { get; set; }
         [JsonProperty("data")] public List<SingleRankInfo> Data { get; set; }
     }
+
+
+    #region 新内容
+    
+    
+    
+
+    #endregion
 }

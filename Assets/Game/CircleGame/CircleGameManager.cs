@@ -43,7 +43,7 @@ public class CircleGameManager : Singleton<CircleGameManager>
 
     public void StartGame()
     {
-        score = 0;
+        CurScore = 0;
         CircleConctrol.Instance.StartGame();
     }
 
@@ -55,5 +55,17 @@ public class CircleGameManager : Singleton<CircleGameManager>
     public void EndGame()
     {
         CircleConctrol.Instance.Reset();
+        CurScore = 0;
+    }
+
+    public int CalculateRewardCoinCount()
+    {
+        var tempCoinCount = 0;
+        if (score <= 20) tempCoinCount = 20;
+        else
+        {
+            tempCoinCount = 20 + score / 5;
+        }
+        return tempCoinCount;
     }
 }
