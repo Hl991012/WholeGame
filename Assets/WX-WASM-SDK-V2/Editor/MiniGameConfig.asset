@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: MiniGameConfig
   m_EditorClassIdentifier: 
   ProjectConf:
-    projectName: "\u65B9\u5757\u6D88\u4E86\u4E2A\u6D88"
-    Appid: wxdf1c4738a14c3acf
+    projectName: "\u6D88\u4E86\u4E2A\u65B9\u5757"
+    Appid: wx286cbcbadc4df8b3
     CDN: 
     assetLoadType: 1
     compressDataPackage: 1
     VideoUrl: 
-    DST: C:/Users/10573/Desktop/WeChatGame
+    DST: C:/Users/10573/Desktop/XLGFK
     StreamCDN: 
     bundleHashLength: 32
     bundlePathIdentifier: StreamingAssets;

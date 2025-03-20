@@ -735,11 +735,11 @@ namespace PuzzleGame.Gameplay.Puzzle1010
 
         private void OnGameOver()
         {
-            if (PlayerPrefs.GetInt("last_time_upload_score", 5999) < gameState.TopScore)
+            if (PlayerPrefs.GetInt("last_time_upload_score") < gameState.TopScore)
             {
                 WXCloudManager.Instance.UpdatePutBlockRankScore(gameState.TopScore, null);
                 PlayerPrefs.SetInt("last_time_upload_score", gameState.TopScore);
-                // Debug.LogError("更新分数");
+                Debug.LogError("更新分数");
             }
             gameState.IsGameOver = true;
             // 根据当前分数计算得到的金币数量

@@ -12,7 +12,7 @@ public class WXCloudManager : Singleton<WXCloudManager>
     {
         var callFunctionInitParam = new CallFunctionInitParam()
         {
-            env = "zjyxj-cloud-2gw1pptrb141820c",
+            env = "cloudbase-1gocxxxb90f46de1",
             traceUser = true,
         };
         WX.cloud.Init(callFunctionInitParam);
@@ -70,31 +70,47 @@ public class WXCloudManager : Singleton<WXCloudManager>
     
     public void UpdatePutBlockRankScore(int score, Action<bool> onComplete)
     {
-        var singleRankInfo = new SingleRankInfo()
+        // 判断玩家是否登录
+        if (WXSDKManager.Instance.IsLogin())
         {
-            Score = score,
-        };
+            UpdateScore();
+        }
+        else
+        {
+            WXSDKManager.Instance.RequestUserInfo(UpdateScore, () =>
+            {
+                MainSceneCenter.Instance.ShowTips("需要授权信息才能上传分数"); 
+            });
+        }
+
+        void UpdateScore()
+        {
+            var singleRankInfo = new SingleRankInfo()
+            {
+                Score = score,
+            };
         
-        var callFunctionParam = new CallFunctionParam()
-        {
-            name = "SetPutBlockGameScore",
-            data = JsonConvert.SerializeObject(singleRankInfo),
-            fail = val =>
+            var callFunctionParam = new CallFunctionParam()
             {
-                // Debug.LogError("调用失败" + val.errMsg + "" + val.result);
-                onComplete?.Invoke(false);
-            },
-            success = val =>
-            {
-                // Debug.LogError("调用成功" + val.result + " " + val.callbackId);
-                onComplete?.Invoke(true);
-            },
-            complete = val =>
-            {
-                // Debug.LogError("调用完成" + val.result);
-            }
-        };
-        WX.cloud.CallFunction(callFunctionParam);
+                name = "UpdatePutBlockGameScore",
+                data = JsonConvert.SerializeObject(singleRankInfo),
+                fail = val =>
+                {
+                    // Debug.LogError("调用失败" + val.errMsg + "" + val.result);
+                    onComplete?.Invoke(false);
+                },
+                success = val =>
+                {
+                    // Debug.LogError("调用成功" + val.result + " " + val.callbackId);
+                    onComplete?.Invoke(true);
+                },
+                complete = val =>
+                {
+                    // Debug.LogError("调用完成" + val.result);
+                }
+            };
+            WX.cloud.CallFunction(callFunctionParam);   
+        }
     }
     
     public class SingleRankInfo

@@ -40,7 +40,7 @@ public class WXSDKManager : Singleton<WXSDKManager>
             wxRewardedVideoAd = WX.CreateRewardedVideoAd(
                 new WXCreateRewardedVideoAdParam()
                 {
-                    adUnitId = "adunit-6918133c0430e1e9",
+                    adUnitId = "adunit-715244a3c1db5c24",
                     multiton = true
                 });
             
@@ -49,7 +49,7 @@ public class WXSDKManager : Singleton<WXSDKManager>
             wxInterstitialAd = WX.CreateInterstitialAd(
                 new WXCreateInterstitialAdParam()
                 {
-                    adUnitId = "adunit-dc63d74f56278361"
+                    adUnitId = "adunit-c30f7e5d5d42668e"
                 });
             
             wxInterstitialAd.Load();
@@ -98,7 +98,7 @@ public class WXSDKManager : Singleton<WXSDKManager>
                 wXCustomAd = WX.CreateCustomAd(new WXCreateCustomAdParam()
                 {
                     adIntervals = 30,
-                    adUnitId = "adunit-e45f98074d27985a",
+                    adUnitId = "adunit-4cca63a64eb3ce69",
                     style = new CustomStyle()
                     {
                         left = windowWidth / 2 - 144,
@@ -111,7 +111,7 @@ public class WXSDKManager : Singleton<WXSDKManager>
                 wXCustomAd_1 = WX.CreateCustomAd(new WXCreateCustomAdParam()
                 {
                     adIntervals = 30,
-                    adUnitId = "adunit-8c7aa40c3efd332e",
+                    adUnitId = "adunit-0885d113bee972ea",
                     style = new CustomStyle()
                     {
                         left = windowWidth - 72,
@@ -273,7 +273,7 @@ public class WXSDKManager : Singleton<WXSDKManager>
             imageUrl =
                 "https://mmocgame.qpic.cn/wechatgame/X4cGHmN8OVbp11yKfO0IgxCGJFJTCfibW74e82Z4vSUdHJN6NTkwfz3rnRX7OITIJ/0",
             imageUrlId = "",
-            title = "这游戏太棒了，和我一起玩吧！！！"
+            title = "这关太难了，来帮助我一起挑战吧！！！"
         };
         
         WX.ShareAppMessage(shareAppMessageOption);
@@ -359,7 +359,7 @@ public class WXSDKManager : Singleton<WXSDKManager>
         return authSetting != null && authSetting.ContainsKey("scope.userInfo") && authSetting["scope.userInfo"];
     }
     
-    public void RequestUserInfo(Action onSuccess)
+    public void RequestUserInfo(Action onSuccess, Action onFail)
     {
         // 请求用户授权
         GetUserInfoOption callback = new GetUserInfoOption();
@@ -372,6 +372,12 @@ public class WXSDKManager : Singleton<WXSDKManager>
         {
             onSuccess?.Invoke();
         };
+
+        callback.fail = val =>
+        {
+            onFail?.Invoke();
+        };
+
         WX.GetUserInfo(callback);
     }
 
