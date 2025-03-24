@@ -723,14 +723,16 @@ namespace PuzzleGame.Gameplay.Puzzle1010
                 return;
 
             // 判断是否复活过
-            if (gameState.HasRevive)
-            {
-                OnGameOver();
-            }
-            else
-            {
-                putBlockGameRevivePanel.Show(OnRevive, OnGameOver);
-            }
+            // if (gameState.HasRevive)
+            // {
+            //     OnGameOver();
+            // }
+            // else
+            // {
+            //     
+            // }
+            
+            putBlockGameRevivePanel.Show(OnRevive, OnGameOver);
         }
 
         private void OnGameOver()

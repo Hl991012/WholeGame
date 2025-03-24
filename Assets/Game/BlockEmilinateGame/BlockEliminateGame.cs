@@ -702,14 +702,15 @@ namespace BlockEliminateGame
                 return;
 
             // 判断是否复活过
-            if (GameDataModel.RevivedCount > 0)
-            {
-                OnGameOver(false);
-            }
-            else
-            {
-                blockEliminateGameRevivePanel.Init(false, OnRevive).Show();
-            }
+            blockEliminateGameRevivePanel.Init(false, OnRevive).Show();
+            // if (GameDataModel.RevivedCount > 0)
+            // {
+            //     OnGameOver(false);
+            // }
+            // else
+            // {
+            //     
+            // }
         }
 
 

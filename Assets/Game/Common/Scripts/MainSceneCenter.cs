@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using BlockEliminateGame;
 using GameFrame;
 using PutBlockGame;
@@ -14,6 +15,7 @@ public class MainSceneCenter : MonoSingleton<MainSceneCenter>
     [SerializeField] private PlayRoomPresenter playRoomPresenter;
     [SerializeField] private PopUpsUI popUpsUI;
     [SerializeField] private TMP_FontAsset tmpFontAsset;
+    [SerializeField] private RankPanel rankPanel;
     [field: SerializeField] public BuyGoodsUIPresenter BuyGoodsUIPresenter { get; set; }
     [field: SerializeField] public GetRewardUIPresenter GetRewardUIPresenter { get; set; }
 
@@ -63,5 +65,10 @@ public class MainSceneCenter : MonoSingleton<MainSceneCenter>
     public void ShowTips(string tips)
     {
         popUpsUI.Show(tips);
+    }
+
+    public void ShowRankUI(List<WXCloudManager.SingleRankInfo> rankData, WXCloudManager.SingleRankInfo selfRank)
+    {
+        rankPanel.Show(rankData, selfRank);
     }
 }

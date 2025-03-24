@@ -31,7 +31,7 @@ public class PutBlockGamePlayRoomUI : MonoBehaviour
     
     [SerializeField] private GameObject comboStateObj;
 
-    [SerializeField] private PutBlockRankPanel putBlockRankPanel;
+    [SerializeField] private RankPanel rankPanel;
     
     private PutBlockGameState putBlockGameState;
     
@@ -107,36 +107,18 @@ public class PutBlockGamePlayRoomUI : MonoBehaviour
             // 打开排行榜
             if (WXSDKManager.Instance.IsLogin())
             {
-                WXCloudManager.Instance.GetPutBlockRankInfo((result, data) =>
+                WXCloudManager.Instance.GetPutBlockRankInfo((result, rankData, selfData) =>
                 {
-                    Debug.LogError("拉去最新的数据");
                     if (result)
                     {
-                        putBlockRankPanel.Init(data).RefreshView();
+                        rankPanel.Show(rankData, selfData);
                     }
                     else
                     {
-                        putBlockRankPanel.RefreshView();
+                        MainSceneCenter.Instance.ShowTips("功能维护中。。。");
                     }
                 });
             }
-            
-            // if (putBlockGameState?.TopScore >= 6000)
-            // {
-            //     if (PlayerPrefs.GetInt("last_open_max_score") >= putBlockGameState.TopScore)
-            //     {
-            //         putBlockRankPanel.RefreshView();
-            //     }
-            //     else
-            //     {
-            //         PlayerPrefs.SetInt("last_open_max_score", putBlockGameState.TopScore);
-            //         
-            //     }
-            // }
-            // else
-            // {
-            //     MainSceneCenter.Instance.ShowTips("到达6000分后开启排行榜，加油哦!");
-            // }
         });
 
         BoosterManager.Instance.OnBoosterChanged += OnBoosterChanged;

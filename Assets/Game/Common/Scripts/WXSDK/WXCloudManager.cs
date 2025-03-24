@@ -18,7 +18,7 @@ public class WXCloudManager : Singleton<WXCloudManager>
         WX.cloud.Init(callFunctionInitParam);
     }
     
-    public void GetPutBlockRankInfo(Action<bool, List<SingleRankInfo>> onComplete)
+    public void GetPutBlockRankInfo(Action<bool, List<SingleRankInfo>, SingleRankInfo> onComplete)
     {
         var callFunctionParam = new CallFunctionParam()
         {
@@ -27,7 +27,7 @@ public class WXCloudManager : Singleton<WXCloudManager>
             fail = val =>
             {
                 // Debug.LogError("调用失败" + val.errMsg + "" + val.result);
-                onComplete?.Invoke(false, null);
+                onComplete?.Invoke(false, null, null);
             },
             success = val =>
             {
@@ -36,20 +36,9 @@ public class WXCloudManager : Singleton<WXCloudManager>
                 try
                 {
                     var response = JsonConvert.DeserializeObject<ResponseInfo>(val.result);
-                    if (response != null && response.State == 1)
+                    if (response is { State: 1 })
                     {
-                        if (response.Data is { Count: > 0 })
-                        {
-                            foreach (var item in response.Data)
-                            {
-                                Debug.LogError(item.ToString());
-                            }
-                            
-                            onComplete?.Invoke(true, response.Data);
-                            return;
-                        }
-                        
-                        onComplete?.Invoke(false, null);
+                        onComplete?.Invoke(true, response.RankData, response.SelfData);
                         return;
                     }
                 }
@@ -58,7 +47,7 @@ public class WXCloudManager : Singleton<WXCloudManager>
                     Debug.LogError(e.Message);
                 }
                 
-                onComplete?.Invoke(false, null);
+                onComplete?.Invoke(false, null, null);
             },
             complete = val =>
             {
@@ -115,19 +104,18 @@ public class WXCloudManager : Singleton<WXCloudManager>
     
     public class SingleRankInfo
     {
+        [JsonProperty("rank")] public int Rank { get; set; }
         [JsonProperty("name")] public string Name { get; set; }
         [JsonProperty("score")] public int Score { get; set; }
-
-        public override string ToString()
-        {
-            return $"{Name}/{Score}";
-        }
+        
+        [JsonProperty("avatar")] public string AvatarUrl { get; set; }
     }
     
     public class ResponseInfo
     {
         [JsonProperty("state")] public int State { get; set; }
-        [JsonProperty("data")] public List<SingleRankInfo> Data { get; set; }
+        [JsonProperty("rank_data")] public List<SingleRankInfo> RankData { get; set; }
+        [JsonProperty("self_data")] public SingleRankInfo SelfData { get; set; }
     }
 
 
